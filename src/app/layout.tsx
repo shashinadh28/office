@@ -12,6 +12,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Add this import at the top of your layout file
+import { Kanit } from 'next/font/google';
+
+// Initialize the font
+const kanit = Kanit({
+  weight: ['500'],
+  subsets: ['latin'],
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: "Gateway Workforce",
   description: "Gateway Workforce",
