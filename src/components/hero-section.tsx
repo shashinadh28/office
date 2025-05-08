@@ -2,7 +2,6 @@ import React from 'react'
 import Link from 'next/link'
 import { ArrowRight, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import Image from 'next/image'
 import { TextEffect } from '@/components/motion-primitives/text-effect'
 import { AnimatedGroup } from '@/components/motion-primitives/animated-group'
 import { HeroHeader } from '@/components/hero5-header'
@@ -67,14 +66,7 @@ export default function HeroSection() {
                                     },
                                 },
                             }}
-                            className="absolute inset-0 -z-20">
-                            <Image
-                                src="https://res.cloudinary.com/dg4jhba5c/image/upload/v1741605538/night-background_ni3vqb.jpg"
-                                alt="background"
-                                className="absolute inset-x-0 top-56 -z-20 hidden lg:top-32 dark:block"
-                                width="3276"
-                                height="4095"
-                            />
+                            className="absolute inset-0 -z-20" children={undefined}>
                         </AnimatedGroup>
                         <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"></div>
                         <div className="mx-auto max-w-7xl px-6">
@@ -102,9 +94,6 @@ export default function HeroSection() {
                                 
                             </div>
                         </div>
-                        
-                        {/* Image section removed */}
-                        
                     </div>
                 </section>
 
