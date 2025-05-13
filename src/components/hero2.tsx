@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'framer-motion';
-import { IBM_Plex_Sans, Noto_Sans_JP } from 'next/font/google';
+import { IBM_Plex_Sans, Noto_Sans_JP, Lexend } from 'next/font/google';
 import { FaGlobeAmericas } from 'react-icons/fa';
 import { BsFileEarmarkCodeFill } from 'react-icons/bs';
 import { RiMoneyDollarCircleFill } from 'react-icons/ri';
@@ -12,6 +12,7 @@ import { IoMdTime, IoIosPeople } from 'react-icons/io';
 
 const ibmPlexSans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['700'], display: 'swap' });
 const notoSansJP = Noto_Sans_JP({ subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
+const lexend = Lexend({ subsets: ['latin'], weight: ['400', '500', '600', '700'], display: 'swap' });
 
 interface BenefitCardProps {
   icon: React.ReactNode;
@@ -153,7 +154,7 @@ const Hero2 = () => {
               {icon}
             </motion.span>
           </div>
-          <h3 className="text-center font-extrabold mb-1 sm:mb-2 text-base sm:text-lg md:text-xl" style={{ color: color }}>{title}</h3>
+          <h3 className={`${lexend.className} text-center font-bold mb-1 sm:mb-2 text-base sm:text-lg md:text-xl`} style={{ color: color }}>{title}</h3>
           <p className="text-xs sm:text-sm" style={{ color: descColor }}>{description}</p>
           
           {/* Card shine effect */}

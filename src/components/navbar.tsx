@@ -55,7 +55,7 @@ export const Navbar = ({ className }: { className?: string }) => {
           animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
           transition={{ duration: 0.2 }}
           className={cn(
-            'flex max-w-fit fixed top-6 md:top-10 inset-x-0 mx-auto border border-gray-200 rounded-full bg-white/85 backdrop-blur-md shadow-[0px_2px_15px_-1px_rgba(0,0,0,0.1)] z-[5000] px-4 md:px-8 py-2 md:py-3 items-center justify-between',
+            'flex max-w-fit fixed top-6 md:top-10 inset-x-0 mx-auto border border-gray-200 rounded-full bg-gradient-to-r from-white/60 via-white/70 to-white/60 backdrop-blur-lg shadow-[0px_2px_15px_-1px_rgba(0,0,0,0.1)] z-[5000] px-4 md:px-8 py-2 md:py-3 items-center justify-between',
             className
           )}
         >
@@ -120,7 +120,7 @@ export const Navbar = ({ className }: { className?: string }) => {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 20 }}
-              className="fixed top-0 left-0 bottom-0 w-[250px] bg-white z-[5002] p-6 shadow-xl"
+              className="fixed top-0 left-0 bottom-0 w-[250px] bg-gradient-to-b from-white/95 to-white/98 backdrop-blur-md z-[5002] p-6 shadow-xl"
             >
               <div className="flex justify-between items-center mb-8">
                 <Logo className="h-8" />
