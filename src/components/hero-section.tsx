@@ -4,6 +4,10 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import ContactButton from "./ContactButton";
+import { Button } from '@/components/ui/button';
+import { TextEffect } from '@/components/motion-primitives/text-effect';
+import { AnimatedGroup } from '@/components/motion-primitives/animated-group';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
