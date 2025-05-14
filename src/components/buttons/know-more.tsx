@@ -12,7 +12,7 @@ const KnowMoreButton = () => {
         whileTap={{ scale: 0.98 }}
       >
         <span className="relative z-10 flex items-center gap-2.5">
-          Learn More
+          Know More
           <span 
             className="w-3.5 h-0.5 bg-[#282936] relative transition-all duration-700 group-hover:bg-white group-hover:translate-x-1.5"
           >
