@@ -5,7 +5,6 @@ import Hero3 from "@/components/hero3";
 import Hero4 from "@/components/hero4";
 import Hero6 from "@/components/hero6";
 import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
-import Image from "next/image";
 
 export default function Home() {
   return (
