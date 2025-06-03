@@ -5,25 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
-import dynamic from 'next/dynamic';
-import { HoverEffect } from '@/components/ui/card-hover-effect';
 import { ServiceCardGrid } from '@/components/ui/service-card';
-
-// Dynamically import components with SSR disabled
-const FloatingElement = dynamic(
-  () => import('@/components/FloatingElement').then(mod => mod.FloatingElement),
-  { ssr: false }
-);
-
-const BackgroundAnimation = dynamic(
-  () => import('@/components/BackgroundAnimation'),
-  { ssr: false }
-);
-
-const AnimatedBackground = dynamic(
-  () => import('@/components/AnimatedBackground'),
-  { ssr: false }
-);
 
 const lexend = Lexend({ subsets: ['latin'], weight: ['700'], display: 'swap' });
 
@@ -54,9 +36,7 @@ export default function USTaxationPage() {
 
   return (
     <div className="relative min-h-screen bg-[#E9EDF4] overflow-hidden font-sans">
-      {/* Client-side only background animation */}
-      {isClient && <BackgroundAnimation />}
-      {/* Animated Background elements */}
+      {/* Background elements */}
       {/* Small Triangle 1 - Matches Big Triangle Animation */}
       <motion.div
         className="absolute top-10 left-233 z-10"
@@ -288,8 +268,6 @@ export default function USTaxationPage() {
 
       {/* Accounting & Compliance Section */}
       <div className="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
-        {/* Client-only Animated Background */}
-        {isClient && <div className="opacity-10"><AnimatedBackground /></div>}
         <div className="container mx-auto px-4 relative z-10">
           {/* Header Section */}
 
@@ -309,7 +287,7 @@ export default function USTaxationPage() {
               }
             }}
           >
-            {/* Animated background elements - client-only */}
+            {/* Background elements */}
             {isClient && (
               <motion.div 
                 className="absolute -z-10 w-64 h-64 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -left-20 -top-20"
