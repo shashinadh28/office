@@ -55,32 +55,34 @@ export const Navbar = ({ className }: { className?: string }) => {
           animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
           transition={{ duration: 0.2 }}
           className={cn(
-            'flex max-w-fit fixed top-6 md:top-10 inset-x-0 mx-auto border border-gray-200 rounded-full bg-gradient-to-r from-white/60 via-white/70 to-white/60 backdrop-blur-lg shadow-[0px_2px_15px_-1px_rgba(0,0,0,0.1)] z-[5000] px-4 md:px-8 py-2 md:py-3 items-center justify-between',
+            'flex max-w-fit fixed top-6 md:top-10 inset-x-0 mx-auto border-2 border-black rounded-full bg-white/80 backdrop-blur-md shadow-lg z-[5000] px-6 md:px-10 py-3 md:py-4 items-center justify-between',
             className
-          )}
+          )} style={{
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)'
+          }}
         >
           {/* Mobile menu button */}
           <button 
-            className="md:hidden flex items-center mr-2"
+            className="md:hidden flex items-center mr-2 p-2 rounded-full hover:bg-black/10"
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
-            <Menu className="h-5 w-5 text-gray-700" />
+            <Menu className="h-6 w-6 text-gray-800" />
           </button>
           
           {/* Desktop navigation */}
-          <div className="hidden md:flex items-center justify-center space-x-6">
+          <div className="hidden md:flex items-center justify-center space-x-2">
             {navItems.map((navItem, idx) => (
               <Link
                 key={`link=${idx}`}
                 href={navItem.link}
                 className={cn(
-                  'relative items-center flex space-x-1 text-gray-700 hover:text-teal-600 font-medium transition-all duration-200 group'
+                  'relative items-center flex space-x-1 text-gray-800 hover:text-black font-medium transition-all duration-200 group px-3 py-1 rounded-full hover:bg-black/5'
                 )}
               >
-                <span className="text-sm">
+                <span className="text-sm md:text-base font-medium">
                   {navItem.name}
-                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-teal-500 transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100"></span>
                 </span>
               </Link>
             ))}

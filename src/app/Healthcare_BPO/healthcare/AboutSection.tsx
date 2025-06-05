@@ -9,11 +9,15 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="w-full py-16 px-4 bg-white">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row gap-12 items-center">
+    <section className="w-full py-24 md:py-32 px-4 bg-white relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+      </div>
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16 items-center">
           {/* Content taking full width */}
-          <div className="w-full text-center">
+          <div className="w-full text-center space-y-8">
             {/* Section Header */}
             <motion.div 
               className="mb-12" // Reduced bottom margin if no content follows
@@ -28,12 +32,33 @@ const AboutSection = () => {
                 <span className="text-[#18C7FF] font-medium uppercase tracking-wider text-sm">ABOUT US</span>
                 <div className="w-6 h-0.5 bg-[#18C7FF]"></div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 leading-tight">
                 Streamline Your Healthcare Operations with Expert BPO Solutions
               </h2>
-              <p className="text-gray-600 max-w-3xl mx-auto">
+              <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
                 At Gateway Workforce, we provide comprehensive Healthcare Business Process Outsourcing (BPO) services, specializing in end-to-end medical billing and telehealth support. Our tailored solutions help healthcare providers, hospitals, and clinics optimize revenue cycles, reduce administrative burdens, and enhance patient care through seamless outsourcing.
               </p>
+              
+              {/* Additional content to fill height */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                {[
+                  { number: '3+', label: 'Years of Experience' },
+                  { number: '12+', label: ' Clients' },
+                  { number: '100%', label: 'Client Satisfaction' }
+                ].map((item, index) => (
+                  <motion.div 
+                    key={index}
+                    className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-gray-100"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <p className="text-3xl font-bold text-[#18C7FF] mb-2">{item.number}</p>
+                    <p className="text-gray-600">{item.label}</p>
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
             {/* All content below this (Features Grid, Checklist Items, CTA Button) is removed as per user request */}
           </div>

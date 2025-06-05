@@ -30,11 +30,15 @@ export default function HealthcareBPO() {
             src="/background_images/health_bg.png"
             alt="Healthcare BPO Background"
             fill
-            style={{ 
-              objectFit: 'cover',
-              objectPosition: 'center'
-            }}
+            sizes="100vw"
             priority
+            quality={85}
+            className="object-cover object-center"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+              willChange: 'transform'
+            }}
           />
         </div>
 
@@ -60,16 +64,16 @@ export default function HealthcareBPO() {
             {/* Animated main heading */}
             <div className="overflow-hidden mb-6">
               <h1
-                className="text-4xl md:text-5xl font-bold text-slate-800 dark:text-slate-100 leading-tight transition-all duration-1000 ease-out"
+                className="text-4xl md:text-5xl font-bold text-white leading-tight transition-all duration-1000 ease-out drop-shadow-lg"
                 style={{
                   transform: textAnimated ? 'translateY(0)' : 'translateY(40px)',
                   opacity: textAnimated ? 1 : 0,
                   filter: textAnimated ? 'blur(0)' : 'blur(4px)',
                   transitionDelay: '200ms',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.3)'
                 }}
               >
                 End-to-End<br /> Medical Billing & Telehealth Support
-
               </h1>
             </div>
             {/* Animated Get Started button replaced with scroll down button */}
