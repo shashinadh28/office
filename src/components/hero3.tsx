@@ -4,6 +4,7 @@ import { ReactLenis } from 'lenis/react';
 import { IBM_Plex_Sans } from 'next/font/google';
 const ibmPlexSans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['700'], display: 'swap' });
 import { useTransform, motion, useScroll, MotionValue } from 'motion/react';
+import Link from 'next/link';
 import { useRef } from 'react';
 import Image from 'next/image';
 
@@ -144,13 +145,23 @@ export const Card: React.FC<CardProps> = ({
             </ul>
             <span className='flex items-center gap-2 pt-2'>
               {title === 'Healthcare BPO' ? (
+  <Link href="/Healthcare_BPO" passHref legacyBehavior>
   <a
-    href="/Healthcare_BPO"
     className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-base md:text-lg mt-2"
   >
     See more
   </a>
+  </Link>
+) : title === 'US Taxation' ? (
+  <Link href="/US_Taxation" passHref legacyBehavior>
+  <a
+    className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-base md:text-lg mt-2"
+  >
+    See more
+  </a>
+  </Link>
 ) : (
+
   <button
     type="button"
     className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-base md:text-lg mt-2"

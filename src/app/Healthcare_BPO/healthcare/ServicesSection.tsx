@@ -1,194 +1,152 @@
 'use client';
 
-import { ReactLenis } from "lenis/react";
-import dynamic from 'next/dynamic';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { DollarSign, Laptop, Briefcase, ArrowRight } from 'lucide-react';
 
-// Lazy load icons to improve initial load performance
-const ClipboardList = dynamic(() => import('lucide-react').then(mod => mod.ClipboardList), { 
-  ssr: false,
-  loading: () => <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full animate-pulse" />
-});
-
-const Monitor = dynamic(() => import('lucide-react').then(mod => mod.Monitor), { 
-  ssr: false,
-  loading: () => <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full animate-pulse" />
-});
-
-const UserCheck = dynamic(() => import('lucide-react').then(mod => mod.UserCheck), { 
-  ssr: false,
-  loading: () => <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full animate-pulse" />
-});
-
-const ChevronRight = dynamic(() => import('lucide-react').then(mod => mod.ChevronRight), { 
-  ssr: false,
-  loading: () => <div className="w-3 h-3 bg-gray-400 rounded-full" />
-});
-
-const Database = dynamic(() => import('lucide-react').then(mod => mod.Database), { 
-  ssr: false,
-  loading: () => <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full animate-pulse" />
-});
-
-const services = [
+const servicesData = [
   {
-    title: "End-to-End Medical Billing & RCM",
-    description: "Maximize revenue with our comprehensive billing solutions that ensure accuracy, compliance, and faster reimbursements.",
-    features: [
-      "Claims submission & denial management",
+    title: "End-to-End Medical Billing & Revenue Cycle Management",
+    description: [
+      "Claims submission & processing",
+      "Denial management & appeals",
       "Payment posting & reconciliation",
-      "A/R follow-ups & reporting",
-      "Compliance with latest regulations"
+      "Patient billing & collections",
+      "A/R follow-ups & reporting"
     ],
-    icon: <ClipboardList className="w-12 h-12 mb-6" />,
-    bgColor: "bg-white",
-    textColor: "text-slate-800",
-    borderColor: "border-[#18C7FF]",
-    rotate: "rotate-1",
-    accentColor: "text-[#18C7FF]"
+    icon: DollarSign,
+    bgColor: "bg-slate-700",
+    iconColor: "text-sky-500",
+    textColor: "text-white",
   },
   {
     title: "Telehealth Support Services",
-    description: "Seamlessly integrate virtual care into your practice with our end-to-end telehealth solutions.",
-    features: [
+    description: [
       "Virtual appointment scheduling",
-      "Secure patient documentation",
+      "Patient intake & documentation",
+      "Remote care coordination",
       "Telemedicine billing & coding",
-      "HIPAA-compliant platform"
+      "Compliance & data security"
     ],
-    icon: <div className="w-12 h-12 mb-6 flex items-center justify-center">
-      <Monitor className="w-10 h-10 md:w-12 md:h-12 text-white" />
-    </div>,
-    bgColor: "bg-gradient-to-br from-[#0d8ec5] to-[#18C7FF]",
+    icon: Laptop,
+    bgColor: "bg-slate-700",
+    iconColor: "text-sky-500",
     textColor: "text-white",
-    borderColor: "border-white/20",
-    rotate: "-rotate-1",
-    accentColor: "text-white"
   },
   {
-    title: "Healthcare BPO Solutions",
-    description: "Comprehensive back-office support to streamline your healthcare operations and improve efficiency.",
-    features: [
+    title: "Additional Healthcare BPO Solutions",
+    description: [
       "Medical coding & auditing",
-      "Provider credentialing",
-      "Patient support services",
+      "Credentialing & provider enrollment",
+      "Customer service & patient support",
       "EHR/EMR management"
     ],
-    icon: <div className="w-12 h-12 mb-6 flex items-center justify-center">
-      <UserCheck className="w-10 h-10 md:w-12 md:h-12" />
-    </div>,
-    bgColor: "bg-white",
-    textColor: "text-slate-800",
-    borderColor: "border-[#18C7FF]",
-    rotate: "rotate-1",
-    accentColor: "text-[#18C7FF]"
-  },
-  {
-    title: "Healthcare Data Management",
-    description: "Transform your data into actionable insights with our secure and compliant data solutions.",
-    features: [
-      "EHR management & migration",
-      "Data analytics & reporting",
-      "Interoperability solutions",
-      "HIPAA-compliant storage"
-    ],
-    icon: <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center">
-      <Database className="w-10 h-10 md:w-12 md:h-12 text-white" />
-    </div>,
-    bgColor: "bg-gradient-to-br from-[#0a6e96] to-[#18C7FF]",
+    icon: Briefcase,
+    bgColor: "bg-slate-700",
+    iconColor: "text-sky-500",
     textColor: "text-white",
-    borderColor: "border-white/20",
-    rotate: "-rotate-1",
-    accentColor: "text-white"
   },
 ];
 
-const ServicesSection = () => {
+const ServicesSection: React.FC = () => {
   return (
-    <ReactLenis root>
-      <main className="bg-slate-950">
-        {/* Hero Section */}
-        <section className="text-white min-h-[70vh] sm:min-h-screen w-full bg-slate-950 flex items-center justify-center sticky top-0">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-          <div className="relative z-10 text-center px-4 sm:px-8 w-full max-w-6xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center tracking-tight leading-tight mb-4 sm:mb-6 px-4">
-              Our Healthcare BPO Services
-            </h1>
-            <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
-              Comprehensive solutions to streamline your healthcare operations and improve patient care through expert business process outsourcing.
-            </p>
-            <div className="animate-bounce mt-6 sm:mt-8">
-              <svg className="w-8 h-8 sm:w-10 sm:h-10 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </div>
-          </div>
-        </section>
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="py-16 sm:py-24 bg-slate-800 overflow-hidden"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative mb-8">
+          <motion.span
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="absolute top-[-30px] left-1/2 -translate-x-1/2 bg-slate-700 text-white text-sm font-semibold px-3 py-1 rounded-full z-10"
+          >
+            Our Service
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 relative inline-block pt-8"
+          >
+            Our Healthcare BPO Services
+            <motion.span
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.5, ease: "circOut" }}
+              className="block w-1/3 h-1 bg-sky-500 absolute bottom-[-10px] left-1/2 -translate-x-1/2 origin-left"
+            ></motion.span>
+          </motion.h2>
+        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto mt-6 mb-12 sm:mb-16"
+        >
+          Our team of experienced consultants combines industry knowledge, cutting-edge technology, and innovative strategies to guide you towards a brighter and greener future.
+        </motion.p>
 
-        {/* Services Grid */}
-        <section className="text-white w-full bg-slate-950 py-8 sm:py-12 md:py-16">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative grid gap-y-12 md:gap-y-16 max-w-2xl mx-auto py-16">
-              {services.map((service, index) => (
-                <figure
-                  key={service.title}
-                  className="sticky min-h-screen grid place-items-center"
-                  style={{ top: '5rem' }} // 5rem = 80px
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.4,
+              },
+            },
+          }}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12 sm:mb-16"
+        >
+          {servicesData.map((service, index) => {
+            const IconComponent = service.icon;
+            return (
+              <motion.div
+                key={index}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+                }}
+                className={`bg-slate-700 ${service.textColor} rounded-xl p-6 md:p-8 text-left shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col group hover:bg-sky-500`}
+              >
+                <div className="flex items-start mb-4">
+                  <div className={`bg-white p-3 rounded-full mr-4 shrink-0`}>
+                    <IconComponent className={`${service.iconColor} w-6 h-6 sm:w-8 sm:h-8 group-hover:text-black transition-colors duration-300`} />
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold ${service.textColor}">
+                    {service.title}
+                  </h3>
+                </div>
+                <ul className={`list-disc list-inside text-sm sm:text-base ${service.textColor === 'text-white' ? 'text-slate-300' : 'text-slate-100'} group-hover:text-slate-100 leading-relaxed mb-4 flex-grow transition-colors duration-300 space-y-1`}>
+                  {service.description.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
+                <a
+                  href="#"
+                  className={`${service.textColor} font-medium hover:underline mt-auto self-start group inline-flex items-center`}
                 >
-                  <article
-                    className={`${service.bgColor} ${service.textColor} w-[90vw] max-w-xl rounded-xl sm:rounded-2xl ${service.rotate} p-6 md:p-8 flex flex-col border-2 ${service.borderColor} overflow-hidden shadow-2xl hover:shadow-slate-900/40 transition-all duration-300`}
-                    style={{ minHeight: '480px' }}
-                  >
-                    {/* Icon/Image Container */}
-                    <div className="flex justify-center mb-4 sm:mb-6">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center">
-                        {service.icon}
-                      </div>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="text-center flex-1 flex flex-col">
-                      <h2 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 leading-tight">
-                        {service.title}
-                      </h2>
-                      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6">
-                        {service.description}
-                      </p>
-                      
-                      <div className="mt-auto">
-                        <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6 text-left">
-                          {service.features.map((feature, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <div className={`flex-shrink-0 mt-1 ${service.accentColor}`}>
-                                <ChevronRight className="w-4 h-4" />
-                              </div>
-                              <span className="ml-2 text-sm sm:text-base">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        
-                        <button 
-                          className={`w-full py-2 sm:py-3 px-4 rounded-lg text-sm sm:text-base font-medium transition-all duration-200 ${
-                            service.textColor.includes('white') 
-                              ? 'bg-white text-[#0d8ec5] hover:bg-gray-100' 
-                              : 'bg-[#18C7FF] text-white hover:bg-[#0d8ec5]'
-                          }`}
-                        >
-                          Learn More
-                        </button>
-                      </div>
-                    </div>
-                    
-                    <div className="h-0.5 bg-gradient-to-r from-transparent via-[#18C7FF] to-transparent opacity-50 mt-3 sm:mt-4"></div>
-                  </article>
-                </figure>
-              ))}
-              {/* Spacer to ensure the last card can scroll up fully */}
-              <div style={{ height: '50vh' }} aria-hidden="true" />
-            </div>
-          </div>
-        </section>
-      </main>
-    </ReactLenis>
+                  Read More
+                  <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
+                </a>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </div>
+    </motion.section>
   );
 };
 

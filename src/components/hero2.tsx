@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react'; // Added useState
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'framer-motion';
 import { IBM_Plex_Sans, Noto_Sans_JP, Lexend } from 'next/font/google';
@@ -124,9 +124,24 @@ const Hero2 = () => {
   ];
 
   const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, description, delay, color, descColor }) => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    let finalIcon = icon;
+    if (React.isValidElement(icon)) {
+      // After React.isValidElement, 'icon' is a React.ReactElement.
+      // We can safely access its props.
+      const typedIcon = icon as React.ReactElement<any>; // Explicitly type for clarity
+      const originalIconProps = typedIcon.props;
+
+      finalIcon = React.cloneElement(typedIcon, {
+        ...originalIconProps, // Spread the original props
+        color: isHovered ? 'white' : (originalIconProps.color || 'black'), // Conditionally set color
+      });
+    }
+
     return (
       <motion.div
-        className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg overflow-hidden transform transition-all duration-300 border border-[#D9D5D5] relative group"
+        className={`rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg overflow-hidden transform transition-all duration-300 border border-[#D9D5D5] relative group ${isHovered ? 'bg-green-600' : 'bg-white'}`}
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ 
@@ -138,24 +153,32 @@ const Hero2 = () => {
           y: -10,
           scale: 1.03,
           boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
-          transition: { 
-            duration: 0.3,
-            ease: "easeOut"
-          }
         }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <div className="p-4 sm:p-6 md:p-8 text-center flex flex-col items-center group relative z-10">
           <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gray-100 flex items-center justify-center mb-3 sm:mb-4 md:mb-5 transition-transform duration-300">
             <motion.span
-              whileHover={{ scale: 1.25, rotate: 12, color: '#18CEB9' }}
+              whileHover={{ scale: 1.25, rotate: 12 }} // Icon color change removed from here, handled by card hover
               transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-              className="text-black text-[28px] sm:text-[32px] md:text-[36px] flex items-center justify-center cursor-pointer"
+              className="text-[28px] sm:text-[32px] md:text-[36px] flex items-center justify-center cursor-pointer"
             >
-              {icon}
+              {finalIcon}
             </motion.span>
           </div>
-          <h3 className={`${lexend.className} text-center font-bold mb-1 sm:mb-2 text-base sm:text-lg md:text-xl`} style={{ color: color }}>{title}</h3>
-          <p className="text-xs sm:text-sm" style={{ color: descColor }}>{description}</p>
+          <h3 
+            className={`${lexend.className} text-center font-bold mb-1 sm:mb-2 text-base sm:text-lg md:text-xl transition-colors duration-300`}
+            style={{ color: isHovered ? 'white' : color }}
+          >
+            {title}
+          </h3>
+          <p 
+            className="text-xs sm:text-sm transition-colors duration-300" 
+            style={{ color: isHovered ? 'white' : descColor }}
+          >
+            {description}
+          </p>
           
           {/* Card shine effect */}
           <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 -skew-x-12 translate-x-full group-hover:translate-x-0 transition-all duration-700 ease-out pointer-events-none"></div>
