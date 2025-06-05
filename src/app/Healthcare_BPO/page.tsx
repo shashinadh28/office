@@ -3,36 +3,41 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import AnimatedSVG from '../../components/ui/animated-svg';
-import ContactButton from '../../components/ContactButton';
 import AboutSection from './healthcare/AboutSection';
 import WhyChooseSection from './healthcare/WhyChooseSection';
 import ServicesSection from './healthcare/ServicesSection';
 import VisualCalloutSection from './healthcare/VisualCalloutSection';
 import FinalCTASection from './healthcare/FinalCTASection';
-
 import FooterSection from '@/components/footer';
 
 export default function HealthcareBPO() {
   const [textAnimated, setTextAnimated] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setTextAnimated(true);
     }, 600);
+    return () => clearTimeout(timer);
   }, []);
+
+  const scrollToContent = () => {
+    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen">
-      {/* Background section */}
-      <section className="relative h-[600px] w-full">
+      {/* Hero Section */}
+      <section className="relative h-[500px] sm:h-[600px] w-full">
         <div className="absolute inset-0">
           <Image
-            src="/background_images/health_bg.png"
+            src="/background_images/health_bg.webp"
             alt="Healthcare BPO Background"
             fill
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
             priority
-            quality={85}
+            quality={75}
+            placeholder="blur"
+            blurDataURL="data:image/webp;base64,UklGRh4AAABXRUJQVlA4IBIAAAAwAQCdASoBAAEAAgA0JaQAA3AA/vtUUAAA"
             className="object-cover object-center"
             style={{
               objectFit: 'cover',
@@ -41,30 +46,26 @@ export default function HealthcareBPO() {
             }}
           />
         </div>
-
-        {/* Overlay for content and hex shapes */}
-        <div className="absolute inset-0 flex items-center mb-20 justify-start z-10">
-          <div className="ml-64 max-w-xl">
-            {/* Animated subheading */}
+        
+        {/* Content Overlay */}
+        <div className="absolute inset-0 flex items-center justify-start z-10 px-4 sm:px-6">
+          <div className="ml-0 md:ml-16 lg:ml-32 xl:ml-48 max-w-md sm:max-w-xl">
             <div className="overflow-hidden mb-2">
-              <div
-                className={
-                  `text-[#18B8E5] text-lg font-semibold transition-all duration-1000 ease-out`
-                }
+              <div 
+                className="text-[#18B8E5] text-base sm:text-lg font-semibold transition-all duration-1000 ease-out"
                 style={{
                   transform: textAnimated ? 'translateX(0)' : 'translateX(-100%)',
                   opacity: textAnimated ? 1 : 0,
-                  filter: textAnimated ? 'blur(0)' : 'blur(4px)',
+                  filter: textAnimated ? 'blur(0)' : 'blur(4px)'
                 }}
               >
                 Gateway Workforce:
-
               </div>
             </div>
-            {/* Animated main heading */}
+            
             <div className="overflow-hidden mb-6">
-              <h1
-                className="text-4xl md:text-5xl font-bold text-white leading-tight transition-all duration-1000 ease-out drop-shadow-lg"
+              <h1 
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight transition-all duration-1000 ease-out drop-shadow-lg"
                 style={{
                   transform: textAnimated ? 'translateY(0)' : 'translateY(40px)',
                   opacity: textAnimated ? 1 : 0,
@@ -73,46 +74,47 @@ export default function HealthcareBPO() {
                   textShadow: '0 2px 4px rgba(0,0,0,0.3)'
                 }}
               >
-                End-to-End<br /> Medical Billing & Telehealth Support
+                End-to-End<br className="hidden sm:block" /> Medical Billing & Telehealth Support
               </h1>
             </div>
-            {/* Animated Get Started button replaced with scroll down button */}
-            <div
+            
+            <div 
               className={`transition-all duration-700 ${textAnimated ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}
               style={{ transitionDelay: '500ms' }}
             >
-              <button
-                onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-                className="flex flex-col items-center transition-all duration-300 mt-6"
-              >
-                <span className="font-montserrat text-xs sm:text-sm tracking-widest mb-2 sm:mb-3 text-[#18B8E5]">
-                  SCROLL DOWN
-                </span>
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-[#18B8E5] flex items-center justify-center">
-                  <svg
-                    className="w-4 h-4 sm:w-5 sm:h-5 text-[#18B8E5] animate-bounce"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                    />
-                  </svg>
-                </div>
-              </button>
+              <div className="mt-8 sm:mt-10">
+                <button
+                  onClick={scrollToContent}
+                  className="flex flex-col items-center transition-all duration-300 group"
+                >
+                  <span className="font-montserrat text-xs sm:text-sm tracking-widest mb-2 sm:mb-3 text-[#18B8E5] group-hover:text-white transition-colors duration-300">
+                    SCROLL DOWN
+                  </span>
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-[#18B8E5] flex items-center justify-center group-hover:bg-[#18B8E5] transition-all duration-300">
+                    <svg
+                      className="w-5 h-5 text-[#18B8E5] group-hover:text-white animate-bounce transition-colors duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                      />
+                    </svg>
+                  </div>
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* SVG Elements */}
-        <div className="absolute top-0 left-0 w-full h-full">
-          {/* Thunder Shape */}
-          <div className="absolute top-0 left-176">
+        {/* Decorative Elements */}
+        <div className="absolute top-0 left-0 w-full h-full md:w-3/4 lg:w-full xl:w-3/4">
+          <div className="absolute top-0 left-44 md:left-60 lg:left-72 xl:left-80">
             <AnimatedSVG
               src="/svg/thunder.svg"
               alt="Thunder Shape"
@@ -124,7 +126,6 @@ export default function HealthcareBPO() {
             />
           </div>
 
-          {/* Hexagon */}
           <div className="absolute bottom-0 right-190">
             <AnimatedSVG
               src="/svg/hexagon.svg"
@@ -137,7 +138,6 @@ export default function HealthcareBPO() {
             />
           </div>
 
-          {/* SVG 1 */}
           <div className="absolute bottom-39 left-0">
             <AnimatedSVG
               src="/svg/1.svg"
@@ -149,7 +149,6 @@ export default function HealthcareBPO() {
             />
           </div>
 
-          {/* SVG 2 */}
           <div className="absolute bottom-0 right-350">
             <AnimatedSVG
               src="/svg/2.svg"
@@ -161,7 +160,6 @@ export default function HealthcareBPO() {
             />
           </div>
 
-          {/* Triangle */}
           <div className="absolute bottom-0 left-0">
             <AnimatedSVG
               src="/svg/traingle.svg"
@@ -174,6 +172,8 @@ export default function HealthcareBPO() {
           </div>
         </div>
       </section>
+
+      {/* Main Content */}
       <main>
         <AboutSection />
         <WhyChooseSection />
@@ -181,6 +181,7 @@ export default function HealthcareBPO() {
         <VisualCalloutSection />
         <FinalCTASection />
       </main>
+      
       <FooterSection />
     </div>
   );

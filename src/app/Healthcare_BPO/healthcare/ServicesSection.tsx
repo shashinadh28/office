@@ -1,8 +1,33 @@
 'use client';
 
 import { ReactLenis } from "lenis/react";
+import dynamic from 'next/dynamic';
 
-import { ClipboardList, Monitor, UserCheck, Database, ChevronRight } from 'lucide-react';
+// Lazy load icons to improve initial load performance
+const ClipboardList = dynamic(() => import('lucide-react').then(mod => mod.ClipboardList), { 
+  ssr: false,
+  loading: () => <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full animate-pulse" />
+});
+
+const Monitor = dynamic(() => import('lucide-react').then(mod => mod.Monitor), { 
+  ssr: false,
+  loading: () => <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full animate-pulse" />
+});
+
+const UserCheck = dynamic(() => import('lucide-react').then(mod => mod.UserCheck), { 
+  ssr: false,
+  loading: () => <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full animate-pulse" />
+});
+
+const ChevronRight = dynamic(() => import('lucide-react').then(mod => mod.ChevronRight), { 
+  ssr: false,
+  loading: () => <div className="w-3 h-3 bg-gray-400 rounded-full" />
+});
+
+const Database = dynamic(() => import('lucide-react').then(mod => mod.Database), { 
+  ssr: false,
+  loading: () => <div className="w-10 h-10 md:w-12 md:h-12 bg-gray-200 rounded-full animate-pulse" />
+});
 
 const services = [
   {
@@ -30,7 +55,9 @@ const services = [
       "Telemedicine billing & coding",
       "HIPAA-compliant platform"
     ],
-    icon: <Monitor className="w-12 h-12 mb-6 text-white" />,
+    icon: <div className="w-12 h-12 mb-6 flex items-center justify-center">
+      <Monitor className="w-10 h-10 md:w-12 md:h-12 text-white" />
+    </div>,
     bgColor: "bg-gradient-to-br from-[#0d8ec5] to-[#18C7FF]",
     textColor: "text-white",
     borderColor: "border-white/20",
@@ -46,7 +73,9 @@ const services = [
       "Patient support services",
       "EHR/EMR management"
     ],
-    icon: <UserCheck className="w-12 h-12 mb-6" />,
+    icon: <div className="w-12 h-12 mb-6 flex items-center justify-center">
+      <UserCheck className="w-10 h-10 md:w-12 md:h-12" />
+    </div>,
     bgColor: "bg-white",
     textColor: "text-slate-800",
     borderColor: "border-[#18C7FF]",
@@ -62,7 +91,9 @@ const services = [
       "Interoperability solutions",
       "HIPAA-compliant storage"
     ],
-    icon: <Database className="w-12 h-12 mb-6 text-white" />,
+    icon: <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 flex items-center justify-center">
+      <Database className="w-10 h-10 md:w-12 md:h-12 text-white" />
+    </div>,
     bgColor: "bg-gradient-to-br from-[#0a6e96] to-[#18C7FF]",
     textColor: "text-white",
     borderColor: "border-white/20",
@@ -73,69 +104,59 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <ReactLenis root>
-      <main className="bg-slate-950">
-        <div className="wrapper">
-          <section className="text-white min-h-screen w-full bg-slate-950 grid place-content-center sticky top-0">
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
-            <div className="relative z-10 text-center px-8">
-              <h1 className="2xl:text-8xl text-6xl font-bold text-center tracking-tight leading-tight mb-8">
-                Our Healthcare BPO Services
-              </h1>
-              <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-12">
-                Comprehensive solutions to streamline your healthcare operations and improve patient care through expert business process outsourcing.
-              </p>
-              <div className="animate-bounce mt-16">
-                <svg className="w-10 h-10 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
+    <div className="bg-slate-950 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-10 sm:mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
+            Our Healthcare BPO Services
+          </h1>
+          <p className="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto">
+            Comprehensive solutions to streamline your healthcare operations and improve patient care.
+          </p>
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+          {services.map((service, index) => (
+            <div 
+              key={service.title}
+              className={`bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 hover:border-[#18C7FF]/50 transition-all duration-300 ${index % 2 === 0 ? 'sm:mt-0' : 'sm:mt-8'}`}
+            >
+              <div className="p-6">
+                {/* Icon */}
+                <div className="w-16 h-16 mb-4 mx-auto flex items-center justify-center rounded-xl bg-gradient-to-br from-[#18C7FF]/20 to-[#18C7FF]/10">
+                  {service.icon}
+                </div>
+                
+                {/* Content */}
+                <h2 className="text-xl font-bold text-white mb-2 text-center">
+                  {service.title}
+                </h2>
+                <p className="text-sm text-gray-300 mb-4 text-center">
+                  {service.description}
+                </p>
+                
+                {/* Features */}
+                <ul className="space-y-2 mb-6">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start">
+                      <ChevronRight className="w-4 h-4 text-[#18C7FF] mt-0.5 mr-2 flex-shrink-0" />
+                      <span className="text-sm text-gray-300">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                {/* Button */}
+                <button className="w-full py-2.5 px-4 bg-[#18C7FF]/10 hover:bg-[#18C7FF]/20 text-[#18C7FF] rounded-lg text-sm font-medium transition-colors duration-200">
+                  Learn More
+                </button>
               </div>
             </div>
-          </section>
+          ))}
         </div>
-        <section className="text-white w-full bg-slate-950">
-          <div className="flex justify-center px-4 md:px-16">
-            <div className="grid gap-2">
-              {services.map((service) => (
-                <figure key={service.title} className="sticky top-0 h-screen grid place-content-center p-8">
-                  <article 
-                    className={`${service.bgColor} ${service.textColor} h-[30rem] w-[48rem] rounded-3xl ${service.rotate} p-10 grid grid-cols-1 gap-6 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:z-10 border-2 ${service.borderColor} overflow-hidden`}
-                    style={{
-                      boxShadow: '0 25px 50px -12px rgba(0,0,0,0.15)'
-                    }}
-                  >
-                    <div className="text-center">
-                      <div className="flex justify-center mb-4">
-                        {service.icon}
-                      </div>
-                      <h2 className="text-3xl font-bold mt-4 mb-3 leading-tight">
-                        {service.title}
-                      </h2>
-                      <p className="text-lg max-w-2xl mx-auto opacity-90">
-                        {service.description}
-                      </p>
-                    </div>
-                    
-                    <div className="mt-2 space-y-3 max-w-md mx-auto w-full">
-                      {service.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center justify-center">
-                          <div className={`p-1.5 rounded-full ${service.accentColor} bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-200`}>
-                            <ChevronRight className="w-3.5 h-3.5 flex-shrink-0" strokeWidth={2.5} />
-                          </div>
-                          <span className="text-base text-center">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#18C7FF] to-transparent opacity-50"></div>
-                  </article>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </section>
-      </main>
-    </ReactLenis>
+      </div>
+    </div>
   );
 };
 

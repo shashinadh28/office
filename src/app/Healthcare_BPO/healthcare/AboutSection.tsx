@@ -40,22 +40,22 @@ const AboutSection = () => {
               </p>
               
               {/* Additional content to fill height */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12">
                 {[
                   { number: '3+', label: 'Years of Experience' },
-                  { number: '12+', label: ' Clients' },
+                  { number: '12+', label: 'Clients' },
                   { number: '100%', label: 'Client Satisfaction' }
                 ].map((item, index) => (
                   <motion.div 
                     key={index}
-                    className="bg-white/80 backdrop-blur-sm p-6 rounded-xl shadow-sm border border-gray-100"
+                    className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <p className="text-3xl font-bold text-[#18C7FF] mb-2">{item.number}</p>
-                    <p className="text-gray-600">{item.label}</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-[#18C7FF] mb-1 sm:mb-2">{item.number}</p>
+                    <p className="text-sm sm:text-base text-gray-600">{item.label}</p>
                   </motion.div>
                 ))}
               </div>
