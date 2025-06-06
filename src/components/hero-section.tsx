@@ -50,7 +50,7 @@ export default function HeroSection() {
           }`}
         >
           <Image
-            src="/gateway_workforce.png"
+            src="/optimized/images/gateway_workforce.webp"
             alt="Gateway Workforce Logo"
             width={80}
             height={1}

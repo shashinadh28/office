@@ -30,7 +30,7 @@ const PrecisionAccountingSection: React.FC = () => {
             custom={0.1}
           >
             <Image 
-              src="/usaa.jpg"
+              src="/optimized/images/usaa.webp"
               alt="Precision Accounting Services"
               width={600}
               height={450}

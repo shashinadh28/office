@@ -34,7 +34,7 @@ const USATaxationPage: React.FC = () => {
       <section className="relative h-[500px] sm:h-[600px] w-full">
         <div className="absolute inset-0">
           <Image
-            src="/background_images/taxation.png" 
+            src="/optimized/background_images/taxation.webp" 
             alt="US Taxation Background" 
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"

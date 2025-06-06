@@ -12,37 +12,37 @@ const projects = [
   {
     title: 'IT Outsourcing',
     description: 'Scalable Teams for Web & Mobile Development\nEmpower your digital growth with agile, cross-functional teams tailored to your project needs.\nWe deliver high-quality, scalable solutions that accelerate time-to-market and drive business impact.',
-    link: '/images/outsourcing.jpg',
+    link: '/optimized/images/outsourcing.webp',
     color: '#5196fd',
   },
   {
     title: 'Healthcare BPO',
     description: 'End-to-End Medical Billing & Telehealth Support\nStreamline your revenue cycle with accurate billing and seamless virtual care services. ',
-    link: '/images/medicall.jpg',
+    link: '/optimized/images/medicall.webp',
     color: '#8f89ff',
   },
   {
     title: 'US Taxation',
     description: 'Accurate Accounting & Compliance for Firms and CPAs\nEnsure financial precision and regulatory adherence with our expert-led services.\nWe help streamline bookkeeping, reporting, and tax workflows for maximum efficiency and peace of mind.',
-    link: '/images/tax.jpg',
+    link: '/optimized/images/tax.webp',
     color: '#13006c',
   },
   {
     title: 'Cloud Solutions',
     description: 'AWS/Azure Deployment, Migration & Management\nSeamlessly deploy, scale, and manage applications across leading cloud platforms.\nOur experts ensure secure migration, cost optimization, and high availability for your infrastructure.',
-    link: '/images/cloud.jpg',
+    link: '/optimized/images/cloud.webp',
     color: '#ed649e',
   },
   {
     title: 'SaaS Experts',
     description: 'Salesforce, Shopify & HubSpot Integration & Optimization\nUnify your CRM, e-commerce, and marketing platforms for seamless operations.\nWe tailor integrations to boost productivity, enhance customer experience, and drive revenue growth.',
-    link: '/images/saas.jpg',
+    link: '/optimized/images/saas.webp',
     color: '#fd521a',
   },
   {
     title: 'AI Solutions',
     description: 'Custom LLMs, Automation & Data Intelligence\nBuild tailored AI solutions to streamline workflows and uncover deep insights.\nLeverage the power of automation and large language models to drive smart, data-led decisions.',
-    link: '/images/artificial.jpg',
+    link: '/optimized/images/artificial.webp',
     color: '#00c4a7', // New color for the 6th card
   },
 ];

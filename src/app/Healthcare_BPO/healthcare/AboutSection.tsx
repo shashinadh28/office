@@ -12,7 +12,7 @@ const AboutSection = () => {
     <section className="w-full py-24 md:py-32 px-4 bg-white relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+        <div className="absolute inset-0 bg-[url('/svg/grid-pattern.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
       </div>
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row gap-16 items-center">

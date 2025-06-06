@@ -27,7 +27,7 @@ export default function HealthcareBPO() {
       <section className="relative h-[500px] sm:h-[600px] w-full">
         <div className="absolute inset-0">
           <Image
-            src="/background_images/health_bg.png"
+            src="/optimized/background_images/health_bg.webp"
             alt="Healthcare BPO Background"
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"

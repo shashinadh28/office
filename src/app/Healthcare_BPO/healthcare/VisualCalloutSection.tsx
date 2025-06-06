@@ -7,7 +7,7 @@ const VisualCalloutSection = () => (
       <div className="relative w-80 h-80">
         {/* Floating decorative element */}
         <div className="absolute -top-8 -left-8 w-40 h-40 bg-blue-200 rounded-full opacity-50 blur-2xl animate-float z-0"></div>
-        <img src="/images/hospital.jpg" alt="Hospital Illustration" className="w-full h-full object-cover rounded-2xl relative z-10" />
+        <img src="/optimized/images/hospital.webp" alt="Hospital Illustration" className="w-full h-full object-cover rounded-2xl relative z-10" />
       </div>
     </div>
     <div className="md:w-1/2 md:pl-12">
