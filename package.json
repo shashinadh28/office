@@ -7,10 +7,10 @@
     "build": "npm run optimize-assets && next build",
     "start": "next start",
     "lint": "next lint",
+    "analyze": "cross-env ANALYZE=true next build",
     "optimize-assets": "npm run optimize-images",
     "optimize-images": "node scripts/optimize-images.js",
-    "optimize-svgs": "node scripts/optimize-svgs.js",
-    "analyze": "cross-env ANALYZE=true next build"
+    "optimize-svgs": "node scripts/optimize-svgs.js"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

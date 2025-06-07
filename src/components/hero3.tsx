@@ -3,10 +3,23 @@
 import { ReactLenis } from 'lenis/react';
 import { IBM_Plex_Sans } from 'next/font/google';
 const ibmPlexSans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['700'], display: 'swap' });
-import { useTransform, motion, useScroll, MotionValue } from 'motion/react';
+import { useTransform, motion, useScroll, MotionValue } from 'framer-motion';
+import { createContext, useContext } from 'react';
 import Link from 'next/link';
 import { useRef } from 'react';
 import Image from 'next/image';
+
+// Define Context for scrollYProgress
+const ScrollProgressContext = createContext<MotionValue<number> | null>(null);
+
+// Custom hook to use the scroll progress context
+const useHeroScrollProgress = () => {
+  const context = useContext(ScrollProgressContext);
+  if (context === null) {
+    throw new Error('useHeroScrollProgress must be used within a ScrollProgressProvider');
+  }
+  return context;
+};
 
 const projects = [
   {
@@ -55,39 +68,38 @@ export default function Hero3() {
   });
   return (
     <ReactLenis root>
-      <main id='services-section' className='bg-gradient-to-b from-gray-50 to-gray-100' ref={container}>
-        <>
-          <section className='h-[70vh] w-full grid place-content-center '>
-
-            <h1 className={`${ibmPlexSans.className} text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-center`}>
-  Business Solutions We <span className="text-teal-500">Support</span>
-</h1>
-            <p className="text-gray-600 text-sm sm:text-base md:text-lg px-4 text-center max-w-2xl mx-auto">
-  We power global businesses with India’s top talent, offering specialized outsourcing solutions across
-</p>
+      <ScrollProgressContext.Provider value={scrollYProgress}>
+        <main id='services-section' className='bg-gradient-to-b from-gray-50 to-gray-100' ref={container}>
+          <>
+            <section className='h-[70vh] w-full grid place-content-center '>
+              <h1 className={`${ibmPlexSans.className} text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-center`}>
+                Business Solutions We <span className="text-teal-500">Support</span>
+              </h1>
+              <p className="text-gray-600 text-sm sm:text-base md:text-lg px-4 text-center max-w-2xl mx-auto">
+                We power global businesses with India’s top talent, offering specialized outsourcing solutions across
+              </p>
+            </section>
+          </>
+          <section className='text-slate-700 w-full '>
+            {projects.map((project, i) => {
+              const targetScale = 1 - (projects.length - i) * 0.05;
+              return (
+                <Card
+                  key={`p_${i}`}
+                  i={i}
+                  title={project?.title}
+                  description={project?.description}
+                  src={project?.link} // Use project.link for the image source
+                  color={project?.color}
+                  // progress prop removed
+                  range={[i * 0.25, 1]}
+                  targetScale={targetScale}
+                />
+              );
+            })}
           </section>
-        </>
-
-        <section className='text-slate-700 w-full '>
-          {projects.map((project, i) => {
-            const targetScale = 1 - (projects.length - i) * 0.05;
-            return (
-              <Card
-                key={`p_${i}`}
-                i={i}
-                title={project?.title}
-                description={project?.description}
-                src={project?.link} // Use project.link for the image source
-                color={project?.color}
-                progress={scrollYProgress}
-                range={[i * 0.25, 1]}
-                targetScale={targetScale}
-              />
-            );
-          })}
-        </section>
-
-      </main>
+        </main>
+      </ScrollProgressContext.Provider>
     </ReactLenis>
   );
 }
@@ -98,7 +110,7 @@ interface CardProps {
   description: string;
   src: string; // Image URL
   color: string;
-  progress: MotionValue<number>;
+  // progress: MotionValue<number>; // Removed from props
   range: [number, number];
   targetScale: number;
 }
@@ -109,7 +121,7 @@ export const Card: React.FC<CardProps> = ({
   description,
   src, // This is the image URL
   color,
-  progress,
+  // progress, // Removed from destructuring
   range,
   targetScale,
 }) => {
@@ -119,8 +131,9 @@ export const Card: React.FC<CardProps> = ({
     offset: ['start end', 'start start'],
   });
 
+  const heroProgress = useHeroScrollProgress(); // Get progress from context
   const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
-  const scale = useTransform(progress, range, [1, targetScale]);
+  const scale = useTransform(heroProgress, range, [1, targetScale]);
 
   return (
     <div
@@ -133,9 +146,9 @@ export const Card: React.FC<CardProps> = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className={`text-white flex flex-col relative -top-[25%] h-[450px] w-[70%] rounded-md p-10 origin-top`}
+        className={`text-white flex flex-col relative -top-[25%] h-[550px] w-[80%] rounded-md p-10 origin-top`}
       >
-        <h2 className='text-3xl text-center font-bold'>{title}</h2>
+        <h2 className='text-4xl text-center font-bold'>{title}</h2>
         <div className={`flex h-full mt-5 gap-10`}>
           <div className={`w-[40%] relative top-[10%]`}>
             <ul className='list-disc pl-5 text-lg md:text-xl'>
@@ -144,7 +157,15 @@ export const Card: React.FC<CardProps> = ({
               ))}
             </ul>
             <span className='flex items-center gap-2 pt-2'>
-              {title === 'Healthcare BPO' ? (
+              {title === 'IT Outsourcing' ? (
+  <Link href="/IT_Outsourcing" passHref legacyBehavior>
+  <a
+    className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-base md:text-lg mt-2"
+  >
+    See more
+  </a>
+  </Link>
+) : title === 'Healthcare BPO' ? (
   <Link href="/Healthcare_BPO" passHref legacyBehavior>
   <a
     className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-base md:text-lg mt-2"
@@ -160,7 +181,32 @@ export const Card: React.FC<CardProps> = ({
     See more
   </a>
   </Link>
+) : title === 'Cloud Solutions' ? (
+  <Link href="/cloud-solutions" passHref legacyBehavior>
+  <a
+    className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-base md:text-lg mt-2"
+  >
+    See more
+  </a>
+  </Link>
+) : title === 'SaaS Experts' ? (
+  <Link href="/Saas_Experts" passHref legacyBehavior>
+  <a
+    className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-base md:text-lg mt-2"
+  >
+    See more
+  </a>
+  </Link>
+) : title === 'AI Solutions' ? (
+  <Link href="/AI_Solutions" passHref legacyBehavior>
+  <a
+    className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-base md:text-lg mt-2"
+  >
+    See more
+  </a>
+  </Link>
 ) : (
+
 
   <button
     type="button"

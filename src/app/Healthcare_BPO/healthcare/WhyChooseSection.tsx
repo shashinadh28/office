@@ -78,7 +78,7 @@ const WhyChooseSection = () => {
           >
             <div className="group relative w-full h-[400px] md:h-[500px] rounded-lg">
               <Image 
-                src="/svg/healthcaree.svg" 
+                src="/images/healthcare.webp" 
                 alt="Healthcare BPO Illustration"
                 fill
                 className="relative z-10 object-contain object-center transition-all duration-300 ease-in-out group-hover:scale-105"

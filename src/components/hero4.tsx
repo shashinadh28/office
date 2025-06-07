@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { FileText, UsersRound, UserCheck, ArrowDown } from 'lucide-react';
+import { FileText, UsersRound, UserCheck, ArrowDown, ArrowRight } from 'lucide-react';
 
 const Hero4 = () => {
   const sectionRef = useRef(null);
@@ -34,6 +34,7 @@ const Hero4 = () => {
       description: "Send a JD to jobs@gatewayworkforce.com",
       iconBgColor: "bg-sky-100",
       iconTextColor: "text-sky-700",
+      themeAccentClass: "sky-600", // Used for hover borders and arrows
     },
     {
       id: 2,
@@ -42,6 +43,7 @@ const Hero4 = () => {
       description: "From our internal team, resume pool, or new hires",
       iconBgColor: "bg-teal-100",
       iconTextColor: "text-teal-700",
+      themeAccentClass: "teal-600",
     },
     {
       id: 3,
@@ -50,13 +52,14 @@ const Hero4 = () => {
       description: "You select the best fit, and we onboard them",
       iconBgColor: "bg-indigo-100",
       iconTextColor: "text-indigo-700",
+      themeAccentClass: "indigo-600",
     },
   ];
 
   return (
     <motion.section
       ref={sectionRef}
-      className="bg-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="bg-sky-700 py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -68,7 +71,7 @@ const Hero4 = () => {
         className="max-w-7xl mx-auto"
       >
         <motion.h2 
-          className="text-3xl sm:text-4xl font-bold text-gray-800 text-center mb-12 sm:mb-16 md:mb-20"
+          className="text-3xl sm:text-4xl font-bold text-white text-center mb-12 sm:mb-16 md:mb-20"
           variants={itemVariants}
         >
           Our Hiring Process
@@ -80,11 +83,11 @@ const Hero4 = () => {
             return (
               <React.Fragment key={step.id}>
                 <motion.div 
-                  className="flex-1 flex flex-col items-center text-center bg-white p-6 sm:p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-2xl hover:-translate-y-1.5 transform transition-all duration-300 ease-in-out"
+                  className={`flex-1 flex flex-col items-center text-center bg-white p-6 sm:p-8 rounded-xl shadow-lg border-2 border-transparent hover:border-${step.themeAccentClass} hover:shadow-2xl hover:-translate-y-1.5 transform transition-all duration-300 ease-in-out group`}
                   variants={itemVariants}
                 >
                   <div className={`p-4 sm:p-5 rounded-full ${step.iconBgColor} mb-5 sm:mb-6 shadow-md w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center`}>
-                    <IconComponent className={`${step.iconTextColor} w-10 h-10 sm:w-12 sm:h-12`} strokeWidth={1.5} />
+                    <IconComponent className={`${step.iconTextColor} w-10 h-10 sm:w-12 sm:h-12 transition-transform duration-300 group-hover:scale-110`} strokeWidth={1.5} />
                   </div>
                   <h3 className="font-semibold text-lg sm:text-xl text-gray-800 mb-2 sm:mb-3">{step.title}</h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed flex-grow">{step.description}</p>
@@ -98,14 +101,14 @@ const Hero4 = () => {
                       className="hidden md:flex items-center justify-center flex-shrink-0 mx-2 lg:mx-4"
                       style={{ minWidth: '50px', maxWidth: '100px', flexBasis: 'auto' }} // Adjusted for better spacing
                     >
-                      <div className="w-full h-1 bg-gray-300 rounded-full"></div>
+                      <ArrowRight className="text-white w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
                     </motion.div>
                     {/* Mobile Connector */}
                     <motion.div 
                       variants={itemVariants}
                       className="flex md:hidden items-center justify-center my-6 sm:my-8 w-full"
                     >
-                      <ArrowDown className="text-gray-400 w-8 h-8 sm:w-10 sm:h-10" />
+                      <ArrowDown className="text-white w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
                     </motion.div>
                   </>
                 )}

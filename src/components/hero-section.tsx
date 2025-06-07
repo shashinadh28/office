@@ -10,15 +10,9 @@ export default function HeroSection() {
   const [textAnimated, setTextAnimated] = useState(false);
 
   useEffect(() => {
-    // Short delay for smoother blur animation
-    setTimeout(() => {
-      setIsLoaded(true);
-
-      // Trigger text animation after background elements appear
-      setTimeout(() => {
-        setTextAnimated(true);
-      }, 800);
-    }, 100);
+    // Set both states immediately on component mount
+    setIsLoaded(true);
+    setTextAnimated(true);
   }, []);
 
   const scrollDown = () => {
@@ -29,10 +23,10 @@ export default function HeroSection() {
     <div className="relative h-screen w-full overflow-hidden bg-white no-hero-grid">
       {/* Background image with blur and scale animation */}
       <div
-        className={`absolute inset-0 z-0 transition-all duration-1500 ease-out ${
+        className={`absolute inset-0 z-0 transition-all duration-300 ease-out ${
           isLoaded
-            ? "opacity-100 scale-100 blur-0"
-            : "opacity-0 scale-110 blur-xl"
+            ? "opacity-100 scale-100"
+            : "opacity-0 scale-110"
         }`}
         style={{
           backgroundImage: "url('/home6.png')",
@@ -43,10 +37,10 @@ export default function HeroSection() {
       <div className="relative z-10 h-full flex flex-col">
         {/* Logo with fade-blur animation */}
         <div
-          className={`absolute top-4 left-4 sm:top-6 sm:left-6 md:top-1 md:left-12 transition-all duration-1000 ease-out ${
+          className={`absolute top-4 left-4 sm:top-6 sm:left-6 md:top-1 md:left-12 transition-all duration-500 ease-out ${
             isLoaded
-              ? "translate-y-0 opacity-100 blur-0"
-              : "-translate-y-10 opacity-0 blur-md"
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-10 opacity-0"
           }`}
         >
           <Image
@@ -64,13 +58,11 @@ export default function HeroSection() {
             {/* Headline with left-to-right animation */}
             <div className="overflow-hidden mb-4 sm:mb-6 md:mb-8 relative">
               <h1
-                className={`font-montserrat text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800 transition-all duration-1800 ease-out`}
+                className={`font-montserrat text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800 transition-all duration-400 ease-out ${
+                  textAnimated ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-12"
+                }`}
                 style={{
-                  transform: textAnimated
-                    ? "translateX(0)"
-                    : "translateX(-100%)",
-                  opacity: textAnimated ? 1 : 0,
-                  filter: textAnimated ? "blur(0)" : "blur(4px)",
+                  transitionDelay: textAnimated ? "500ms" : "0ms"
                 }}
               >
                 Connecting Global Businesses To India's Educated & Motivated
@@ -78,19 +70,14 @@ export default function HeroSection() {
               </h1>
             </div>
 
-            {/* Description with word-by-word reveal effect */}
-            <div className="overflow-hidden mb-6 sm:mb-8 md:mb-12">
+            {/* Description text with fast animation */}
+            <div className="mb-6 sm:mb-8 md:mb-12">
               <p
-                className={`font-montserrat text-base sm:text-lg md:text-xl max-w-2xl transition-all duration-1500 ease-out ${
-                  textAnimated
-                    ? "translate-y-0 opacity-100 blur-0"
-                    : "translate-y-20 opacity-0 blur-sm"
+                className={`font-montserrat text-base sm:text-lg md:text-xl max-w-2xl transition-all duration-400 ease-out ${
+                  textAnimated ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
                 style={{
-                  transitionDelay: "300ms",
-                  clipPath: textAnimated
-                    ? "inset(0 0 0 0)"
-                    : "inset(0 100% 0 0)",
+                  transitionDelay: textAnimated ? "500ms" : "0ms"
                 }}
               >
                 We connect global companies with India's skilled talent,
@@ -100,10 +87,10 @@ export default function HeroSection() {
 
             {/* Contact button with animation */}
             <div
-              className={`transition-all duration-800 ${
+              className={`transition-all duration-400 ${
                 textAnimated ? "opacity-100 scale-100" : "opacity-0 scale-50"
               }`}
-              style={{ transitionDelay: "800ms" }}
+              style={{ transitionDelay: "500ms" }}
             >
               <Link href="/contact" passHref>
                 <ContactButton />
@@ -114,12 +101,12 @@ export default function HeroSection() {
 
         {/* Scroll down button with fade-in animation */}
         <div
-          className={`absolute bottom-6 sm:bottom-8 md:bottom-10 left-0 right-0 flex justify-center transition-all duration-800 ${
+          className={`absolute bottom-6 sm:bottom-8 md:bottom-10 left-0 right-0 flex justify-center transition-all duration-400 ${
             textAnimated
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-10"
           }`}
-          style={{ transitionDelay: "1000ms" }}
+          style={{ transitionDelay: "700ms" }}
         >
           <button
             onClick={scrollDown}
