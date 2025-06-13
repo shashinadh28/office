@@ -69,13 +69,13 @@ export default function Hero3() {
   return (
     <ReactLenis root>
       <ScrollProgressContext.Provider value={scrollYProgress}>
-        <main id='services-section' className='bg-gradient-to-b from-gray-50 to-gray-100' ref={container}>
+        <main id='services-section' className='bg-[#00283A]' ref={container}>
           <>
             <section className='h-[70vh] w-full grid place-content-center '>
-              <h1 className={`${ibmPlexSans.className} text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-center`}>
+              <h1 className={`${ibmPlexSans.className} text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-center text-white`}>
                 Business Solutions We <span className="text-teal-500">Support</span>
               </h1>
-              <p className="text-gray-600 text-sm sm:text-base md:text-lg px-4 text-center max-w-2xl mx-auto">
+              <p className="text-gray-300 text-sm sm:text-base md:text-lg px-4 text-center max-w-2xl mx-auto">
                 We power global businesses with India’s top talent, offering specialized outsourcing solutions across
               </p>
             </section>

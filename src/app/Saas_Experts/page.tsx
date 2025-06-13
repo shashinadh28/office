@@ -3,17 +3,19 @@
 import React from 'react';
 import FooterSection from '@/components/footer';
 import HeroSaasSection from './HeroSaasSection';
-import WhyChooseSaasSection from './WhyChooseSaasSection';
+import AboutSaasSection from './AboutSaasSection';
+import WhyPartnerSaasSection from './WhyPartnerSaasSection';
 import SaasServicesSection from './SaasServicesSection';
-import SaasCTASection from './SaasCTASection';
+import TransformBusinessSection from './TransformBusinessSection';
 
 const SaasExpertsPage = () => {
   return (
     <div className="bg-gray-50 text-gray-800">
       <HeroSaasSection />
-      <WhyChooseSaasSection />
+      <AboutSaasSection />
+      <WhyPartnerSaasSection />
       <SaasServicesSection />
-      <SaasCTASection />
+      <TransformBusinessSection />
       
       <FooterSection />
     </div>

@@ -1,67 +1,82 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
-import { Award, Brain, CheckCircle, Clock, CloudUpload, DollarSign, GitMerge, HardDrive, LifeBuoy, Lock, Repeat, Scaling, Settings2, ShieldCheck, Shuffle, TrendingUp, Users, Zap } from 'lucide-react';
+import { 
+  Award, Zap, Palette, TrendingUp, Headphones
+} from 'lucide-react';
 
 const lexend = Lexend({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
 
-const features = [
-  {
-    icon: <Brain size={36} className="text-sky-500" />,
-    title: 'Certified Experts',
-    description: 'Our AWS and Azure certified professionals ensure best-practice solutions.',
-    altIcons: [<ShieldCheck key="alt1" size={24} className="text-sky-400 opacity-70" />, <Award key="alt2" size={24} className="text-sky-400 opacity-70" />]
-  },
-  {
-    icon: <DollarSign size={36} className="text-green-500" />,
-    title: 'Cost Optimization',
-    description: 'We implement strategies to reduce your cloud spend without compromising performance.',
-    altIcons: [<TrendingUp key="alt1" size={24} className="text-green-400 opacity-70" />, <Settings2 key="alt2" size={24} className="text-green-400 opacity-70" />]
-  },
-  {
-    icon: <Scaling size={36} className="text-purple-500" />,
-    title: 'Scalable & Secure',
-    description: 'Architectures designed for growth, built with robust security at their core.',
-    altIcons: [<Lock key="alt1" size={24} className="text-purple-400 opacity-70" />, <HardDrive key="alt2" size={24} className="text-purple-400 opacity-70" />]
-  },
-  {
-    icon: <Users size={36} className="text-red-500" />,
-    title: '24/7 Proactive Support',
-    description: 'Continuous monitoring and expert assistance to keep your cloud environment pristine.',
-    altIcons: [<Clock key="alt1" size={24} className="text-red-400 opacity-70" />, <LifeBuoy key="alt2" size={24} className="text-red-400 opacity-70" />]
-  },
-  {
-    icon: <CloudUpload size={36} className="text-orange-500" />,
-    title: 'Seamless Migration',
-    description: 'Minimize downtime and risk with our proven cloud migration methodologies.',
-    altIcons: [<Shuffle key="alt1" size={24} className="text-orange-400 opacity-70" />, <CheckCircle key="alt2" size={24} className="text-orange-400 opacity-70" />]
-  },
-  {
-    icon: <GitMerge size={36} className="text-teal-500" />,
-    title: 'DevOps & Automation',
-    description: 'Accelerate your development lifecycle with integrated CI/CD and automation.',
-    altIcons: [<Zap key="alt1" size={24} className="text-teal-400 opacity-70" />, <Repeat key="alt2" size={24} className="text-teal-400 opacity-70" />]
-  },
-];
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      delay: i * 0.15,
-      duration: 0.6,
-      ease: 'easeOut',
-    },
+    transition: { duration: 0.6, delay, ease: 'easeOut' },
   }),
 };
 
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const whyPartnerItemsData = [
+  { 
+    title: "Certified Cloud Specialists", 
+    subtitle: "AWS & Azure Certified Pros", 
+    icon: Award, 
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-600',
+    hoverIconColor: 'text-blue-600',
+  },
+  {
+    title: "Seamless Integrations", 
+    subtitle: "Connect Critical Systems", 
+    icon: Zap, 
+    iconColor: 'text-cyan-600',
+    iconBg: 'bg-cyan-600',
+    hoverIconColor: 'text-cyan-600',
+  },
+  {
+    title: "Customization & Scalability", 
+    subtitle: "Tailored Solutions", 
+    icon: Palette, 
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-600',
+    hoverIconColor: 'text-blue-600',
+  },
+  { 
+    title: "Performance Optimization", 
+    subtitle: "Enhanced Efficiency", 
+    icon: TrendingUp, 
+    iconColor: 'text-cyan-600',
+    iconBg: 'bg-cyan-600',
+    hoverIconColor: 'text-cyan-600',
+  },
+  { 
+    title: "End-to-End Support", 
+    subtitle: "Implementation to Management", 
+    icon: Headphones, 
+    iconColor: 'text-blue-600',
+    iconBg: 'bg-blue-600',
+    hoverIconColor: 'text-blue-600',
+    },
+];
+
 const WhyChooseCloudSection = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
-    <section className={`${lexend.className} py-16 md:py-24 bg-white`}>
+    <section className={`${lexend.className} py-16 md:py-24 bg-gray-50`}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -70,40 +85,50 @@ const WhyChooseCloudSection = () => {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
+          <span 
+            className="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4"
+          >
+            Key Benefits
+          </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Why Partner with Gateway for <span className="text-blue-600">Cloud Excellence?</span>
+            Why Partner with Gateway Workforce for <span className="border-b-4 border-cyan-500">Cloud Solutions?</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            Unlock unparalleled cloud capabilities with a partner dedicated to your success.
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
+            We understand that every organization has unique cloud requirements. We take the time to assess your current infrastructure, analyze your business needs, and deliver scalable cloud solutions that drive innovation and reduce costs.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              custom={index}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="bg-gray-50 rounded-xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center text-center border border-gray-200 hover:border-blue-500"
-            >
-              <div className="mb-5 p-4 bg-blue-100 rounded-full inline-block">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-3">{feature.title}</h3>
-              <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-4 min-h-[60px]">{feature.description}</p>
-              <div className="flex space-x-3 mt-auto pt-3 border-t border-gray-200 w-full justify-center">
-                {feature.altIcons.map((altIcon, idx) => (
-                  <span key={idx} className="p-2 bg-gray-100 rounded-full shadow-sm">
-                    {altIcon}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+          <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+            viewport={{ once: true }}
+        >
+          {whyPartnerItemsData.map((item, index) => {
+            const IconComponent = item.icon;
+            const isHovered = hoveredIndex === index;
+
+            return (
+              <motion.div
+                key={index}
+                className={`p-6 rounded-xl shadow-lg text-center flex flex-col items-center transition-all duration-300 ease-in-out transform hover:-translate-y-1 cursor-pointer
+                           ${isHovered ? `${item.iconBg} text-white` : 'bg-white text-gray-800 border border-gray-200'}`}
+                variants={fadeIn}
+                custom={index * 0.1 + 0.2}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <div className={`rounded-full p-4 mb-5 w-16 h-16 flex items-center justify-center shadow-md transition-colors duration-300
+                              ${isHovered ? 'bg-white' : item.iconBg}`}>
+                  <IconComponent size={32} className={`${isHovered ? item.hoverIconColor : 'text-white'} transition-colors duration-300`} />
+                </div>
+                <h3 className={`font-semibold text-xl mb-1.5 transition-colors duration-300 ${isHovered ? 'text-white' : 'text-blue-600'}`}>{item.title}</h3>
+                <p className={`text-sm mb-5 h-10 transition-colors duration-300 ${isHovered ? 'text-gray-100' : 'text-gray-600'}`}>{item.subtitle}</p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

@@ -16,7 +16,7 @@ export default function Hero5() { // Renamed from WorldMapDemo
           Leverage India's vast pool of skilled professionals to scale your operations, innovate faster, and achieve your business goals with cost-effective, high-quality remote teams.
         </p>
       </div>
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <WorldMap
           dots={[
             {

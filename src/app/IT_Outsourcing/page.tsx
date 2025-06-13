@@ -27,16 +27,7 @@ const ITOutsourcingPage: React.FC = () => {
     <div className="min-h-screen bg-gray-100 font-sans">
       {/* Hero Section - Adapted from US_Taxation / Healthcare_BPO */}
       <section className="relative w-full bg-gray-800 py-16 md:py-20 lg:py-24"> 
-        <div className="absolute inset-0 opacity-40"> 
-          <Image
-            src="/optimized/background_images/it_outsourcing_hero.webp" 
-            alt="IT Outsourcing Background"
-            fill
-            sizes="(max-width: 768px) 100vw, 100vw"
-            priority
-            className="object-cover object-center"
-          />
-        </div>
+        
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row gap-8 lg:gap-12 items-stretch">
             <div className="w-full md:w-3/5 lg:w-7/12 max-w-2xl pt-0 md:pt-8 md:ml-16 lg:ml-24"> 

@@ -11,35 +11,38 @@ const Hero5 = dynamic(() => import('@/components/hero5'), {
   ssr: false
 });
 import Hero6 from "@/components/hero6";
+import ClientStories from "@/components/ClientStories";
 import ScrollAnimationWrapper from "@/components/ScrollAnimationWrapper";
+import HiringProcess from "@/components/HiringProcess";
 
 export default function Home() {
   return (
     <div>
-      <HeroSection />
-
       <ScrollAnimationWrapper animation="fadeIn" duration={0.8}>
+        <HeroSection />
+      </ScrollAnimationWrapper>
+
+      <ScrollAnimationWrapper animation="slideUp" duration={0.8}>
         <Hero2 />
       </ScrollAnimationWrapper>
 
       <Hero3 />
 
-
-      {/* <ScrollAnimationWrapper animation="fadeIn" duration={0.8}>
-        <Hero6 />
-      </ScrollAnimationWrapper> */}
-
-      <ScrollAnimationWrapper animation="fadeIn" duration={0.8}>
-        <Hero4 />
+      <ScrollAnimationWrapper animation="slideUp" duration={0.8}>
+        <HiringProcess /> 
       </ScrollAnimationWrapper>
 
       <ScrollAnimationWrapper animation="fadeIn" duration={0.8}>
         <Hero5 />
       </ScrollAnimationWrapper>
 
+      <ScrollAnimationWrapper animation="slideUp" duration={0.8}>
+        <ClientStories />
+      </ScrollAnimationWrapper>
 
-
-      <FooterSection />
+      <ScrollAnimationWrapper animation="fadeIn" duration={0.8}>
+        <FooterSection />
+      </ScrollAnimationWrapper>
     </div>
   );
 }

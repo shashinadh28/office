@@ -1,111 +1,146 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
 import { 
   CloudCog, BarChart3, DatabaseZap, ShieldCheck, 
-  ServerCog, Rocket, Route, Layers 
+  ServerCog, Rocket, Route, Layers, Settings, 
+  Database, GitBranch, Lock, Users, CheckCircle
 } from 'lucide-react';
 
 const lexend = Lexend({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
 
-const services = [
-  {
-    icon: <Route size={32} className="text-indigo-500" />,
-    title: 'Cloud Strategy & Consulting',
-    description: 'Tailored roadmaps to align cloud adoption with your business objectives for maximum ROI.'
-  },
-  {
-    icon: <CloudCog size={32} className="text-orange-500" />,
-    title: 'AWS Cloud Solutions',
-    description: 'Leverage the full power of Amazon Web Services with our expert design and implementation.'
-  },
-  {
-    icon: <Layers size={32} className="text-blue-500" />,
-    title: 'Azure Cloud Solutions',
-    description: 'Harness Microsoft Azure’s capabilities for scalable, secure, and innovative applications.'
-  },
-  {
-    icon: <ServerCog size={32} className="text-green-500" />,
-    title: 'Cloud Migration Services',
-    description: 'Seamlessly transition your workloads to the cloud with minimal disruption and risk.'
-  },
-  {
-    icon: <Rocket size={32} className="text-red-500" />,
-    title: 'Cloud-Native Development',
-    description: 'Build and deploy resilient, scalable applications designed specifically for the cloud.'
-  },
-  {
-    icon: <DatabaseZap size={32} className="text-yellow-500" />,
-    title: 'Managed Cloud Services',
-    description: 'Proactive management and optimization of your cloud infrastructure, 24/7.'
-  },
-  {
-    icon: <ShieldCheck size={32} className="text-teal-500" />,
-    title: 'Cloud Security Solutions',
-    description: 'Robust security strategies to protect your cloud assets, data, and applications.'
-  },
-  {
-    icon: <BarChart3 size={32} className="text-pink-500" />,
-    title: 'Data Analytics & BI on Cloud',
-    description: 'Unlock insights from your data with powerful cloud-based analytics and business intelligence.'
-  }
-];
-
-const listItemVariants = {
-  hidden: { opacity: 0, x: -30 },
-  visible: (i: number) => ({
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (delay: number = 0) => ({
     opacity: 1,
-    x: 0,
-    transition: {
-      delay: i * 0.15,
-      duration: 0.6,
-      ease: 'easeOut',
-    },
+    y: 0,
+    transition: { duration: 0.6, delay, ease: 'easeOut' },
   }),
 };
 
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const serviceCategories = [
+  {
+    categoryName: 'Cloud Deployment & Architecture',
+    icon: CloudCog,
+    description: [
+      'AWS & Azure infrastructure setup',
+      'Hybrid & multi-cloud strategy',
+      'Kubernetes & container orchestration',
+      'Serverless computing (AWS Lambda, Azure Functions)'
+    ],
+    iconColor: "text-blue-600",
+  },
+  {
+    categoryName: 'Cloud Migration Services',
+    icon: Route,
+    description: [
+      'Lift-and-shift & refactoring strategies',
+      'Database migration (SQL, NoSQL, Oracle to cloud)',
+      'Application re-platforming & modernization',
+      'Post-migration optimization'
+    ],
+    iconColor: "text-cyan-600",
+  },
+  {
+    categoryName: 'Cloud Management & DevOps',
+    icon: ServerCog,
+    description: [
+      '24/7 monitoring & incident response',
+      'Cost governance & FinOps optimization',
+      'CI/CD pipeline automation',
+      'Infrastructure as Code (Terraform, CloudFormation)'
+    ],
+    iconColor: "text-blue-600",
+  },
+  {
+    categoryName: 'Security & Compliance',
+    icon: ShieldCheck,
+    description: [
+      'Identity & Access Management (IAM)',
+      'Data encryption & threat detection',
+      'Compliance audits & remediation',
+      'Disaster recovery & backup solutions'
+    ],
+    iconColor: "text-cyan-600",
+  }
+];
+
 const CloudServicesSection = () => {
+  const [hoveredCardIndex, setHoveredCardIndex] = useState<number | null>(null);
+
   return (
-    <section className={`${lexend.className} py-16 md:py-24 bg-gradient-to-b from-gray-50 to-sky-50`}>
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16"
+    <motion.section 
+      className={`${lexend.className} py-16 md:py-24 bg-gray-100 text-gray-800`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div className="text-center mb-12 md:mb-16" variants={fadeIn} custom={0.1}>
+          <span 
+            className="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Comprehensive <span className="text-sky-600">Cloud Services</span> We Offer
+            Our Services
+          </span>
+          <h2 
+            className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight"
+          >
+            Our Cloud <span className="border-b-4 border-cyan-500">Services</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            From strategy to execution, we cover every aspect of your cloud journey.
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+          variants={staggerContainer}
+        >
+          {serviceCategories.map((service, index) => {
+            const IconComponent = service.icon;
+            const isHovered = hoveredCardIndex === index;
+            const isAnotherCardHovered = hoveredCardIndex !== null && !isHovered;
+
+            return (
             <motion.div
-              key={index}
-              custom={index}
-              variants={listItemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="bg-white rounded-lg shadow-xl p-6 hover:shadow-2xl transition-shadow duration-300 flex flex-col items-start border border-transparent hover:border-sky-400"
+                key={index}
+                variants={fadeIn}
+                custom={index * 0.1 + 0.2}
+                className={`bg-white rounded-xl p-6 md:p-8 text-left shadow-lg flex flex-col group border border-gray-200 transition-all duration-300 ease-in-out 
+                            ${isHovered ? 'transform scale-105 shadow-xl border-blue-500 z-10' : ''}
+                            ${isAnotherCardHovered ? 'filter blur-sm opacity-70' : ''}`}
+                onMouseEnter={() => setHoveredCardIndex(index)}
+                onMouseLeave={() => setHoveredCardIndex(null)}
             >
-              <div className="p-3 mb-4 bg-sky-100 rounded-full">
-                {service.icon}
+                <div className="flex items-start mb-4">
+                  <div className={`bg-gray-100 p-3 rounded-full mr-4 shrink-0 group-hover:bg-blue-100 transition-colors duration-300`}>
+                    <IconComponent className={`${service.iconColor} w-6 h-6 sm:w-8 sm:h-8 group-hover:text-blue-700 transition-colors duration-300`} />
+                  </div>
+                  <h3 className={`text-xl sm:text-2xl font-bold text-gray-800 group-hover:text-blue-700 transition-colors duration-300`}>
+                    {service.categoryName}
+                  </h3>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">{service.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed min-h-[80px]">{service.description}</p>
+                <ul className={`list-disc list-inside text-sm sm:text-base text-gray-600 leading-relaxed mb-6 flex-grow space-y-1.5 pl-2`}>
+                  {service.description.map((point, i) => (
+                    <li key={i}>{point}</li>
+                ))}
+              </ul>
             </motion.div>
-          ))}
-        </div>
+            );
+          })}
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

@@ -24,7 +24,7 @@ export default function HealthcareBPO() {
   return (
     <div className="min-h-screen">
       {/* Hero Section with Background */}
-      <section className="relative h-[500px] sm:h-[600px] w-full">
+      <section className="relative h-[500px] sm:h-[600px] w-full overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/optimized/background_images/health_bg.webp"
@@ -110,28 +110,29 @@ export default function HealthcareBPO() {
           </div>
         </div>
 
-        {/* SVG Elements */}
-        <div className="absolute top-0 left-0 w-full h-full md:w-3/4 lg:w-full xl:w-3/4">
+        {/* SVG Elements - Fixed Positioning for 768px+ screens */}
+        {/* Desktop and Tablet Layout - Fixed pixel positioning */}
+        <div className="hidden md:block absolute inset-0 pointer-events-none">
           {/* Thunder Shape */}
-          <div className="absolute top-0 left-60 transform translate-x-87 md:left-80 lg:left-92 xl:left-[22rem]">
+          <div className="absolute top-0" style={{ right: '36%' }}>
             <AnimatedSVG
               src="/svg/thunder.svg"
               alt="Thunder Shape"
-              width={286}
-              height={286}
+              width={279}
+              height={279}
               className="rotate--1"
-              position="left"
+              position="right"
               delay={0.2}
             />
           </div>
 
           {/* Hexagon */}
-          <div className="absolute bottom-0 right-79">
+          <div className="absolute bottom-0" style={{ right: '48%' }}>
             <AnimatedSVG
               src="/svg/hexagon.svg"
               alt="Hexagon"
-              width={340}
-              height={340}
+              width={320}
+              height={320}
               className="opacity-80"
               position="right"
               delay={0.4}
@@ -139,24 +140,24 @@ export default function HealthcareBPO() {
           </div>
 
           {/* SVG 1 */}
-          <div className="absolute bottom-39 left-0">
+          <div className="absolute left-0" style={{ bottom: '22%' }}>
             <AnimatedSVG
               src="/svg/1.svg"
               alt="SVG 1"
-              width={150}
-              height={150}
+              width={140}
+              height={140}
               position="left"
               delay={0.6}
             />
           </div>
 
           {/* SVG 2 */}
-          <div className="absolute bottom-0 right-350">
+          <div className="absolute bottom-0" style={{ right: '91%' }}>
             <AnimatedSVG
               src="/svg/2.svg"
               alt="SVG 2"
-              width={130}
-              height={130}
+              width={120}
+              height={120}
               position="right"
               delay={0.8}
             />
@@ -167,10 +168,62 @@ export default function HealthcareBPO() {
             <AnimatedSVG
               src="/svg/traingle.svg"
               alt="Triangle"
-              width={135}
-              height={135}
+              width={120}
+              height={120}
               position="left"
               delay={1}
+            />
+          </div>
+        </div>
+
+        {/* Mobile Layout - Simplified and Clean */}
+        <div className="block md:hidden absolute inset-0 pointer-events-none">
+          {/* Thunder Shape - Top Right */}
+          <div className="absolute top-[8%] right-[5%]">
+            <AnimatedSVG
+              src="/svg/thunder.svg"
+              alt="Thunder Shape"
+              width={140}
+              height={140}
+              className="rotate--1 opacity-70"
+              position="right"
+              delay={0.2}
+            />
+          </div>
+
+          {/* Hexagon - Bottom Right */}
+          <div className="absolute bottom-[15%] right-[2%]">
+            <AnimatedSVG
+              src="/svg/hexagon.svg"
+              alt="Hexagon"
+              width={160}
+              height={160}
+              className="opacity-60"
+              position="right"
+              delay={0.4}
+            />
+          </div>
+
+          {/* Small decorative elements */}
+          <div className="absolute bottom-[45%] left-[3%]">
+            <AnimatedSVG
+              src="/svg/1.svg"
+              alt="SVG 1"
+              width={80}
+              height={80}
+              position="left"
+              delay={0.6}
+            />
+          </div>
+
+          <div className="absolute bottom-[5%] left-[2%]">
+            <AnimatedSVG
+              src="/svg/traingle.svg"
+              alt="Triangle"
+              width={70}
+              height={70}
+              position="left"
+              delay={0.8}
             />
           </div>
         </div>
