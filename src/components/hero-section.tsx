@@ -8,19 +8,31 @@ import ContactButton from "./ContactButton";
 
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [animationsTriggered, setAnimationsTriggered] = useState(false);
 
   useEffect(() => {
     // Preload the background image for faster loading
     const img = new window.Image();
     img.onload = () => setIsLoaded(true);
+    img.onerror = () => {
+      console.warn('Background image failed to preload, falling back to normal loading');
+      setIsLoaded(true);
+    };
     img.src = '/home6.png';
+
+    // Trigger animations after a short delay
+    const timer = setTimeout(() => {
+      setAnimationsTriggered(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const scrollDown = () => {
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   };
 
-  // Simple animation variants
+  // Animation variants for page load only
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: { 
@@ -30,21 +42,28 @@ export default function HeroSection() {
     }
   };
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
+      x: 0,
+      transition: { duration: 0.8, ease: "easeOut" }
+    }
+  };
+
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.7, ease: "easeOut" }
     }
   };
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-gray-50">
       
-      {/* Background image - optimized loading */}
+      {/* Background image */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/home6.png"
@@ -61,13 +80,13 @@ export default function HeroSection() {
 
       <div className="relative z-10 h-full flex flex-col">
         
-        {/* Logo - simple fade in */}
+        {/* Logo */}
         <motion.div
           className="absolute top-6 left-6 md:top-8 md:left-12"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          initial="hidden"
+          animate={animationsTriggered ? "visible" : "hidden"}
+          variants={scaleIn}
+          transition={{ delay: 0.2 }}
         >
           <Image
             src="/optimized/images/gateway_workforce.webp"
@@ -80,37 +99,37 @@ export default function HeroSection() {
         </motion.div>
 
         <div className="container mx-auto px-4 sm:px-6 md:px-12 flex flex-col justify-center h-full pt-16">
-          <motion.div 
-            className="max-w-4xl"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
+          <div className="max-w-4xl">
             
-            {/* Main headline - reduced size */}
+            {/* Main headline */}
             <motion.div 
               className="mb-6 sm:mb-8"
-              variants={fadeInUp}
+              initial="hidden"
+              animate={animationsTriggered ? "visible" : "hidden"}
+              variants={slideInLeft}
+              transition={{ delay: 0.4 }}
             >
               <h1 className="font-montserrat text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800 mb-4">
-                Connecting Global Businesses To India's Educated & Motivated Talent
+                Connecting Global Businesses To India's Educated & Motivated{' '}
+                <span className="text-blue-400">Talent</span>
               </h1>
               
               {/* Simple underline */}
               <motion.div
-                className="h-1 w-32 bg-teal-500 rounded-full"
+                className="h-1 w-32 bg-blue-500 rounded-full"
                 initial={{ width: 0 }}
-                whileInView={{ width: 128 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                animate={animationsTriggered ? { width: 128 } : { width: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
               />
             </motion.div>
 
             {/* Description */}
             <motion.div
               className="mb-8 sm:mb-10"
+              initial="hidden"
+              animate={animationsTriggered ? "visible" : "hidden"}
               variants={fadeInUp}
+              transition={{ delay: 0.6 }}
             >
               <p className="font-montserrat text-lg sm:text-xl md:text-2xl max-w-3xl text-gray-700 leading-relaxed">
                 We connect{" "}
@@ -124,7 +143,10 @@ export default function HeroSection() {
             {/* CTA Section */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-12"
+              initial="hidden"
+              animate={animationsTriggered ? "visible" : "hidden"}
               variants={fadeInUp}
+              transition={{ delay: 0.8 }}
             >
               {/* Primary CTA */}
               <Link href="/contact" passHref>
@@ -156,13 +178,21 @@ export default function HeroSection() {
               </motion.button>
             </motion.div>
 
-            {/* Stats section - simplified */}
+            {/* Stats section */}
             <motion.div
               className="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 max-w-2xl"
-              variants={staggerContainer}
               initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
+              animate={animationsTriggered ? "visible" : "hidden"}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: {
+                    staggerChildren: 0.1,
+                    delayChildren: 1.0
+                  }
+                }
+              }}
             >
               {[
                 { number: "500+", label: "Global Clients" },
@@ -185,16 +215,16 @@ export default function HeroSection() {
                 </motion.div>
               ))}
             </motion.div>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Simple scroll indicator */}
+        {/* Scroll indicator */}
         <motion.div
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 1 }}
+          initial="hidden"
+          animate={animationsTriggered ? "visible" : "hidden"}
+          variants={fadeInUp}
+          transition={{ delay: 1.2 }}
         >
           <motion.button
             onClick={scrollDown}
@@ -206,7 +236,7 @@ export default function HeroSection() {
               DISCOVER MORE
             </span>
             
-            <motion.div 
+            <motion.div
               className="w-10 h-10 rounded-full border-2 border-gray-400 flex items-center justify-center bg-white/50"
               animate={{ y: [0, 5, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

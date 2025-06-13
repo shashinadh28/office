@@ -10,7 +10,7 @@ interface JourneyStepData {
   subtitle: string;
   description: string;
   icon: React.ElementType;
-  themeColor: 'blue' | 'indigo' | 'purple' | 'emerald';
+  themeColor: 'blue' | 'indigo' | 'purple' | 'emerald' | 'yellow' | 'dark' | 'lightblue';
   position: "left" | "right";
   gradient: string;
 }
@@ -22,9 +22,9 @@ const journeyStepsData: JourneyStepData[] = [
     subtitle: "Strategic Foundation",
     description: "We begin with a comprehensive analysis of your project requirements, conducting stakeholder interviews and technical assessments to identify the optimal technology stack and talent architecture for your success.",
     icon: Search,
-    themeColor: "blue",
+    themeColor: "yellow",
     position: "right",
-    gradient: "from-blue-600 via-blue-700 to-blue-800"
+    gradient: "from-yellow-400 via-yellow-500 to-yellow-600"
   },
   {
     id: 2,
@@ -32,9 +32,9 @@ const journeyStepsData: JourneyStepData[] = [
     subtitle: "Precision Curation",
     description: "Our senior consultants leverage advanced matching algorithms and cultural fit assessments to curate elite developers. We conduct rigorous technical interviews and handle all legal documentation seamlessly.",
     icon: Users,
-    themeColor: "indigo",
+    themeColor: "dark",
     position: "left",
-    gradient: "from-indigo-600 via-indigo-700 to-indigo-800"
+    gradient: "from-gray-700 via-gray-800 to-gray-900"
   },
   {
     id: 3,
@@ -42,9 +42,9 @@ const journeyStepsData: JourneyStepData[] = [
     subtitle: "Excellence Assembly",
     description: "Select from our thoroughly vetted talent pool of top-tier professionals. We ensure comprehensive onboarding, premium tooling, and seamless integration with your existing workflows and systems.",
     icon: Sparkles,
-    themeColor: "purple",
+    themeColor: "lightblue",
     position: "right",
-    gradient: "from-purple-600 via-purple-700 to-purple-800"
+    gradient: "from-sky-500 via-sky-600 to-sky-700"
   },
   {
     id: 4,
@@ -126,6 +126,36 @@ const TimelineStep = ({ step, index, isActive, isCompleted }: {
         icon: isActive || isCompleted ? 'bg-emerald-600' : 'bg-emerald-100',
         iconText: isActive || isCompleted ? 'text-white' : 'text-emerald-700',
         accent: 'bg-emerald-500'
+      },
+      yellow: {
+        bg: isActive || isCompleted ? 'bg-[#FDC703]' : 'bg-white',
+        text: isActive || isCompleted ? 'text-white' : 'text-yellow-800',
+        subtitle: isActive || isCompleted ? 'text-yellow-100' : 'text-yellow-600',
+        desc: isActive || isCompleted ? 'text-yellow-50' : 'text-gray-600',
+        border: isActive || isCompleted ? 'border-yellow-400' : 'border-yellow-200',
+        icon: isActive || isCompleted ? 'bg-yellow-600' : 'bg-yellow-100',
+        iconText: isActive || isCompleted ? 'text-white' : 'text-yellow-700',
+        accent: 'bg-[#FDC703]'
+      },
+      dark: {
+        bg: isActive || isCompleted ? 'bg-[#1E2939]' : 'bg-white',
+        text: isActive || isCompleted ? 'text-white' : 'text-gray-800',
+        subtitle: isActive || isCompleted ? 'text-gray-300' : 'text-gray-600',
+        desc: isActive || isCompleted ? 'text-gray-200' : 'text-gray-600',
+        border: isActive || isCompleted ? 'border-gray-600' : 'border-gray-200',
+        icon: isActive || isCompleted ? 'bg-gray-700' : 'bg-gray-100',
+        iconText: isActive || isCompleted ? 'text-white' : 'text-gray-700',
+        accent: 'bg-[#1E2939]'
+      },
+      lightblue: {
+        bg: isActive || isCompleted ? 'bg-[#00A6F4]' : 'bg-white',
+        text: isActive || isCompleted ? 'text-white' : 'text-blue-800',
+        subtitle: isActive || isCompleted ? 'text-blue-100' : 'text-blue-600',
+        desc: isActive || isCompleted ? 'text-blue-50' : 'text-gray-600',
+        border: isActive || isCompleted ? 'border-blue-400' : 'border-blue-200',
+        icon: isActive || isCompleted ? 'bg-blue-600' : 'bg-blue-100',
+        iconText: isActive || isCompleted ? 'text-white' : 'text-blue-700',
+        accent: 'bg-[#00A6F4]'
       }
     };
     return colors[themeName];
@@ -220,15 +250,19 @@ const JourneySection = () => {
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.onChange((progress) => {
-      // More precise calculation - each step needs 25% of scroll progress
-      const stepThreshold = 1 / journeyStepsData.length;
-      const currentStepIndex = Math.floor(progress / stepThreshold);
-      
-      // Only activate when we're truly at that step
-      if (progress > currentStepIndex * stepThreshold + stepThreshold * 0.3) {
-        setActiveStep(Math.min(currentStepIndex, journeyStepsData.length - 1));
-      } else {
-        setActiveStep(currentStepIndex - 1);
+      try {
+        // More precise calculation - each step needs 25% of scroll progress
+        const stepThreshold = 1 / journeyStepsData.length;
+        const currentStepIndex = Math.floor(progress / stepThreshold);
+        
+        // Only activate when we're truly at that step
+        if (progress > currentStepIndex * stepThreshold + stepThreshold * 0.3) {
+          setActiveStep(Math.min(currentStepIndex, journeyStepsData.length - 1));
+        } else {
+          setActiveStep(currentStepIndex - 1);
+        }
+      } catch (error) {
+        console.warn('Error in journey scroll progress handler:', error);
       }
     });
 
@@ -239,21 +273,31 @@ const JourneySection = () => {
 
   // Smooth scroll setup
   useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = `
-      html {
-        scroll-behavior: smooth;
-      }
-    `;
-    document.head.appendChild(style);
-    
-    return () => {
-      document.head.removeChild(style);
-    };
+    try {
+      const style = document.createElement('style');
+      style.textContent = `
+        html {
+          scroll-behavior: smooth;
+        }
+      `;
+      document.head.appendChild(style);
+      
+      return () => {
+        try {
+          if (document.head.contains(style)) {
+            document.head.removeChild(style);
+          }
+        } catch (error) {
+          console.warn('Error removing scroll style:', error);
+        }
+      };
+    } catch (error) {
+      console.warn('Error setting up smooth scroll:', error);
+    }
   }, []);
 
-  return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 via-white to-gray-50 overflow-hidden relative">
+      return (
+    <section className="py-16 lg:py-24 bg-white overflow-hidden relative">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-10 w-48 lg:w-72 h-48 lg:h-72 bg-blue-200 rounded-full blur-3xl animate-pulse" />
@@ -279,13 +323,13 @@ const JourneySection = () => {
           </motion.span>
           
           <motion.h2 
-            className="text-3xl lg:text-5xl xl:text-7xl font-black text-gray-900 leading-tight mb-4 lg:mb-6"
+            className="text-3xl lg:text-5xl xl:text-7xl font-black text-blue-900 leading-tight mb-4 lg:mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
             Your Strategic{' '}
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
+            <span className="text-blue-900">
               Journey
             </span>
           </motion.h2>

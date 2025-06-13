@@ -98,8 +98,18 @@ const bounceIn = {
 
 const HeroAISection: React.FC = () => {
   const [textAnimated, setTextAnimated] = useState(false);
+  const [particles, setParticles] = useState<Array<{ left: number; top: number; duration: number; delay: number }>>([]);
 
   useEffect(() => {
+    // Generate particle positions and timings once on client side
+    const particleData = [...Array(25)].map(() => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      duration: 4 + Math.random() * 3,
+      delay: Math.random() * 3,
+    }));
+    setParticles(particleData);
+
     setTimeout(() => {
       setTextAnimated(true);
     }, 300);
@@ -114,13 +124,13 @@ const HeroAISection: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-600/20 to-purple-800/40"></div>
         
         {/* Enhanced Floating Particles */}
-        {[...Array(25)].map((_, i) => (
+        {particles.map((particle, i) => (
           <motion.div
             key={i}
             className="absolute w-3 h-3 bg-white/20 rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${particle.left}%`,
+              top: `${particle.top}%`,
             }}
             animate={{
               y: [0, -40, 0],
@@ -128,9 +138,9 @@ const HeroAISection: React.FC = () => {
               scale: [1, 1.5, 1]
             }}
             transition={{
-              duration: 4 + Math.random() * 3,
+              duration: particle.duration,
               repeat: Infinity,
-              delay: Math.random() * 3,
+              delay: particle.delay,
             }}
           />
         ))}
@@ -169,7 +179,7 @@ const HeroAISection: React.FC = () => {
           
           {/* Left Content */}
           <motion.div
-            className="space-y-8 lg:pr-8"
+            className="space-y-8 lg:pr-8 lg:pl-16"
             variants={slideInLeft}
             initial="hidden"
             animate={textAnimated ? "visible" : "hidden"}
@@ -193,9 +203,9 @@ const HeroAISection: React.FC = () => {
               animate={textAnimated ? "visible" : "hidden"}
               transition={{ delay: 0.4 }}
             >
-              AI & Data Intelligence
+              AI & Data Intelligence Solutions
               <span className="bg-gradient-to-r from-white to-pink-200 bg-clip-text text-transparent block">
-                Solutions
+                
               </span>
             </motion.h1>
 
@@ -261,7 +271,7 @@ const HeroAISection: React.FC = () => {
 
           {/* Right Image with Decorative Elements */}
           <motion.div
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end lg:pr-16"
             variants={slideInRight}
             initial="hidden"
             animate={textAnimated ? "visible" : "hidden"}
@@ -275,21 +285,24 @@ const HeroAISection: React.FC = () => {
               transition={{ delay: 0.8 }}
             >
               {/* Enhanced Image Frame */}
-              <div className="relative w-80 h-80 lg:w-96 lg:h-96">
+              <div className="relative w-[24rem] h-[24rem] lg:w-[28rem] lg:h-[28rem]">
                 {/* Decorative Border */}
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 rounded-3xl p-1">
                   <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent rounded-3xl backdrop-blur-sm"></div>
                 </div>
                 
-                {/* Image */}
-                <div className="relative w-full h-full p-4">
-                  <Image
-                    src="/images/ai3.png"
-                    alt="AI Solutions"
-                    fill
-                    className="object-contain rounded-2xl filter drop-shadow-2xl"
-                    priority
-                  />
+                {/* Image - slightly larger and centered */}
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <div className="w-[22rem] h-[22rem] flex items-center justify-center">
+                    <Image
+                      src="/images/ai3.png"
+                      alt="AI Solutions"
+                      width={352}
+                      height={352}
+                      className="object-contain rounded-2xl filter drop-shadow-2xl"
+                      priority
+                    />
+                  </div>
                 </div>
 
                 {/* Pulsing Ring */}

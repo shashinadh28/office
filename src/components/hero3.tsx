@@ -69,14 +69,14 @@ export default function Hero3() {
   return (
     <ReactLenis root>
       <ScrollProgressContext.Provider value={scrollYProgress}>
-        <main id='services-section' className='bg-[#00283A]' ref={container}>
+        <main id='services-section' className='bg-[#021533]' ref={container}>
           <>
             <section className='h-[70vh] w-full grid place-content-center '>
-              <h1 className={`${ibmPlexSans.className} text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-center text-white`}>
+              <h2 className={`${ibmPlexSans.className} text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-center text-white`}>
                 Business Solutions We <span className="text-teal-500">Support</span>
-              </h1>
+              </h2>
               <p className="text-gray-300 text-sm sm:text-base md:text-lg px-4 text-center max-w-2xl mx-auto">
-                We power global businesses with India’s top talent, offering specialized outsourcing solutions across
+                We power global businesses with India's top talent, offering specialized outsourcing solutions across
               </p>
             </section>
           </>
@@ -146,14 +146,14 @@ export const Card: React.FC<CardProps> = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className={`text-white flex flex-col relative -top-[25%] h-[550px] w-[80%] rounded-md p-10 origin-top`}
+        className={`text-white flex flex-col relative -top-[25%] h-[650px] w-[85%] rounded-md p-12 origin-top`}
       >
-        <h2 className='text-4xl text-center font-bold'>{title}</h2>
-        <div className={`flex h-full mt-5 gap-10`}>
+        <h2 className='text-5xl lg:text-6xl text-center font-bold mb-6'>{title}</h2>
+        <div className={`flex h-full mt-8 gap-12`}>
           <div className={`w-[40%] relative top-[10%]`}>
-            <ul className='list-disc pl-5 text-lg md:text-xl'>
+            <ul className='list-disc pl-5 text-xl md:text-2xl'>
               {description.split('\n').map((point, index) => (
-                <li key={index} className="mb-1">{point}</li>
+                <li key={index} className="mb-2">{point}</li>
               ))}
             </ul>
             <span className='flex items-center gap-2 pt-2'>

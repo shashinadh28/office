@@ -80,15 +80,15 @@ const StatsSection: React.FC = () => {
             return (
               <motion.div
                 key={stat.id}
-                className="flex flex-col items-center text-center p-6 bg-gray-700 rounded-lg shadow-xl hover:shadow-2xl hover:bg-gray-600 transform hover:scale-105 transition-all duration-300 ease-in-out"
+                className="flex flex-col items-center text-center p-4 bg-gray-700 rounded-lg shadow-xl hover:shadow-2xl hover:bg-gray-600 transform hover:scale-105 transition-all duration-300 ease-in-out"
                 variants={fadeIn}
                 custom={index * 0.1 + 0.2}
               >
-                <IconComponent className="text-white w-10 h-10 mb-4" strokeWidth={1.5} />
-                <div className="text-3xl sm:text-4xl font-extrabold text-white mb-2">
+                <IconComponent className="text-white w-8 h-8 mb-3" strokeWidth={1.5} />
+                <div className="text-2xl sm:text-3xl font-extrabold text-white mb-2">
                   {stat.value}
                 </div>
-                <p className="text-base sm:text-lg text-white">{stat.label}</p>
+                <p className="text-sm sm:text-base text-white">{stat.label}</p>
               </motion.div>
             );
           })}

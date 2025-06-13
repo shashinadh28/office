@@ -9,9 +9,10 @@ export default function Hero5() { // Renamed from WorldMapDemo
   return (
     <div className=" py-40 dark:bg-black bg-white w-full">
       <div className="max-w-7xl mx-auto text-center">
-        <p className={`${lexend.className} font-bold text-xl md:text-4xl`} style={{ color: '#14488D' }}>
-          Connecting Global Businesses To India’s Educated & Motivated Talent
-        </p>
+        <h2 className={`${lexend.className} text-3xl sm:text-4xl md:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-blue-900`}>
+          Connecting Global Businesses To India's Educated & Motivated{' '}
+          <span className="text-teal-500">Talent</span>
+        </h2>
         <p className="text-sm md:text-lg text-neutral-500 max-w-3xl mx-auto py-4">
           Leverage India's vast pool of skilled professionals to scale your operations, innovate faster, and achieve your business goals with cost-effective, high-quality remote teams.
         </p>

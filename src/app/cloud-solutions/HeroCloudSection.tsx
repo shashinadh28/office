@@ -4,213 +4,260 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { IBM_Plex_Sans, Lexend } from 'next/font/google';
-import AnimatedSVG from '../../components/ui/animated-svg';
+import { 
+  Cloud, CloudCog, Server, Database, Shield, Rocket,
+  Zap, Globe, ArrowRight, Sparkles, Star, Code,
+  Settings, GitBranch, Lock, Users, CheckCircle
+} from 'lucide-react';
 
 const ibmPlexSans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['700'], display: 'swap' });
 const lexend = Lexend({ subsets: ['latin'], weight: ['400', '500', '600', '700'], display: 'swap' });
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay, ease: 'easeOut' },
-  }),
-};
+const floatingElements = [
+  { icon: Cloud, position: "top-16 left-16", size: "w-12 h-12", color: "text-blue-400", delay: 0 },
+  { icon: CloudCog, position: "top-24 right-20", size: "w-10 h-10", color: "text-cyan-400", delay: 0.5 },
+  { icon: Server, position: "top-1/3 left-8", size: "w-8 h-8", color: "text-green-400", delay: 1 },
+  { icon: Database, position: "top-1/2 right-12", size: "w-9 h-9", color: "text-purple-400", delay: 1.5 },
+  { icon: Shield, position: "bottom-1/3 left-12", size: "w-11 h-11", color: "text-orange-400", delay: 2 },
+  { icon: Rocket, position: "bottom-24 right-16", size: "w-10 h-10", color: "text-pink-400", delay: 2.5 },
+  { icon: Zap, position: "top-20 left-1/3", size: "w-7 h-7", color: "text-yellow-400", delay: 3 },
+  { icon: Globe, position: "bottom-20 left-20", size: "w-9 h-9", color: "text-teal-400", delay: 3.5 },
+  { icon: Code, position: "top-1/4 right-1/4", size: "w-8 h-8", color: "text-indigo-400", delay: 4 },
+  { icon: Settings, position: "bottom-1/4 right-8", size: "w-10 h-10", color: "text-rose-400", delay: 4.5 },
+  { icon: GitBranch, position: "top-2/3 left-16", size: "w-8 h-8", color: "text-emerald-400", delay: 5 },
+  { icon: Lock, position: "bottom-1/2 right-20", size: "w-9 h-9", color: "text-violet-400", delay: 5.5 },
+  { icon: Users, position: "top-1/2 left-1/4", size: "w-10 h-10", color: "text-sky-400", delay: 6 },
+  { icon: CheckCircle, position: "bottom-2/3 left-8", size: "w-8 h-8", color: "text-lime-400", delay: 6.5 },
+  { icon: Sparkles, position: "top-3/4 right-1/3", size: "w-7 h-7", color: "text-amber-400", delay: 7 },
+  { icon: Star, position: "bottom-16 left-1/3", size: "w-9 h-9", color: "text-fuchsia-400", delay: 7.5 },
+];
 
 const HeroCloudSection: React.FC = () => {
   const [textAnimated, setTextAnimated] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setTextAnimated(true);
-    }, 600);
+    }, 300);
   }, []);
 
   return (
-    <section className="relative h-[500px] sm:h-[600px] w-full overflow-hidden">
-      <div className="absolute inset-0">
-        <Image
-          src="/optimized/background_images/cloud-solutions.webp" 
-          alt="Cloud Solutions Background" 
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-          priority
-          className="object-cover object-center"
+    <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+      {/* No background image - now using solid gradient */}
+
+      {/* Floating Elements */}
+      {floatingElements.map((element, index) => (
+        <motion.div
+          key={index}
+          className={`absolute ${element.position} ${element.color} opacity-60 hidden lg:block`}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ 
+            opacity: [0.4, 0.8, 0.4],
+            scale: [1, 1.2, 1],
+            y: [0, -20, 0],
+            x: index % 2 === 0 ? [0, 15, 0] : [0, -15, 0],
+            rotate: index % 3 === 0 ? [0, 360] : [0, -180, 0],
+          }}
+          transition={{
+            duration: 4 + (index % 3),
+            repeat: Infinity,
+            delay: element.delay * 0.3,
+            ease: "easeInOut"
+          }}
+        >
+          <element.icon className={element.size} />
+        </motion.div>
+      ))}
+
+      {/* Additional Floating Particles */}
+      {[...Array(12)].map((_, index) => (
+        <motion.div
+          key={`particle-${index}`}
+          className={`absolute w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full opacity-50 hidden md:block`}
           style={{
-            objectFit: 'cover',
-            objectPosition: 'center',
-            willChange: 'transform'
+            top: `${15 + (index * 8)}%`,
+            left: `${8 + (index * 9)}%`,
+          }}
+          animate={{
+            y: [0, -40, 0],
+            x: [0, 25, 0],
+            opacity: [0.3, 0.9, 0.3],
+            scale: [1, 1.8, 1],
+          }}
+          transition={{
+            duration: 5 + (index % 3),
+            repeat: Infinity,
+            delay: index * 0.4,
+            ease: "easeInOut"
           }}
         />
-      </div>
-      <div className="absolute inset-0 flex items-center justify-start z-10 px-4 sm:px-6">
-        <div className="ml-0 md:ml-16 lg:ml-32 xl:ml-48 max-w-md sm:max-w-xl">
-          <div className="overflow-hidden mb-2">
-            <div
-              className={`text-[#2D77C2] text-base sm:text-lg font-semibold transition-all duration-1000 ease-out`}
-              style={{
-                transform: textAnimated ? 'translateX(0)' : 'translateX(-100%)',
-                opacity: textAnimated ? 1 : 0,
-                filter: textAnimated ? 'blur(0)' : 'blur(4px)',
-              }}
-            >
-              Gateway Workforce: 
-            </div>
-          </div>
-          <div className="overflow-hidden mb-6">
-            <h1
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight transition-all duration-1000 ease-out"
-              style={{
-                transform: textAnimated ? 'translateY(0)' : 'translateY(40px)',
-                opacity: textAnimated ? 1 : 0,
-                filter: textAnimated ? 'blur(0)' : 'blur(4px)',
-                transitionDelay: '200ms',
-                
-              }}
-            >
-              Expert Cloud Solutions for AWS & Azure
-            </h1>
-          </div>
-          <div
-            className={`transition-all duration-700 ${textAnimated ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}
-            style={{ transitionDelay: '500ms' }}
-          >
-            <div className="mt-8 sm:mt-10">
-              <button
-                onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-                className="flex flex-col items-center transition-all duration-300 group"
+      ))}
+
+      {/* Main Content */}
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Side - Content */}
+            <div className="text-center lg:text-left">
+          
+              {/* Hero Badge */}
+              <motion.div
+                className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: textAnimated ? 1 : 0, y: textAnimated ? 0 : 20 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <span className="font-montserrat text-xs sm:text-sm tracking-widest mb-2 sm:mb-3 text-red-600 group-hover:text-white transition-colors duration-300">
-                  SCROLL DOWN
+                <Cloud className="w-5 h-5 text-cyan-400 mr-2" />
+                <span className="text-white font-semibold">Gateway Workforce Cloud Solutions</span>
+                <Sparkles className="w-5 h-5 text-yellow-400 ml-2" />
+              </motion.div>
+
+              {/* Main Heading */}
+              <motion.h1
+                className={`${ibmPlexSans.className} text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-6`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: textAnimated ? 1 : 0, y: textAnimated ? 0 : 30 }}
+                transition={{ duration: 1, delay: 0.4 }}
+              >
+                Transform Your Business with{' '}
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  Cloud Excellence
                 </span>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-red-600 flex items-center justify-center group-hover:bg-red-600 transition-all duration-300">
-                  <svg
-                    className="w-5 h-5 text-red-600 group-hover:text-white animate-bounce transition-colors duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                    />
-                  </svg>
+              </motion.h1>
+
+              {/* Subtitle */}
+              <motion.p
+                className={`${lexend.className} text-lg sm:text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: textAnimated ? 1 : 0, y: textAnimated ? 0 : 20 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                Accelerate innovation with AWS & Azure cloud solutions. From migration to management, 
+                we deliver scalable, secure, and cost-effective cloud infrastructure that powers your digital transformation.
+              </motion.p>
+
+              {/* Key Features */}
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 mb-8"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: textAnimated ? 1 : 0, y: textAnimated ? 0 : 30 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+              >
+                <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <Shield className="w-6 h-6 text-green-400" />
+                  <span className="text-white font-medium">Secure & Compliant</span>
                 </div>
-              </button>
+                <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <Rocket className="w-6 h-6 text-purple-400" />
+                  <span className="text-white font-medium">Rapid Deployment</span>
+                </div>
+                <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+                  <Zap className="w-6 h-6 text-yellow-400" />
+                  <span className="text-white font-medium">24/7 Support</span>
+                </div>
+              </motion.div>
+
+              {/* CTA Buttons */}
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: textAnimated ? 1 : 0, y: textAnimated ? 0 : 20 }}
+                transition={{ duration: 0.8, delay: 1 }}
+              >
+                <motion.button
+                  className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-lg shadow-xl overflow-hidden"
+                  whileHover={{ 
+                    scale: 1.05,
+                    boxShadow: "0 20px 40px rgba(6, 182, 212, 0.4)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="relative flex items-center space-x-2">
+                    <span>Start Your Cloud Journey</span>
+                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </motion.button>
+                
+                <motion.button
+                  className="group px-8 py-4 bg-white/10 backdrop-blur-sm text-white font-bold rounded-lg border border-white/30 hover:bg-white/20 transition-all duration-300"
+                  whileHover={{ 
+                    scale: 1.05,
+                    borderColor: "rgba(255, 255, 255, 0.6)"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className="flex items-center space-x-2">
+                    <Globe className="w-5 h-5" />
+                    <span>View Our Solutions</span>
+                  </div>
+                </motion.button>
+              </motion.div>
             </div>
+            
+            {/* Right Side - Image Card */}
+            <motion.div
+              className="flex justify-center lg:justify-end"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: textAnimated ? 1 : 0, x: textAnimated ? 0 : 50 }}
+              transition={{ duration: 1, delay: 0.6 }}
+            >
+              <div className="relative max-w-lg w-full">
+                <motion.div
+                  className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 shadow-2xl"
+                  whileHover={{ 
+                    scale: 1.02,
+                    boxShadow: "0 25px 50px rgba(0, 0, 0, 0.3)"
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="relative rounded-xl overflow-hidden">
+                    <Image
+                      src="/images/cloud_somputing.jpg"
+                      alt="Cloud Computing Solutions"
+                      width={500}
+                      height={400}
+                      className="w-full h-80 object-cover transition-transform duration-300 hover:scale-105"
+                      onLoad={() => setImageLoaded(true)}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-white font-bold text-xl mb-2">Cloud Infrastructure Excellence</h3>
+                      <p className="text-white/80 text-sm">Scalable, secure, and efficient cloud solutions tailored for your business needs.</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </div>
 
-      {/* SVG Elements - Fixed Positioning for 768px+ screens */}
-      {/* Desktop and Tablet Layout - Fixed pixel positioning */}
-      <div className="hidden md:block absolute inset-0 pointer-events-none">
-        {/* Cloud Shape */}
-        <div className="absolute top-0" style={{ right: '36%' }}>
-          <AnimatedSVG
-            src="/svg/cloud_svg/cloud.svg"
-            alt="Cloud Shape"
-            width={279}
-            height={279}
-            className="rotate--1"
-            position="right"
-            delay={0.2}
-          />
-        </div>
-
-        {/* Hexagon */}
-        <div className="absolute bottom-0" style={{ right: '48%' }}>
-          <AnimatedSVG
-            src="/svg/hexagon.svg"
-            alt="Hexagon"
-            width={320}
-            height={320}
-            className="opacity-80"
-            position="right"
-            delay={0.4}
-          />
-        </div>
-
-        {/* AWS SVG */}
-        <div className="absolute left-0" style={{ bottom: '22%' }}>
-          <AnimatedSVG
-            src="/svg/cloud_svg/aws.svg"
-            alt="AWS"
-            width={140}
-            height={140}
-            position="left"
-            delay={0.6}
-          />
-        </div>
-
-        {/* Azure SVG */}
-        <div className="absolute bottom-0" style={{ right: '91%' }}>
-          <AnimatedSVG
-            src="/svg/cloud_svg/azure.svg"
-            alt="Azure"
-            width={120}
-            height={120}
-            position="right"
-            delay={0.8}
-          />
-        </div>
-
-        {/* Triangle */}
-        <div className="absolute bottom-0 left-0">
-          <AnimatedSVG
-            src="/svg/cloud_svg/triangle.svg" 
-            alt="Triangle"
-            width={120}
-            height={120}
-            position="left"
-            delay={1}
-          />
-        </div>
-      </div>
-
-      {/* Mobile Layout - Simplified and Clean */}
-      <div className="block md:hidden absolute inset-0 pointer-events-none">
-        {/* Cloud - Top Right */}
-        <div className="absolute top-[8%] right-[5%]">
-          <AnimatedSVG
-            src="/svg/cloud_svg/cloud.svg"
-            alt="Cloud"
-            width={140}
-            height={140}
-            className="rotate--1 opacity-70"
-            position="right"
-            delay={0.2}
-          />
-        </div>
-
-        {/* Hexagon - Bottom Right */}
-        <div className="absolute bottom-[15%] right-[2%]">
-          <AnimatedSVG
-            src="/svg/hexagon.svg"
-            alt="Hexagon"
-            width={160}
-            height={160}
-            className="opacity-60"
-            position="right"
-            delay={0.4}
-          />
-        </div>
-
-        {/* AWS - Bottom Left */}
-        <div className="absolute bottom-[5%] left-[5%]">
-          <AnimatedSVG
-            src="/svg/cloud_svg/aws.svg"
-            alt="AWS"
-            width={100}
-            height={100}
-            className="opacity-50"
-            position="left"
-            delay={0.6}
-          />
+          {/* Scroll Indicator */}
+          <motion.div
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: textAnimated ? 1 : 0 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
+            <motion.div
+              className="flex flex-col items-center cursor-pointer group"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+            >
+              <span className="text-white/70 text-sm font-medium mb-2 group-hover:text-white transition-colors">
+                Explore Solutions
+              </span>
+              <div className="w-6 h-10 border-2 border-white/50 rounded-full group-hover:border-white transition-colors">
+                <motion.div
+                  className="w-1 h-3 bg-white/70 rounded-full mx-auto mt-2 group-hover:bg-white"
+                  animate={{ y: [0, 16, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
