@@ -7,7 +7,7 @@ import {
   TrendingUp, Users, Globe, Zap, Brain, Rocket,
   Award, Clock, GraduationCap, BarChart3, Building,
   Star, Target, Code, Database, CloudCog, Lightbulb,
-  MapPin, Briefcase, TrendingUpIcon
+  MapPin, CheckCircle, ArrowRight, Briefcase
 } from 'lucide-react';
 
 const lexend = Lexend({ subsets: ['latin'], weight: ['400', '500', '600', '700'], display: 'swap' });
@@ -26,16 +26,6 @@ const staggerContainer = {
       staggerChildren: 0.1
     }
   }
-};
-
-const slideInFromLeft = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0 }
-};
-
-const slideInFromRight = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0 }
 };
 
 const stats = [
@@ -69,41 +59,41 @@ const companies = [
   {
     category: "Tech & IT Giants",
     icon: Code,
-    color: "from-orange-500 to-red-500",
+    color: "from-orange-500 to-red-500", // Saffron gradient
     companies: [
-      { name: "Amazon", employees: "100,000+", note: "Largest workforce outside the US", location: "Bengaluru, Hyderabad" },
-      { name: "IBM", employees: "130,000+", note: "Professionals in India", location: "Mumbai, Bengaluru, Chennai" },
+      { name: "Amazon", employees: "100,000+", note: "Largest workforce outside the US", location: "Hyderabad, Bengaluru" },
+      { name: "IBM", employees: "130,000+", note: "Professionals in India", location: "Pune, Bengaluru, Mumbai" },
       { name: "Microsoft", employees: "18,000+", note: "Engineers in Bengaluru (largest R&D hub outside US)", location: "Bengaluru, Hyderabad" },
-      { name: "Google", employees: "10,000+", note: "Across Hyderabad & Bengaluru", location: "Bengaluru, Hyderabad, Mumbai" }
+      { name: "Google", employees: "10,000+", note: "Across Hyderabad & Bengaluru", location: "Hyderabad, Bengaluru, Mumbai" }
     ]
   },
   {
     category: "Consulting & Professional Services",
     icon: Briefcase,
-    color: "from-green-600 to-emerald-600",
+    color: "from-green-600 to-green-800", // Green gradient
     companies: [
-      { name: "Accenture", employees: "300,000+", note: "Largest global hub", location: "Mumbai, Bengaluru, Hyderabad" },
-      { name: "Deloitte", employees: "75,000+", note: "Largest workforce outside the US", location: "Mumbai, Delhi, Bengaluru" },
-      { name: "KPMG", employees: "40,000+", note: "Professionals in major metros", location: "Mumbai, Delhi, Chennai" }
+      { name: "Accenture", employees: "300,000+", note: "Largest global hub", location: "Bengaluru, Mumbai, Chennai" },
+      { name: "Deloitte", employees: "75,000+", note: "Largest workforce outside the US", location: "Mumbai, Bengaluru, Hyderabad" },
+      { name: "KPMG", employees: "40,000+", note: "Professionals in major metros", location: "Mumbai, Bengaluru, Chennai" }
     ]
   },
   {
     category: "Banking & Finance",
-    icon: TrendingUpIcon,
-    color: "from-blue-600 to-indigo-600",
+    icon: Building,
+    color: "from-blue-600 to-indigo-700", // Blue gradient (representing the wheel)
     companies: [
       { name: "Goldman Sachs", employees: "10,000+", note: "2nd largest global office in Bengaluru", location: "Bengaluru, Mumbai" },
-      { name: "JP Morgan", employees: "50,000+", note: "Mumbai & Bengaluru", location: "Mumbai, Bengaluru" },
-      { name: "Barclays", employees: "20,000+", note: "Pune & Chennai", location: "Pune, Chennai" }
+      { name: "JP Morgan", employees: "50,000+", note: "Mumbai & Bengaluru", location: "Mumbai, Bengaluru, Chennai" },
+      { name: "Barclays", employees: "20,000+", note: "Pune & Chennai", location: "Pune, Chennai, Mumbai" }
     ]
   },
   {
     category: "Pharma & Healthcare",
     icon: Lightbulb,
-    color: "from-purple-600 to-pink-600",
+    color: "from-orange-400 to-yellow-500", // Saffron to white gradient
     companies: [
       { name: "Novartis", employees: "12,000+", note: "Largest R&D center in Hyderabad", location: "Hyderabad, Mumbai" },
-      { name: "Pfizer", employees: "5,000+", note: "Mumbai & Hyderabad", location: "Mumbai, Hyderabad" }
+      { name: "Pfizer", employees: "5,000+", note: "Mumbai & Hyderabad", location: "Mumbai, Hyderabad, Chennai" }
     ]
   }
 ];
@@ -111,9 +101,9 @@ const companies = [
 const WhyIndiaPage = () => {
   return (
     <div className={`${lexend.className} min-h-screen bg-white`}>
-      {/* Hero Section - Updated with Indian flag colors */}
+      {/* Hero Section with Indian Flag Colors */}
       <section className="relative bg-gradient-to-br from-orange-500 via-white to-green-600 text-gray-900 py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/90 via-white/95 to-green-600/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 via-white/80 to-green-600/20" />
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center max-w-4xl mx-auto"
@@ -122,8 +112,8 @@ const WhyIndiaPage = () => {
             variants={staggerContainer}
           >
             <motion.div variants={fadeIn} className="mb-6">
-              <span className="inline-block px-6 py-3 bg-white/90 backdrop-blur-sm rounded-full text-lg font-semibold border border-orange-200 shadow-lg">
-                🇮🇳 BHARAT - THE LAND OF OPPORTUNITY
+              <span className="inline-block px-8 py-4 bg-white/90 backdrop-blur-sm rounded-full text-lg font-semibold border-2 border-orange-500 shadow-lg">
+                🇮🇳 भारत - INDIA
               </span>
             </motion.div>
             <motion.h1 
@@ -141,15 +131,10 @@ const WhyIndiaPage = () => {
             </motion.p>
           </motion.div>
         </div>
-        
-        {/* Decorative elements with Indian flag colors */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-orange-400 rounded-full opacity-20 animate-pulse" />
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-green-400 rounded-full opacity-20 animate-pulse" />
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-400 rounded-full opacity-20 animate-pulse" />
       </section>
 
-      {/* By the Numbers Section - Updated with saffron theme */}
-      <section className="py-20 bg-gradient-to-br from-orange-50 to-orange-100">
+      {/* By the Numbers Section */}
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
@@ -161,20 +146,20 @@ const WhyIndiaPage = () => {
               variants={fadeIn}
               className={`${ibmPlexSans.className} text-4xl md:text-5xl font-bold text-center text-gray-900 mb-16`}
             >
-              By the <span className="text-orange-600">Numbers</span>
+              By the <span className="bg-gradient-to-r from-orange-500 to-green-600 bg-clip-text text-transparent">Numbers</span>
             </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
                   variants={fadeIn}
-                  className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-orange-500 hover:transform hover:scale-105"
+                  className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 hover:border-orange-300"
                 >
                   <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                    <div className="w-12 h-12 bg-gradient-to-r from-orange-100 to-green-100 rounded-lg flex items-center justify-center mr-4">
                       <stat.icon className="w-6 h-6 text-orange-600" />
                     </div>
-                    <div className="text-3xl font-bold text-gray-900">{stat.number}</div>
+                    <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-green-600 bg-clip-text text-transparent">{stat.number}</div>
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">{stat.text}</h3>
                   <p className="text-gray-600">{stat.subtext}</p>
@@ -185,7 +170,7 @@ const WhyIndiaPage = () => {
         </div>
       </section>
 
-      {/* Tech Dominance Section - Updated with blue theme */}
+      {/* Tech Dominance Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
         <div className="container mx-auto px-4">
           <motion.div
@@ -198,7 +183,7 @@ const WhyIndiaPage = () => {
               variants={fadeIn}
               className={`${ibmPlexSans.className} text-4xl md:text-5xl font-bold text-center mb-16`}
             >
-              The Tech <span className="text-cyan-300">Dominance</span>
+              The Tech <span className="text-orange-300">Dominance</span>
             </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {techStats.map((stat, index) => (
@@ -207,10 +192,10 @@ const WhyIndiaPage = () => {
                   variants={fadeIn}
                   className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300"
                 >
-                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <stat.icon className="w-8 h-8 text-cyan-300" />
+                  <div className="w-16 h-16 bg-gradient-to-r from-orange-400 to-green-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <stat.icon className="w-8 h-8 text-white" />
                   </div>
-                  <div className="text-4xl font-bold mb-4">{stat.number}</div>
+                  <div className="text-4xl font-bold mb-4 text-orange-300">{stat.number}</div>
                   <h3 className="text-xl font-semibold mb-2">{stat.text}</h3>
                   {stat.subtext && <p className="text-blue-100">{stat.subtext}</p>}
                 </motion.div>
@@ -220,8 +205,8 @@ const WhyIndiaPage = () => {
         </div>
       </section>
 
-      {/* Business Advantages Section - Updated with green theme */}
-      <section className="py-20 bg-gradient-to-br from-green-50 to-emerald-100">
+      {/* Business Advantages Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
@@ -233,17 +218,17 @@ const WhyIndiaPage = () => {
               variants={fadeIn}
               className={`${ibmPlexSans.className} text-4xl md:text-5xl font-bold text-center text-gray-900 mb-16`}
             >
-              Business <span className="text-green-600">Advantages</span>
+              Business <span className="bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">Advantages</span>
             </motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {businessAdvantages.map((advantage, index) => (
                 <motion.div
                   key={index}
                   variants={fadeIn}
-                  className="text-center group hover:transform hover:scale-105 transition-all duration-300 bg-white rounded-xl p-8 shadow-lg border-l-4 border-green-500"
+                  className="text-center group hover:transform hover:scale-105 transition-all duration-300"
                 >
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-green-200 transition-colors">
-                    <advantage.icon className="w-10 h-10 text-green-600" />
+                  <div className="w-20 h-20 bg-gradient-to-r from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:from-green-200 group-hover:to-green-300 transition-all duration-300">
+                    <advantage.icon className="w-10 h-10 text-green-700" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">{advantage.title}</h3>
                   <p className="text-gray-600">{advantage.description}</p>
@@ -254,8 +239,8 @@ const WhyIndiaPage = () => {
         </div>
       </section>
 
-      {/* Future-Ready Economy Section - Updated with saffron theme */}
-      <section className="py-20 bg-gradient-to-br from-orange-600 to-red-600 text-white">
+      {/* Future-Ready Economy Section */}
+      <section className="py-20 bg-gradient-to-br from-orange-500 to-red-600 text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
@@ -285,7 +270,7 @@ const WhyIndiaPage = () => {
                   <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
                     <stat.icon className="w-8 h-8 text-yellow-300" />
                   </div>
-                  <div className="text-4xl font-bold mb-4">{stat.number}</div>
+                  <div className="text-4xl font-bold mb-4 text-yellow-300">{stat.number}</div>
                   <h3 className="text-xl font-semibold mb-2">{stat.text}</h3>
                   <p className="text-orange-100">{stat.subtext}</p>
                 </motion.div>
@@ -296,7 +281,7 @@ const WhyIndiaPage = () => {
       </section>
 
       {/* Enhanced Beyond Business Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
@@ -304,110 +289,98 @@ const WhyIndiaPage = () => {
             viewport={{ once: true, amount: 0.2 }}
             variants={staggerContainer}
           >
-            <motion.div variants={fadeIn} className="text-center mb-16">
-              <motion.h2 
-                className={`${ibmPlexSans.className} text-4xl md:text-6xl font-bold text-gray-900 mb-6`}
-              >
-                Beyond <span className="bg-gradient-to-r from-orange-600 via-green-600 to-blue-600 bg-clip-text text-transparent">Business</span>
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-              >
-                Global Fortune 500 companies have made India their strategic hub. Here's how they're scaling with Indian talent:
-              </motion.p>
-            </motion.div>
+            <motion.h2 
+              variants={fadeIn}
+              className={`${ibmPlexSans.className} text-4xl md:text-6xl font-bold text-center text-white mb-8`}
+            >
+              Beyond <span className="bg-gradient-to-r from-orange-400 to-green-400 bg-clip-text text-transparent">Business</span>
+            </motion.h2>
+            <motion.p 
+              variants={fadeIn}
+              className="text-xl text-center text-gray-300 mb-16 max-w-2xl mx-auto"
+            >
+              Leading global companies have established their most significant operations in India, creating innovation hubs that drive worldwide growth.
+            </motion.p>
             
-            <div className="space-y-16">
+            <div className="space-y-8">
               {companies.map((category, categoryIndex) => (
                 <motion.div
                   key={categoryIndex}
-                  variants={slideInFromLeft}
+                  variants={fadeIn}
                   className="relative"
                 >
                   {/* Category Header */}
-                  <div className="text-center mb-12">
-                    <div className={`inline-flex items-center px-8 py-4 bg-gradient-to-r ${category.color} text-white rounded-full shadow-lg mb-4`}>
-                      <category.icon className="w-8 h-8 mr-3" />
-                      <span className={`${ibmPlexSans.className} text-2xl font-bold`}>{category.category}</span>
+                  <div className="flex items-center mb-8">
+                    <div className={`w-16 h-16 bg-gradient-to-r ${category.color} rounded-2xl flex items-center justify-center mr-6 shadow-lg`}>
+                      <category.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <h3 className={`${ibmPlexSans.className} text-2xl md:text-3xl font-bold text-white mb-2`}>
+                        {category.category}
+                      </h3>
+                      <div className={`w-24 h-1 bg-gradient-to-r ${category.color} rounded-full`}></div>
                     </div>
                   </div>
 
                   {/* Companies Grid */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {category.companies.map((company, companyIndex) => (
                       <motion.div
                         key={companyIndex}
-                        variants={companyIndex % 2 === 0 ? slideInFromLeft : slideInFromRight}
-                        className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 overflow-hidden"
+                        className="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                        whileHover={{ y: -4, scale: 1.02 }}
+                        transition={{ duration: 0.2 }}
                       >
-                        {/* Background Pattern */}
-                        <div className="absolute inset-0 opacity-5">
-                          <div className={`w-32 h-32 bg-gradient-to-br ${category.color} rounded-full absolute -top-16 -right-16`} />
-                          <div className={`w-24 h-24 bg-gradient-to-br ${category.color} rounded-full absolute -bottom-12 -left-12`} />
+                        <div className="flex justify-between items-start mb-4">
+                          <div className="flex items-center">
+                            <h4 className="text-xl font-bold text-white group-hover:text-orange-300 transition-colors">
+                              {company.name}
+                            </h4>
+                            <ArrowRight className="w-5 h-5 text-gray-400 ml-2 group-hover:text-orange-300 group-hover:translate-x-1 transition-all duration-300" />
+                          </div>
+                          <span className={`text-2xl font-bold bg-gradient-to-r ${category.color} bg-clip-text text-transparent`}>
+                            {company.employees}
+                          </span>
                         </div>
                         
-                        <div className="relative z-10">
-                          {/* Company Header */}
-                          <div className="flex justify-between items-start mb-6">
-                            <div>
-                              <h4 className={`${ibmPlexSans.className} text-2xl font-bold text-gray-900 mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:${category.color} group-hover:bg-clip-text transition-all duration-300`}>
-                                {company.name}
-                              </h4>
-                              <div className="flex items-center text-gray-500 mb-3">
-                                <MapPin className="w-4 h-4 mr-2" />
-                                <span className="text-sm">{company.location}</span>
-                              </div>
-                            </div>
-                            <div className={`px-4 py-2 bg-gradient-to-r ${category.color} text-white rounded-lg text-center min-w-[100px]`}>
-                              <div className="text-lg font-bold">{company.employees}</div>
-                              <div className="text-xs opacity-90">employees</div>
-                            </div>
-                          </div>
-                          
-                          {/* Company Description */}
-                          <div className="space-y-3">
-                            <p className="text-gray-700 leading-relaxed">{company.note}</p>
-                            
-                            {/* Impact Metrics */}
-                            <div className="flex items-center pt-4 border-t border-gray-100">
-                              <div className={`w-3 h-3 bg-gradient-to-r ${category.color} rounded-full mr-3 animate-pulse`} />
-                              <span className="text-sm text-gray-500 font-medium">Strategic Global Hub</span>
-                            </div>
-                          </div>
+                        <p className="text-gray-300 mb-4 leading-relaxed">{company.note}</p>
+                        
+                        <div className="flex items-center text-sm text-gray-400">
+                          <MapPin className="w-4 h-4 mr-2 text-green-400" />
+                          <span>{company.location}</span>
                         </div>
-
-                        {/* Hover Effect */}
-                        <div className={`absolute inset-0 bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`} />
+                        
+                        <div className="mt-4 flex items-center">
+                          <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
+                          <span className="text-sm text-gray-400">Active Operations</span>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
-
-                  {/* Decorative Elements */}
-                  {categoryIndex < companies.length - 1 && (
-                    <div className="flex justify-center mt-16">
-                      <div className="w-24 h-1 bg-gradient-to-r from-orange-400 via-green-400 to-blue-400 rounded-full" />
-                    </div>
-                  )}
                 </motion.div>
               ))}
             </div>
 
-            {/* Call to Action */}
-            <motion.div 
+            {/* Impact Statistics */}
+            <motion.div
               variants={fadeIn}
-              className="text-center mt-20"
+              className="mt-16 bg-gradient-to-r from-orange-500/20 to-green-500/20 rounded-2xl p-8 border border-orange-500/30"
             >
-              <div className="bg-gradient-to-r from-orange-500 via-green-500 to-blue-500 p-1 rounded-2xl inline-block">
-                <div className="bg-white rounded-xl px-12 py-8">
-                  <h3 className={`${ibmPlexSans.className} text-2xl font-bold text-gray-900 mb-4`}>
-                    Ready to Join These Global Leaders?
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Discover how Indian talent can transform your business operations and drive unprecedented growth.
-                  </p>
-                  <button className="bg-gradient-to-r from-orange-500 via-green-500 to-blue-500 text-white px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-transform duration-300 shadow-lg">
-                    Get Started Today
-                  </button>
+              <h4 className="text-2xl font-bold text-white text-center mb-6">
+                Collective Impact
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-3xl font-bold text-orange-400 mb-2">600,000+</div>
+                  <div className="text-gray-300">Total Employees</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-green-400 mb-2">₹2.5L Cr+</div>
+                  <div className="text-gray-300">Annual Revenue Impact</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-blue-400 mb-2">15+</div>
+                  <div className="text-gray-300">Major Cities</div>
                 </div>
               </div>
             </motion.div>

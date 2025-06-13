@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run clean && next build",
+    "build:unsafe": "next build",
+    "clean": "node scripts/clean-build.js",
     "start": "next start",
     "lint": "next lint",
     "analyze": "cross-env ANALYZE=true next build",
@@ -56,6 +58,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "rimraf": "^6.0.1",
     "svgo": "^3.3.2",
     "tailwindcss": "^4.1.8",
     "typescript": "^5",

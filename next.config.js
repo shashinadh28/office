@@ -2,10 +2,10 @@
 const withBundleAnalyzer = require('./scripts/analyze-bundle');
 
 const nextConfig = withBundleAnalyzer({
-  output: "export",
-  distDir: "build",
+  // output: "export", // Commented out for development - uncomment for static export
+  // distDir: "out", // Commented out for development - uncomment for static export
   images: {
-    unoptimized: true, // Disable default Image Optimization API for static exports
+    unoptimized: false, // Enable optimization for development
   },
   eslint: {
     ignoreDuringBuilds: true,
