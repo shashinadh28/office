@@ -32,14 +32,12 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "src/**/*.ts",
-    "src/**/*.tsx",
-    "out/types/**/*.ts"
+    "src/**/*.tsx"
   ],
   "exclude": [
     "node_modules",
     "out",
     "build",
-    "dist",
-    ".next"
+    "dist"
   ]
 }
