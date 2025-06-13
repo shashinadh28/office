@@ -76,16 +76,17 @@ export default function ScrollAnimationWrapper({
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once,
-    amount: threshold
+    amount: threshold,
+    margin: "0px 0px -100px 0px" // Optimized margin for better performance
   });
 
   const selectedAnimation = animations[animation];
   
-  // Base transition properties
+  // Optimized transition properties for better performance
   const transition = {
-    duration,
+    duration: Math.min(duration, 0.5), // Cap duration for better performance
     delay,
-    ease: [0.25, 0.1, 0.25, 1.0]
+    ease: "easeOut" // Simpler easing for better performance
   };
 
   // Create stagger container if requested

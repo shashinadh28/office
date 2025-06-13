@@ -20,10 +20,10 @@ export default function HeroSection() {
     };
     img.src = '/home6.png';
 
-    // Trigger animations after a short delay
+    // Reduced animation delay for faster perceived performance
     const timer = setTimeout(() => {
       setAnimationsTriggered(true);
-    }, 300);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, []);
@@ -32,31 +32,31 @@ export default function HeroSection() {
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   };
 
-  // Animation variants for page load only
+  // Optimized animation variants with reduced durations
   const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.4, ease: "easeOut" }
     }
   };
 
   const slideInLeft = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: { opacity: 0, x: -30 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
+      transition: { duration: 0.5, ease: "easeOut" }
     }
   };
 
   const scaleIn = {
-    hidden: { opacity: 0, scale: 0.9 },
+    hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.7, ease: "easeOut" }
+      transition: { duration: 0.4, ease: "easeOut" }
     }
   };
 
@@ -86,7 +86,7 @@ export default function HeroSection() {
           initial="hidden"
           animate={animationsTriggered ? "visible" : "hidden"}
           variants={scaleIn}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.1 }}
         >
           <Image
             src="/optimized/images/gateway_workforce.webp"
@@ -107,7 +107,7 @@ export default function HeroSection() {
               initial="hidden"
               animate={animationsTriggered ? "visible" : "hidden"}
               variants={slideInLeft}
-              transition={{ delay: 0.4 }}
+              transition={{ delay: 0.2 }}
             >
               <h1 className="font-montserrat text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gray-800 mb-4">
                 Connecting Global Businesses To India's Educated & Motivated{' '}
@@ -119,7 +119,7 @@ export default function HeroSection() {
                 className="h-1 w-32 bg-blue-500 rounded-full"
                 initial={{ width: 0 }}
                 animate={animationsTriggered ? { width: 128 } : { width: 0 }}
-                transition={{ duration: 0.8, delay: 0.8 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
               />
             </motion.div>
 
@@ -129,7 +129,7 @@ export default function HeroSection() {
               initial="hidden"
               animate={animationsTriggered ? "visible" : "hidden"}
               variants={fadeInUp}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.3 }}
             >
               <p className="font-montserrat text-lg sm:text-xl md:text-2xl max-w-3xl text-gray-700 leading-relaxed">
                 We connect{" "}
@@ -146,7 +146,7 @@ export default function HeroSection() {
               initial="hidden"
               animate={animationsTriggered ? "visible" : "hidden"}
               variants={fadeInUp}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.4 }}
             >
               {/* Primary CTA */}
               <Link href="/contact" passHref>
@@ -188,8 +188,8 @@ export default function HeroSection() {
                 visible: {
                   opacity: 1,
                   transition: {
-                    staggerChildren: 0.1,
-                    delayChildren: 1.0
+                    staggerChildren: 0.05,
+                    delayChildren: 0.5
                   }
                 }
               }}

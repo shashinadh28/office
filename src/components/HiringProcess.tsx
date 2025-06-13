@@ -44,7 +44,7 @@ const HiringProcess = () => {
   }, []);
 
   return (
-    <section className="pt-40 pb-32 lg:pt-48 lg:pb-40 relative overflow-hidden" style={{ backgroundColor: '#021533' }}>
+    <section className="pt-56 pb-48 lg:pt-64 lg:pb-56 relative overflow-hidden" style={{ backgroundColor: '#021533' }}>
       {/* Simplified Background Pattern - Reduced for performance */}
       <div className="absolute inset-0 opacity-3">
         <div className="absolute top-20 left-10 w-64 h-64 bg-blue-400 rounded-full blur-3xl animate-pulse" />

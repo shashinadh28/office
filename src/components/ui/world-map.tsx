@@ -25,17 +25,22 @@ export default function WorldMap({
 
   const { theme } = useTheme();
 
-  // Intersection Observer to detect when section comes into view
+  // Optimized intersection observer with throttling
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isInView) {
-          setIsInView(true);
+          // Debounce to prevent excessive state updates
+          timeoutId = setTimeout(() => {
+            setIsInView(true);
+          }, 100);
         }
       },
       {
-        threshold: 0.3, // Trigger when 30% of the section is visible
-        rootMargin: "-50px 0px -50px 0px", // Add some margin for better timing
+        threshold: 0.2, // Reduced threshold for better performance
+        rootMargin: "0px", // Simplified margin
       }
     );
 
@@ -44,6 +49,7 @@ export default function WorldMap({
     }
 
     return () => {
+      if (timeoutId) clearTimeout(timeoutId);
       if (containerRef.current) {
         observer.unobserve(containerRef.current);
       }
@@ -104,8 +110,8 @@ export default function WorldMap({
                   pathLength: isInView ? 1 : 0,
                 }}
                 transition={{
-                  duration: 1,
-                  delay: isInView ? 0.5 * i : 0,
+                  duration: 0.8, // Reduced duration
+                  delay: isInView ? 0.3 * i : 0, // Reduced delay
                   ease: "easeOut",
                 }}
                 key={`start-upper-${i}`}
@@ -184,14 +190,14 @@ export default function WorldMap({
                     <path id={`arrow-path-${i}`} d={path} />
                   </defs>
                   <motion.path
-                    d="M-6,-3 L6,0 L-6,3 L-2,0 Z"
+                    d="M-4,-2 L4,0 L-4,2 L-1,0 Z"
                     fill={lineColor}
                   >
                     <animateMotion
-                      dur={`${3 + i * 0.3}s`}
+                      dur={`${4 + i * 0.5}s`}
                       repeatCount="indefinite"
                       rotate="auto"
-                      begin={`${i * 0.3}s`}
+                      begin={`${i * 0.5}s`}
                     >
                       <mpath href={`#arrow-path-${i}`} />
                     </animateMotion>

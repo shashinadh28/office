@@ -132,21 +132,23 @@ export const Card: React.FC<CardProps> = ({
   });
 
   const heroProgress = useHeroScrollProgress(); // Get progress from context
-  const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1.5, 1]); // Reduced scale range
   const scale = useTransform(heroProgress, range, [1, targetScale]);
 
   return (
     <div
       ref={container}
       className='h-screen flex items-center justify-center sticky top-0'
+      style={{ willChange: 'transform' }}
     >
       <motion.div
         style={{
           backgroundColor: color,
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
+          willChange: 'transform'
         }}
-        className={`text-white flex flex-col relative -top-[25%] h-[650px] w-[85%] rounded-md p-12 origin-top`}
+        className={`text-white flex flex-col relative -top-[25%] h-[600px] w-[80%] rounded-md p-10 origin-top`}
       >
         <h2 className='text-5xl lg:text-6xl text-center font-bold mb-6'>{title}</h2>
         <div className={`flex h-full mt-8 gap-12`}>

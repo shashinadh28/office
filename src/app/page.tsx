@@ -7,7 +7,7 @@ import Hero4 from "@/components/hero4";
 import dynamic from 'next/dynamic';
 
 const Hero5 = dynamic(() => import('@/components/hero5'), {
-  loading: () => <p>Loading map section...</p>,
+  loading: () => <div className="h-40 bg-gray-100 animate-pulse rounded"></div>,
   ssr: false
 });
 import Hero6 from "@/components/hero6";
