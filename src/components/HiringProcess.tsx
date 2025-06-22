@@ -126,12 +126,12 @@ const HiringProcess = () => {
                           priority={index === 0}
                         />
                       </div>
-                      
+                    
                       {/* Fixed Step Number */}
                       <div
                         className="absolute -top-3 -left-3 w-12 h-12 bg-blue-500 text-white rounded-full flex items-center justify-center text-lg font-bold shadow-lg border-2 border-white"
-                      >
-                        {String(step.id).padStart(2, '0')}
+                    >
+                      {String(step.id).padStart(2, '0')}
                       </div>
                     </div>
                   </div>
@@ -163,7 +163,7 @@ const HiringProcess = () => {
                 </div>
               </motion.div>
 
-              {/* Simplified Arrow - positioned higher */}
+              {/* Desktop Horizontal Arrow - positioned between circles */}
               {index < processStepsData.length - 1 && (
                 <motion.div
                   className="hidden lg:flex items-center justify-center px-2 -mt-16"
@@ -208,34 +208,47 @@ const HiringProcess = () => {
                   </div>
                 </motion.div>
               )}
-            </React.Fragment>
-          ))}
-        </div>
 
-        {/* Simplified Mobile Arrows */}
-        <div className="lg:hidden flex flex-col items-center gap-6 mt-6">
-          {processStepsData.slice(0, -1).map((_, index) => (
-            <motion.div
-              key={index}
-              className="flex justify-center"
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15 + 0.8 }}
-            >
-              <motion.div
-                animate={{
-                  y: [0, 6, 0],
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <ArrowRight className="w-6 h-6 text-blue-400 rotate-90" strokeWidth={2} />
-              </motion.div>
-            </motion.div>
+              {/* Mobile Vertical Arrow - positioned between cards */}
+              {index < processStepsData.length - 1 && (
+                <motion.div
+                  className="lg:hidden flex justify-center my-4"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 + 0.8 }}
+                >
+                  <div className="relative">
+                    <motion.div
+                      animate={{
+                        y: [0, 6, 0],
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <ArrowRight className="w-6 h-6 text-blue-400 rotate-90" strokeWidth={2} />
+                    </motion.div>
+                    
+                    {/* Mobile arrow glow effect */}
+                    <motion.div
+                      className="absolute inset-0 w-6 h-6 bg-blue-400 rounded-full opacity-15 blur-lg"
+                      animate={{
+                        scale: [1, 1.5, 1],
+                        opacity: [0.15, 0.4, 0.15]
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </React.Fragment>
           ))}
         </div>
       </div>

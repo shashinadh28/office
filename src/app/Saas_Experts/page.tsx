@@ -7,6 +7,7 @@ import AboutSaasSection from './AboutSaasSection';
 import WhyPartnerSaasSection from './WhyPartnerSaasSection';
 import SaasServicesSection from './SaasServicesSection';
 import TransformBusinessSection from './TransformBusinessSection';
+import HireTalentSection from '@/components/HireTalentSection';
 
 const SaasExpertsPage = () => {
   return (
@@ -15,6 +16,17 @@ const SaasExpertsPage = () => {
       <AboutSaasSection />
       <WhyPartnerSaasSection />
       <SaasServicesSection />
+      <HireTalentSection 
+        customColor="#F35120"
+        theme={{
+          primary: "orange-600",
+          secondary: "red-600", 
+          accent: "amber-500",
+          background: "from-orange-50 via-white to-red-50",
+          gradientFrom: "orange-600",
+          gradientTo: "red-600"
+        }} 
+      />
       <TransformBusinessSection />
       
       <FooterSection />

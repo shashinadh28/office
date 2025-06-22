@@ -134,13 +134,7 @@ const ServicesSection: React.FC = () => {
                     <li key={i}>{point}</li>
                   ))}
                 </ul>
-                <a
-                  href="#"
-                  className={`${service.textColor} font-medium hover:underline mt-auto self-start group inline-flex items-center`}
-                >
-                  Read More
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
-                </a>
+
               </motion.div>
             );
           })}

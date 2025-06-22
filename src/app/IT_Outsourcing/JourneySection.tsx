@@ -22,9 +22,9 @@ const journeyStepsData: JourneyStepData[] = [
     subtitle: "Strategic Foundation",
     description: "We begin with a comprehensive analysis of your project requirements, conducting stakeholder interviews and technical assessments to identify the optimal technology stack and talent architecture for your success.",
     icon: Search,
-    themeColor: "yellow",
+    themeColor: "lightblue",
     position: "right",
-    gradient: "from-yellow-400 via-yellow-500 to-yellow-600"
+    gradient: "from-sky-500 via-sky-600 to-sky-700"
   },
   {
     id: 2,
@@ -52,9 +52,9 @@ const journeyStepsData: JourneyStepData[] = [
     subtitle: "Sustained Excellence",
     description: "Your premium development team accelerates from day one while our dedicated success managers handle operations, provide strategic insights, and deliver comprehensive performance analytics.",
     icon: Rocket,
-    themeColor: "emerald",
+    themeColor: "dark",
     position: "left",
-    gradient: "from-emerald-600 via-emerald-700 to-emerald-800"
+    gradient: "from-gray-700 via-gray-800 to-gray-900"
   },
 ];
 
@@ -88,7 +88,7 @@ const TimelineStep = ({ step, index, isActive, isCompleted }: {
   const getThemeColors = (themeName: JourneyStepData['themeColor'], isActive: boolean, isCompleted: boolean) => {
     const colors = {
       blue: {
-        bg: isActive || isCompleted ? 'bg-gradient-to-br from-blue-500 to-blue-700' : 'bg-white',
+        bg: isActive || isCompleted ? 'bg-blue-600' : 'bg-white',
         text: isActive || isCompleted ? 'text-white' : 'text-blue-800',
         subtitle: isActive || isCompleted ? 'text-blue-100' : 'text-blue-600',
         desc: isActive || isCompleted ? 'text-blue-50' : 'text-gray-600',
@@ -98,7 +98,7 @@ const TimelineStep = ({ step, index, isActive, isCompleted }: {
         accent: 'bg-blue-500'
       },
       indigo: {
-        bg: isActive || isCompleted ? 'bg-gradient-to-br from-indigo-500 to-indigo-700' : 'bg-white',
+        bg: isActive || isCompleted ? 'bg-indigo-600' : 'bg-white',
         text: isActive || isCompleted ? 'text-white' : 'text-indigo-800',
         subtitle: isActive || isCompleted ? 'text-indigo-100' : 'text-indigo-600',
         desc: isActive || isCompleted ? 'text-indigo-50' : 'text-gray-600',
@@ -108,7 +108,7 @@ const TimelineStep = ({ step, index, isActive, isCompleted }: {
         accent: 'bg-indigo-500'
       },
       purple: {
-        bg: isActive || isCompleted ? 'bg-gradient-to-br from-purple-500 to-purple-700' : 'bg-white',
+        bg: isActive || isCompleted ? 'bg-purple-600' : 'bg-white',
         text: isActive || isCompleted ? 'text-white' : 'text-purple-800',
         subtitle: isActive || isCompleted ? 'text-purple-100' : 'text-purple-600',
         desc: isActive || isCompleted ? 'text-purple-50' : 'text-gray-600',
@@ -118,7 +118,7 @@ const TimelineStep = ({ step, index, isActive, isCompleted }: {
         accent: 'bg-purple-500'
       },
       emerald: {
-        bg: isActive || isCompleted ? 'bg-gradient-to-br from-emerald-500 to-emerald-700' : 'bg-white',
+        bg: isActive || isCompleted ? 'bg-emerald-600' : 'bg-white',
         text: isActive || isCompleted ? 'text-white' : 'text-emerald-800',
         subtitle: isActive || isCompleted ? 'text-emerald-100' : 'text-emerald-600',
         desc: isActive || isCompleted ? 'text-emerald-50' : 'text-gray-600',
@@ -129,12 +129,12 @@ const TimelineStep = ({ step, index, isActive, isCompleted }: {
       },
       yellow: {
         bg: isActive || isCompleted ? 'bg-[#FDC703]' : 'bg-white',
-        text: isActive || isCompleted ? 'text-white' : 'text-yellow-800',
-        subtitle: isActive || isCompleted ? 'text-yellow-100' : 'text-yellow-600',
-        desc: isActive || isCompleted ? 'text-yellow-50' : 'text-gray-600',
+        text: isActive || isCompleted ? 'text-black' : 'text-yellow-800',
+        subtitle: isActive || isCompleted ? 'text-black' : 'text-yellow-600',
+        desc: isActive || isCompleted ? 'text-black' : 'text-gray-600',
         border: isActive || isCompleted ? 'border-yellow-400' : 'border-yellow-200',
-        icon: isActive || isCompleted ? 'bg-yellow-600' : 'bg-yellow-100',
-        iconText: isActive || isCompleted ? 'text-white' : 'text-yellow-700',
+        icon: isActive || isCompleted ? 'bg-[#FDC703]' : 'bg-yellow-100',
+        iconText: isActive || isCompleted ? 'text-black' : 'text-yellow-700',
         accent: 'bg-[#FDC703]'
       },
       dark: {
@@ -296,7 +296,7 @@ const JourneySection = () => {
     }
   }, []);
 
-      return (
+  return (
     <section className="py-16 lg:py-24 bg-white overflow-hidden relative">
       {/* Enhanced Background Elements */}
       <div className="absolute inset-0 opacity-20">
@@ -315,7 +315,7 @@ const JourneySection = () => {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <motion.span
-            className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs lg:text-sm font-bold px-4 lg:px-6 py-2 lg:py-3 rounded-full uppercase tracking-widest mb-6 lg:mb-8 shadow-lg"
+            className="inline-block bg-sky-500 text-white text-xs lg:text-sm font-bold px-4 lg:px-6 py-2 lg:py-3 rounded-full uppercase tracking-widest mb-6 lg:mb-8 shadow-lg"
             whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(0,0,0,0.2)" }}
             transition={{ duration: 0.3 }}
           >
@@ -344,7 +344,7 @@ const JourneySection = () => {
           </motion.p>
           
           <motion.div 
-            className="w-24 lg:w-32 h-1.5 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto mt-6 lg:mt-8 rounded-full"
+            className="w-24 lg:w-32 h-1.5 bg-blue-600 mx-auto mt-6 lg:mt-8 rounded-full"
             initial={{ width: 0 }}
             whileInView={{ width: 'auto' }}
             transition={{ delay: 0.6, duration: 1 }}
@@ -354,9 +354,9 @@ const JourneySection = () => {
         {/* Timeline Container - Responsive */}
         <div ref={containerRef} className="relative">
           {/* Central Timeline Line - Hidden on mobile, visible on lg+ screens */}
-          <div className="hidden lg:block absolute left-1/2 top-0 w-1 h-full bg-gradient-to-b from-gray-200 to-gray-300 transform -translate-x-1/2 rounded-full">
+          <div className="hidden lg:block absolute left-1/2 top-0 w-1 h-full bg-gray-300 transform -translate-x-1/2 rounded-full">
             <motion.div
-              className="w-full bg-gradient-to-b from-blue-500 via-purple-500 to-emerald-500 rounded-full origin-top"
+              className="w-full bg-blue-500 rounded-full origin-top"
               style={{ height: timelineHeight }}
             />
           </div>
@@ -374,7 +374,7 @@ const JourneySection = () => {
                 <motion.div
                   className={`absolute left-1/2 -top-8 lg:top-1/2 transform -translate-x-1/2 lg:-translate-y-1/2 w-12 h-12 lg:w-16 lg:h-16 rounded-full border-4 z-20 transition-all duration-700 ${
                     index <= activeStep
-                      ? 'bg-gradient-to-br from-emerald-400 to-emerald-600 border-emerald-300 shadow-2xl shadow-emerald-500/50'
+                      ? 'bg-emerald-500 border-emerald-300 shadow-2xl shadow-emerald-500/50'
                       : 'bg-white border-gray-300 shadow-lg'
                   }`}
                   whileHover={{ scale: 1.2 }}
@@ -467,7 +467,7 @@ const JourneySection = () => {
                 key={index}
                 className={`w-3 h-3 lg:w-4 lg:h-4 rounded-full transition-all duration-700 ${
                   index <= activeStep 
-                    ? 'bg-gradient-to-r from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/50' 
+                    ? 'bg-emerald-500 shadow-lg shadow-emerald-500/50' 
                     : 'bg-gray-300'
                 }`}
                 whileHover={{ scale: 1.8 }}

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
+import Image from 'next/image';
 import { 
   CloudCog, BarChart3, DatabaseZap, ShieldCheck, 
   ServerCog, Rocket, Route, Layers, Settings, 
@@ -42,6 +43,8 @@ const serviceCategories = [
       'Serverless computing (AWS Lambda, Azure Functions)'
     ],
     iconColor: "text-blue-600",
+    hasImage: true,
+    imagePath: "/images/cloud_architecture.jpg"
   },
   {
     categoryName: 'Cloud Migration Services',
@@ -53,6 +56,8 @@ const serviceCategories = [
       'Post-migration optimization'
     ],
     iconColor: "text-cyan-600",
+    hasImage: true,
+    imagePath: "/images/cloud_migration_services.jpg"
   },
   {
     categoryName: 'Cloud Management & DevOps',
@@ -64,6 +69,8 @@ const serviceCategories = [
       'Infrastructure as Code (Terraform, CloudFormation)'
     ],
     iconColor: "text-blue-600",
+    hasImage: true,
+    imagePath: "/images/cloud_management _&_devOps.jpg"
   },
   {
     categoryName: 'Security & Compliance',
@@ -75,6 +82,8 @@ const serviceCategories = [
       'Disaster recovery & backup solutions'
     ],
     iconColor: "text-cyan-600",
+    hasImage: true,
+    imagePath: "/images/Security_&_Compliance.jpg"
   }
 ];
 
@@ -103,7 +112,7 @@ const CloudServicesSection = () => {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+          className="flex flex-col gap-8 max-w-5xl mx-auto"
           variants={staggerContainer}
         >
           {serviceCategories.map((service, index) => {
@@ -116,25 +125,44 @@ const CloudServicesSection = () => {
                 key={index}
                 variants={fadeIn}
                 custom={index * 0.1 + 0.2}
-                className={`bg-white rounded-xl p-6 md:p-8 text-left shadow-lg flex flex-col group border border-gray-200 transition-all duration-300 ease-in-out 
+                className={`bg-white rounded-xl text-left shadow-lg group border border-gray-200 transition-all duration-300 ease-in-out overflow-hidden
                             ${isHovered ? 'transform scale-105 shadow-xl border-blue-500 z-10' : ''}
                             ${isAnotherCardHovered ? 'filter blur-sm opacity-70' : ''}`}
                 onMouseEnter={() => setHoveredCardIndex(index)}
                 onMouseLeave={() => setHoveredCardIndex(null)}
             >
-                <div className="flex items-start mb-4">
-                  <div className={`bg-gray-100 p-3 rounded-full mr-4 shrink-0 group-hover:bg-blue-100 transition-colors duration-300`}>
-                    <IconComponent className={`${service.iconColor} w-6 h-6 sm:w-8 sm:h-8 group-hover:text-blue-700 transition-colors duration-300`} />
+              {/* All cards now have the same layout with image */}
+              <div className={`flex flex-col lg:flex-row h-auto lg:h-80 overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                {/* Image section */}
+                <div className="lg:w-2/5 relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center p-4">
+                  <Image
+                    src={service.imagePath!}
+                    alt={service.categoryName}
+                    width={400}
+                    height={300}
+                    className="w-full h-full object-contain drop-shadow-lg"
+                  />
+                </div>
+                {/* Content section */}
+                <div className="lg:w-3/5 p-6 md:p-8 flex flex-col justify-center bg-gray-50">
+                  <div className="flex items-start mb-6">
+                    <div className={`bg-white p-3 rounded-full mr-4 shrink-0 group-hover:bg-blue-100 transition-colors duration-300 shadow-md`}>
+                      <IconComponent className={`${service.iconColor} w-6 h-6 sm:w-8 sm:h-8 group-hover:text-blue-700 transition-colors duration-300`} />
+                    </div>
+                    <h3 className={`text-xl sm:text-2xl font-bold text-gray-800 group-hover:text-blue-700 transition-colors duration-300`}>
+                      {service.categoryName}
+                    </h3>
                   </div>
-                  <h3 className={`text-xl sm:text-2xl font-bold text-gray-800 group-hover:text-blue-700 transition-colors duration-300`}>
-                    {service.categoryName}
-                  </h3>
+                  <ul className={`list-disc list-inside text-sm sm:text-base text-gray-600 leading-relaxed space-y-2 pl-2`}>
+                    {service.description.map((point, i) => (
+                      <li key={i} className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-blue-600 mr-2 mt-0.5 shrink-0" />
+                        <span className="list-none">{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-                <ul className={`list-disc list-inside text-sm sm:text-base text-gray-600 leading-relaxed mb-6 flex-grow space-y-1.5 pl-2`}>
-                  {service.description.map((point, i) => (
-                    <li key={i}>{point}</li>
-                ))}
-              </ul>
             </motion.div>
             );
           })}

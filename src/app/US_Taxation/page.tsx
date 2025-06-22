@@ -7,8 +7,10 @@ import AnimatedSVG from '../../components/ui/animated-svg';
 import FooterSection from '@/components/footer';
 import WhyPartnerSection from './taxation/WhyPartnerSection';
 import ServicesSection from './taxation/ServicesSection';
-import EfficiencySection from './taxation/EfficiencySection';
+
 import PrecisionAccountingSection from './taxation/PrecisionAccountingSection';
+import TransformBusinessSection from './TransformBusinessSection';
+import HireTalentSection from '@/components/HireTalentSection';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -231,7 +233,18 @@ const USATaxationPage: React.FC = () => {
       <PrecisionAccountingSection />
       <WhyPartnerSection />
       <ServicesSection />
-      <EfficiencySection />
+      <HireTalentSection 
+        customColor="#DC2626"
+        theme={{
+          primary: "blue-700",
+          secondary: "red-600", 
+          accent: "blue-600",
+          background: "from-blue-50 via-white to-red-50",
+          gradientFrom: "blue-700",
+          gradientTo: "red-600"
+        }} 
+      />
+      <TransformBusinessSection />
       <footer className="py-8 text-center text-gray-700 bg-gray-200 border-t border-gray-300">
         <div className="container mx-auto px-6">
           <hr className="mb-6 border-gray-400 max-w-xs mx-auto" />

@@ -171,7 +171,7 @@ const WhyIndiaPage = () => {
       </section>
 
       {/* Tech Dominance Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"
@@ -240,7 +240,7 @@ const WhyIndiaPage = () => {
       </section>
 
       {/* Future-Ready Economy Section */}
-      <section className="py-20 bg-gradient-to-br from-orange-500 to-red-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-orange-400 to-red-500 text-white">
         <div className="container mx-auto px-4">
           <motion.div
             initial="hidden"

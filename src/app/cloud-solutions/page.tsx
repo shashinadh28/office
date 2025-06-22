@@ -7,6 +7,7 @@ import AboutCloudSection from './AboutCloudSection';
 import WhyChooseCloudSection from './WhyChooseCloudSection';
 import CloudServicesSection from './CloudServicesSection';
 import AccelerateJourneySection from './AccelerateJourneySection';
+import HireTalentSection from '@/components/HireTalentSection';
 
 const CloudSolutionsPage = () => {
   return (
@@ -15,6 +16,14 @@ const CloudSolutionsPage = () => {
       <AboutCloudSection />
       <WhyChooseCloudSection />
       <CloudServicesSection />
+      <HireTalentSection theme={{
+        primary: "blue-600",
+        secondary: "cyan-600", 
+        accent: "sky-500",
+        background: "from-blue-50 via-white to-cyan-50",
+        gradientFrom: "blue-600",
+        gradientTo: "cyan-600"
+      }} />
       <AccelerateJourneySection />
       
       <FooterSection />

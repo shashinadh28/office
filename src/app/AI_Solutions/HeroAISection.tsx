@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { IBM_Plex_Sans, Lexend } from 'next/font/google';
 import Link from 'next/link';
-import { BrainCircuit, Zap, BarChartBig, Sparkles, Bot, Database } from 'lucide-react';
+import { Bot, Database, BrainCircuit } from 'lucide-react';
 
 const ibmPlexSans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['700'], display: 'swap' });
 const lexend = Lexend({ subsets: ['latin'], weight: ['400', '500', '600', '700'], display: 'swap' });
@@ -20,35 +20,16 @@ const fadeIn = {
 };
 
 const floatAnimation = {
-  y: [0, -30, 0],
+  y: [0, -20, 0],
   transition: {
-    duration: 4,
+    duration: 6,
     repeat: Infinity,
     ease: "easeInOut"
   }
 };
 
-const rotateAnimation = {
-  rotate: [0, 360],
-  transition: {
-    duration: 25,
-    repeat: Infinity,
-    ease: "linear"
-  }
-};
-
-const pulseAnimation = {
-  scale: [1, 1.2, 1],
-  transition: {
-    duration: 3,
-    repeat: Infinity,
-    ease: "easeInOut"
-  }
-};
-
-// Cool intro animations
 const slideInLeft = {
-  hidden: { x: -100, opacity: 0 },
+  hidden: { x: -50, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
@@ -60,7 +41,7 @@ const slideInLeft = {
 };
 
 const slideInRight = {
-  hidden: { x: 100, opacity: 0 },
+  hidden: { x: 50, opacity: 0 },
   visible: {
     x: 0,
     opacity: 1,
@@ -83,134 +64,333 @@ const scaleIn = {
   }
 };
 
-const bounceIn = {
-  hidden: { y: -50, opacity: 0 },
+const fadeInUp = {
+  hidden: { y: 30, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
       duration: 0.8,
-      type: "spring",
-      bounce: 0.4
+      ease: "easeOut"
     }
   }
 };
 
 const HeroAISection: React.FC = () => {
   const [textAnimated, setTextAnimated] = useState(false);
-  const [particles, setParticles] = useState<Array<{ left: number; top: number; duration: number; delay: number }>>([]);
 
   useEffect(() => {
-    // Generate particle positions and timings once on client side
-    const particleData = [...Array(25)].map(() => ({
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      duration: 4 + Math.random() * 3,
-      delay: Math.random() * 3,
-    }));
-    setParticles(particleData);
-
     setTimeout(() => {
       setTextAnimated(true);
     }, 300);
   }, []);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-purple-600 via-pink-500 to-violet-600">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        {/* Enhanced Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-500/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-violet-600/20 to-purple-800/40"></div>
-        
-        {/* Enhanced Floating Particles */}
-        {particles.map((particle, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-3 h-3 bg-white/20 rounded-full"
-            style={{
-              left: `${particle.left}%`,
-              top: `${particle.top}%`,
-            }}
-            animate={{
-              y: [0, -40, 0],
-              opacity: [0.2, 1, 0.2],
-              scale: [1, 1.5, 1]
-            }}
-            transition={{
-              duration: particle.duration,
-              repeat: Infinity,
-              delay: particle.delay,
-            }}
+    <section className="relative min-h-screen w-full overflow-hidden" style={{ backgroundColor: '#FCF0FF' }}>
+      
+      {/* Floating SVG Elements */}
+      {/* Top area hexagons */}
+      <motion.div
+        className="absolute top-20 right-14 w-20 h-20 z-10"
+        variants={scaleIn}
+        initial="hidden"
+        animate={textAnimated ? "visible" : "hidden"}
+        transition={{ delay: 0.8 }}
+      >
+        <motion.div
+          animate={floatAnimation}
+          style={{ animationDelay: '0s' }}
+        >
+          <Image
+            src="/svg/ai_svg/ai-hexagon-small.svg"
+            alt="Hexagon"
+            width={53}
+            height={61}
+            className="w-full h-full"
           />
-        ))}
+        </motion.div>
+      </motion.div>
 
-        {/* Animated Orbs */}
+      <motion.div
+        className="absolute top-0 right-120 w-40 h-40 z-10"
+        variants={fadeInUp}
+        initial="hidden"
+        animate={textAnimated ? "visible" : "hidden"}
+        transition={{ delay: 1.0 }}
+      >
         <motion.div
-          className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-r from-pink-400/30 to-purple-500/30 rounded-full blur-xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+          animate={floatAnimation}
+          style={{ animationDelay: '1s' }}
+        >
+          <Image
+            src="/svg/ai_svg/ai-hexagon-big.svg"
+            alt="Hexagon"
+            width={255}
+            height={290}
+            className="w-full h-full"
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Middle area hexagons */}
+      <motion.div
+        className="absolute bottom-40 right-20 w-40 h-40 z-10"
+        variants={scaleIn}
+        initial="hidden"
+        animate={textAnimated ? "visible" : "hidden"}
+        transition={{ delay: 1.2 }}
+      >
+        <motion.div
+          animate={floatAnimation}
+          style={{ animationDelay: '2s' }}
+        >
+          <Image
+            src="/svg/ai_svg/ai-hexagon-purple.svg"
+            alt="Hexagon"
+            width={206}
+            height={236}
+            className="w-full h-full"
+          />
+        </motion.div>
+      </motion.div>
+
+             
+
+      {/* Additional Scattered Floating Elements */}
+      
+      {/* Small Hexagons */}
+       
         
+      <motion.div
+        className="absolute top-32 left-8 w-16 h-16 z-10"
+        variants={fadeInUp}
+        initial="hidden"
+        animate={textAnimated ? "visible" : "hidden"}
+        transition={{ delay: 1.4 }}
+      >
         <motion.div
-          className="absolute bottom-32 right-32 w-40 h-40 bg-gradient-to-r from-violet-400/30 to-pink-500/30 rounded-full blur-xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.7, 0.4]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </div>
+          animate={floatAnimation}
+          style={{ animationDelay: '2.5s' }}
+        >
+          <Image
+            src="/svg/ai_svg/ai-hexagon-small.svg"
+            alt="Hexagon"
+            width={53}
+            height={61}
+            className="w-full h-full"
+          />
+        </motion.div>
+      </motion.div>
+
+      
+
+      {/* Floating Circles */}
+      <motion.div
+        className="absolute top-40 right-40 w-6 h-6 rounded-full bg-purple-200/60 z-10"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.6, 1, 0.6]
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.5
+        }}
+      />
+
+      <motion.div
+        className="absolute bottom-32 left-16 w-8 h-8 rounded-full bg-pink-200/60 z-10"
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.5, 0.9, 0.5]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1.5
+        }}
+      />
+
+      <motion.div
+        className="absolute top-96 right-8 w-4 h-4 rounded-full bg-purple-300/70 z-10"
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.7, 1, 0.7]
+        }}
+        transition={{
+          duration: 2.5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 2
+        }}
+      />
+
+      {/* Floating Icons - Scattered All Over Section */}
+      
+      {/* Top Area Icons */}
+      <motion.div
+        className="absolute top-16 left-8 text-purple-400/60 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '1.8s' }}
+      >
+        <BrainCircuit className="w-8 h-8" />
+      </motion.div>
+
+      <motion.div
+        className="absolute top-24 right-8 text-pink-500/60 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '0.8s' }}
+      >
+        <Bot className="w-7 h-7" />
+      </motion.div>
+
+      <motion.div
+        className="absolute top-80 left-220 text-purple-500/50 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '3.2s' }}
+      >
+        <Database className="w-6 h-6" />
+      </motion.div>
+
+      {/* Bottom Area Icons */}
+      <motion.div
+        className="absolute bottom-16 left-8 text-pink-400/70 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '2.8s' }}
+      >
+        <Database className="w-9 h-9" />
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-8 right-8 text-purple-600/60 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '1.2s' }}
+      >
+        <BrainCircuit className="w-8 h-8" />
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-24 left-96 text-pink-500/50 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '4s' }}
+      >
+        <Bot className="w-6 h-6" />
+      </motion.div>
+
+      {/* Side Area Icons */}
+      <motion.div
+        className="absolute top-80 left-4 text-purple-400/50 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '3.5s' }}
+      >
+        <Bot className="w-7 h-7" />
+      </motion.div>
+
+      <motion.div
+        className="absolute top-64 right-4 text-pink-400/60 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '2.5s' }}
+      >
+        <Database className="w-8 h-8" />
+      </motion.div>
+
+      {/* Center Area Icons (Very Few) */}
+      <motion.div
+        className="absolute top-48 left-1/2 transform -translate-x-1/2 text-purple-300/40 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '5s' }}
+      >
+        <BrainCircuit className="w-5 h-5" />
+      </motion.div>
+
+      {/* Geometric Shapes */}
+      <motion.div
+        className="absolute top-24 left-48 w-8 h-8 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '2.2s' }}
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full">
+          <polygon
+            points="50,10 90,90 10,90"
+            fill="none"
+            stroke="rgba(147, 51, 234, 0.5)"
+            strokeWidth="2"
+          />
+        </svg>
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-56 right-48 w-6 h-6 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '4s' }}
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full">
+          <polygon
+            points="50,10 90,90 10,90"
+            fill="none"
+            stroke="rgba(236, 72, 153, 0.6)"
+            strokeWidth="2"
+          />
+        </svg>
+      </motion.div>
+
+      {/* Dotted Elements */}
+      <motion.div
+        className="absolute top-56 left-64 w-3 h-3 rounded-full bg-purple-300/50 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '1.2s' }}
+      />
+
+      <motion.div
+        className="absolute bottom-72 left-8 w-2 h-2 rounded-full bg-pink-300/60 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '3.8s' }}
+      />
+
+      <motion.div
+        className="absolute top-80 left-56 w-4 h-4 rounded-full bg-purple-200/70 z-10"
+        animate={floatAnimation}
+        style={{ animationDelay: '0.8s' }}
+      />
 
       {/* Main Content Container */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+      <div className="relative z-20 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full max-w-7xl mx-auto">
           
           {/* Left Content */}
           <motion.div
-            className="space-y-8 lg:pr-8 lg:pl-16"
+            className="space-y-6"
             variants={slideInLeft}
             initial="hidden"
             animate={textAnimated ? "visible" : "hidden"}
           >
             <motion.div
-              variants={bounceIn}
+              variants={fadeIn}
               initial="hidden"
               animate={textAnimated ? "visible" : "hidden"}
               transition={{ delay: 0.2 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 rounded-full border border-white/30 backdrop-blur-sm">
-                <Sparkles className="w-4 h-4 text-white" />
-                <span className="text-white text-sm font-medium">Gateway Workforce</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full border border-purple-200">
+                <Bot className="w-4 h-4 text-purple-600" />
+                <span className="text-purple-700 text-sm font-medium">Gateway Workforce</span>
               </div>
             </motion.div>
 
             <motion.h1
-              className={`text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight ${ibmPlexSans.className}`}
+              className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800 leading-tight ${ibmPlexSans.className}`}
               variants={slideInLeft}
               initial="hidden"
               animate={textAnimated ? "visible" : "hidden"}
               transition={{ delay: 0.4 }}
             >
-              AI & Data Intelligence Solutions
-              <span className="bg-gradient-to-r from-white to-pink-200 bg-clip-text text-transparent block">
-                
-              </span>
+              <span className="text-purple-600">AI & Data Intelligence</span><br />
+              Solutions
             </motion.h1>
 
             <motion.p
-              className={`text-lg text-white/90 max-w-xl ${lexend.className}`}
+              className={`text-lg text-gray-600 max-w-xl leading-relaxed ${lexend.className}`}
               variants={slideInLeft}
               initial="hidden"
               animate={textAnimated ? "visible" : "hidden"}
@@ -229,15 +409,15 @@ const HeroAISection: React.FC = () => {
             >
               <Link href="/#services-section">
                 <motion.button
-                  className="px-8 py-4 bg-white text-purple-600 font-semibold rounded-full hover:shadow-lg hover:shadow-white/25 transition-all duration-300"
-                  whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(255, 255, 255, 0.3)" }}
+                  className="px-8 py-4 bg-purple-600 text-white font-semibold rounded-full hover:bg-purple-700 hover:shadow-lg transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Explore Solutions
                 </motion.button>
               </Link>
               <motion.button
-                className="px-8 py-4 border border-white/50 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300"
+                className="px-8 py-4 border-2 border-purple-600 text-purple-600 font-semibold rounded-full hover:bg-purple-50 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
@@ -254,207 +434,52 @@ const HeroAISection: React.FC = () => {
               animate={textAnimated ? "visible" : "hidden"}
               transition={{ delay: 1 }}
             >
-              <div className="flex items-center gap-2 text-white/90">
-                <Bot className="w-5 h-5" />
-                <span className="text-sm">AI Automation</span>
+              <div className="flex items-center gap-2 text-gray-700">
+                <Bot className="w-5 h-5 text-purple-600" />
+                <span className="text-sm font-medium">AI Automation</span>
               </div>
-              <div className="flex items-center gap-2 text-white/90">
-                <Database className="w-5 h-5" />
-                <span className="text-sm">Data Analytics</span>
+              <div className="flex items-center gap-2 text-gray-700">
+                <Database className="w-5 h-5 text-purple-600" />
+                <span className="text-sm font-medium">Data Analytics</span>
               </div>
-              <div className="flex items-center gap-2 text-white/90">
-                <BrainCircuit className="w-5 h-5" />
-                <span className="text-sm">Machine Learning</span>
+              <div className="flex items-center gap-2 text-gray-700">
+                <BrainCircuit className="w-5 h-5 text-purple-600" />
+                <span className="text-sm font-medium">Machine Learning</span>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* Right Image with Decorative Elements */}
+          {/* Right Image */}
           <motion.div
-            className="relative flex justify-center lg:justify-end lg:pr-16"
+            className="relative flex justify-center lg:justify-end"
             variants={slideInRight}
             initial="hidden"
             animate={textAnimated ? "visible" : "hidden"}
           >
-            {/* Main Image Container */}
             <motion.div
               className="relative z-20"
-              variants={scaleIn}
-              initial="hidden"
-              animate={textAnimated ? "visible" : "hidden"}
-              transition={{ delay: 0.8 }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={textAnimated ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
-              {/* Enhanced Image Frame */}
-              <div className="relative w-[24rem] h-[24rem] lg:w-[28rem] lg:h-[28rem]">
-                {/* Decorative Border */}
-                <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/10 rounded-3xl p-1">
-                  <div className="w-full h-full bg-gradient-to-br from-white/10 to-transparent rounded-3xl backdrop-blur-sm"></div>
-                </div>
-                
-                {/* Image - slightly larger and centered */}
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <div className="w-[22rem] h-[22rem] flex items-center justify-center">
-                    <Image
-                      src="/images/ai3.png"
-                      alt="AI Solutions"
-                      width={352}
-                      height={352}
-                      className="object-contain rounded-2xl filter drop-shadow-2xl"
-                      priority
-                    />
-                  </div>
-                </div>
-
-                {/* Pulsing Ring */}
-                <motion.div
-                  className="absolute inset-0 border-2 border-white/30 rounded-3xl"
-                  animate={{
-                    scale: [1, 1.05, 1],
-                    opacity: [0.3, 0.6, 0.3]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
+              <div className="relative w-full max-w-lg">
+                <Image
+                  src="/background_images/ai_background.png"
+                  alt="AI Solutions"
+                  width={400}
+                  height={400}
+                  className="object-contain w-full h-auto"
+                  priority
                 />
               </div>
-            </motion.div>
-
-            {/* Scattered Floating Decorative Elements */}
-            
-            {/* Far Scattered Hexagons */}
-            <motion.div
-              className="absolute -top-20 -right-20 w-20 h-20"
-              animate={floatAnimation}
-              style={{ animationDelay: '0s' }}
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <motion.polygon
-                  points="50,5 85,25 85,75 50,95 15,75 15,25"
-                  fill="none"
-                  stroke="rgba(255, 255, 255, 0.6)"
-                  strokeWidth="2"
-                  animate={rotateAnimation}
-                />
-              </svg>
-            </motion.div>
-
-            <motion.div
-              className="absolute top-60 -left-32 w-16 h-16"
-              animate={floatAnimation}
-              style={{ animationDelay: '1s' }}
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <motion.polygon
-                  points="50,5 85,25 85,75 50,95 15,75 15,25"
-                  fill="none"
-                  stroke="rgba(255, 192, 203, 0.7)"
-                  strokeWidth="2"
-                  animate={rotateAnimation}
-                />
-              </svg>
-            </motion.div>
-
-            <motion.div
-              className="absolute -bottom-16 right-32 w-12 h-12"
-              animate={floatAnimation}
-              style={{ animationDelay: '2s' }}
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <motion.polygon
-                  points="50,5 85,25 85,75 50,95 15,75 15,25"
-                  fill="none"
-                  stroke="rgba(138, 43, 226, 0.7)"
-                  strokeWidth="2"
-                  animate={rotateAnimation}
-                />
-              </svg>
-            </motion.div>
-
-            {/* Far Scattered Circles */}
-            <motion.div
-              className="absolute -top-10 left-20 w-8 h-8 rounded-full border-2 border-white/50"
-              animate={pulseAnimation}
-              style={{ animationDelay: '0.5s' }}
-            />
-            
-            <motion.div
-              className="absolute bottom-20 -left-20 w-6 h-6 rounded-full border-2 border-pink-300/60"
-              animate={pulseAnimation}
-              style={{ animationDelay: '1.5s' }}
-            />
-
-            <motion.div
-              className="absolute top-20 right-40 w-10 h-10 rounded-full border-2 border-violet-300/60"
-              animate={pulseAnimation}
-              style={{ animationDelay: '2.5s' }}
-            />
-
-            {/* Far Scattered Triangles */}
-            <motion.div
-              className="absolute -bottom-10 -left-40 w-12 h-12"
-              animate={floatAnimation}
-              style={{ animationDelay: '1.5s' }}
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <motion.polygon
-                  points="50,10 90,90 10,90"
-                  fill="none"
-                  stroke="rgba(255, 255, 255, 0.6)"
-                  strokeWidth="2"
-                  animate={rotateAnimation}
-                />
-              </svg>
-            </motion.div>
-
-            <motion.div
-              className="absolute top-80 -right-16 w-8 h-8"
-              animate={floatAnimation}
-              style={{ animationDelay: '3s' }}
-            >
-              <svg viewBox="0 0 100 100" className="w-full h-full">
-                <motion.polygon
-                  points="50,10 90,90 10,90"
-                  fill="none"
-                  stroke="rgba(255, 192, 203, 0.7)"
-                  strokeWidth="2"
-                  animate={rotateAnimation}
-                />
-              </svg>
-            </motion.div>
-
-            {/* Far Scattered Floating Icons */}
-            <motion.div
-              className="absolute -top-16 -left-24 text-white/60"
-              animate={floatAnimation}
-              style={{ animationDelay: '0.8s' }}
-            >
-              <BrainCircuit className="w-8 h-8" />
-            </motion.div>
-
-            <motion.div
-              className="absolute bottom-32 -right-20 text-pink-200/70"
-              animate={floatAnimation}
-              style={{ animationDelay: '2.2s' }}
-            >
-              <Zap className="w-6 h-6" />
-            </motion.div>
-
-            <motion.div
-              className="absolute top-96 -left-16 text-violet-200/70"
-              animate={floatAnimation}
-              style={{ animationDelay: '3.5s' }}
-            >
-              <BarChartBig className="w-7 h-7" />
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator */}
+      {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: textAnimated ? 1 : 0, y: textAnimated ? 0 : 20 }}
         transition={{ duration: 0.8, delay: 1.2 }}
@@ -466,10 +491,10 @@ const HeroAISection: React.FC = () => {
           transition={{ duration: 2, repeat: Infinity }}
           whileHover={{ scale: 1.1 }}
         >
-          <span className="text-white/90 text-sm mb-2 font-medium">Scroll Down</span>
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center backdrop-blur-sm">
+          <span className="text-gray-600 text-sm mb-2 font-medium">Scroll Down</span>
+          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
             <motion.div
-              className="w-1 h-3 bg-white rounded-full mt-2"
+              className="w-1 h-3 bg-gray-600 rounded-full mt-2"
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
             />

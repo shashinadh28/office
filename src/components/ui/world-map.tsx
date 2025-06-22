@@ -34,7 +34,7 @@ export default function WorldMap({
         if (entry.isIntersecting && !isInView) {
           // Debounce to prevent excessive state updates
           timeoutId = setTimeout(() => {
-            setIsInView(true);
+          setIsInView(true);
           }, 100);
         }
       },

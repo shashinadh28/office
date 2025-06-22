@@ -31,12 +31,13 @@ const AboutCloudSection = () => {
               variants={fadeIn}
             >
             <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
-                <div className="w-6 h-0.5 bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-700"></div>
-                <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-700 bg-clip-text text-transparent font-medium uppercase tracking-wider text-sm">ABOUT US</span>
-                <div className="w-6 h-0.5 bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-700"></div>
+                <div className="w-6 h-0.5 bg-blue-600"></div>
+                <span className="text-blue-600 font-medium uppercase tracking-wider text-sm">ABOUT US</span>
+                <div className="w-6 h-0.5 bg-blue-600"></div>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 leading-tight">
-                Seamless Cloud Deployment, <span className="bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-700 bg-clip-text text-transparent">Migration & Management</span>
+                Seamless Cloud Deployment,<br />
+                <span className="text-blue-600">Migration & Management</span>
               </h2>
             <p className="text-gray-600 max-w-3xl mx-auto lg:mx-0 text-lg leading-relaxed">
                 At Gateway Workforce, we empower businesses with end-to-end cloud solutions, specializing in AWS and Azure deployment, migration, and management. Our certified cloud architects and engineers help organizations optimize performance, enhance security, and reduce costs through scalable, high-performance cloud infrastructure.
@@ -51,13 +52,13 @@ const AboutCloudSection = () => {
                 ].map((item, index) => (
                   <motion.div 
                     key={index}
-                    className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100 hover:border-gradient-to-r hover:from-blue-600 hover:via-cyan-600 hover:to-indigo-700 hover:shadow-lg transition-all duration-300"
+                    className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100 hover:border-blue-600 hover:shadow-lg transition-all duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-700 bg-clip-text text-transparent mb-1 sm:mb-2">{item.number}</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1 sm:mb-2">{item.number}</p>
                     <p className="text-sm sm:text-base text-gray-600">{item.label}</p>
                   </motion.div>
                 ))}
@@ -74,7 +75,7 @@ const AboutCloudSection = () => {
           >
             <div className="relative">
               <Image
-                src="/images/saas.jpg"
+                src="/images/about_cloud.jpg"
                 alt="Cloud Solutions Professional"
                 width={600}
                 height={500}

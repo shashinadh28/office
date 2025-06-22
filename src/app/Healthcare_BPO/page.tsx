@@ -8,7 +8,9 @@ import AboutSection from './healthcare/AboutSection';
 import WhyChooseSection from './healthcare/WhyChooseSection';
 import VisualCalloutSection from './healthcare/VisualCalloutSection';
 import ServicesSection from './healthcare/ServicesSection';
-import FinalCTASection from './healthcare/FinalCTASection';
+import TransformBusinessSection from './TransformBusinessSection';
+
+import HireTalentSection from '@/components/HireTalentSection';
 
 import FooterSection from '@/components/footer';
 
@@ -234,7 +236,15 @@ export default function HealthcareBPO() {
         <WhyChooseSection />
         <ServicesSection />
         <VisualCalloutSection />
-        <FinalCTASection />
+        <HireTalentSection theme={{
+          primary: "sky-600",
+          secondary: "cyan-600", 
+          accent: "blue-500",
+          background: "from-sky-50 via-white to-cyan-50",
+          gradientFrom: "sky-600",
+          gradientTo: "cyan-600"
+        }} />
+        <TransformBusinessSection />
       </main>
       
       <FooterSection />

@@ -1,21 +1,22 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import AnimatedSVG from '../../components/ui/animated-svg';
+import { IBM_Plex_Sans, Lexend, Inter } from 'next/font/google';
+import { 
+  Cloud, ShoppingCart, Target as HubSpotIcon, Settings, 
+  Zap, Globe, ArrowRight, CheckCircle, Users, BarChart3, Database,
+  Smartphone, TrendingUp, GitBranch, Brain, Monitor, Code
+} from 'lucide-react';
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay, ease: 'easeOut' },
-  }),
-};
+const ibmPlexSans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['700'], display: 'swap' });
+const lexend = Lexend({ subsets: ['latin'], weight: ['400', '500', '600', '700'], display: 'swap' });
+const inter = Inter({ subsets: ['latin'], weight: ['400', '600', '700'], display: 'swap' });
 
 const HeroSaasSection: React.FC = () => {
   const [textAnimated, setTextAnimated] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setTimeout(() => {
@@ -23,193 +24,514 @@ const HeroSaasSection: React.FC = () => {
     }, 600);
   }, []);
 
+  // SaaS platform SVGs data from public/svg/saap_svg
+  const saasSvgs = [
+    { name: 'Salesforce', path: '/svg/saap_svg/salesforce.svg' },
+    { name: 'Shopify', path: '/svg/saap_svg/shopify.svg' },
+    { name: 'HubSpot', path: '/svg/saap_svg/hubspot.svg' },
+    { name: 'Stripe', path: '/svg/saap_svg/stripe.svg' },
+    { name: 'Slack', path: '/svg/saap_svg/slack.svg' }
+  ];
+
+  // SaaS floating elements - more scattered across the section
+  const saasElements = [
+    { icon: Cloud, label: "Salesforce", delay: 0, x: 12, y: 15 },
+    { icon: ShoppingCart, label: "Shopify", delay: 0.6, x: 88, y: 20 },
+    { icon: HubSpotIcon, label: "HubSpot", delay: 1.2, x: 8, y: 65 },
+    { icon: Settings, label: "Integration", delay: 1.8, x: 92, y: 70 },
+    { icon: Zap, label: "Automation", delay: 2.4, x: 20, y: 35 },
+    { icon: Users, label: "CRM", delay: 3.0, x: 80, y: 45 },
+    { icon: BarChart3, label: "Analytics", delay: 3.6, x: 5, y: 85 },
+    { icon: Database, label: "Data Sync", delay: 4.2, x: 95, y: 25 },
+    { icon: Globe, label: "Global", delay: 4.8, x: 25, y: 80 },
+    { icon: Monitor, label: "Dashboard", delay: 5.4, x: 75, y: 60 },
+    { icon: Brain, label: "AI Tools", delay: 6.0, x: 15, y: 50 },
+    { icon: Code, label: "API", delay: 6.6, x: 85, y: 85 },
+  ];
+
   return (
-    <section className="relative h-[500px] sm:h-[600px] w-full overflow-hidden">
-      <div className="absolute inset-0">
-        <Image
-          src="/optimized/background_images/saas-experts.webp" 
-          alt="SaaS Experts Background" 
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-          priority
-          className="object-cover object-center"
-          style={{
-            objectFit: 'cover',
-            objectPosition: 'center',
-            willChange: 'transform'
-          }}
-        />
-      </div>
-      <div className="absolute inset-0 flex items-center justify-start z-10 px-4 sm:px-6">
-        <div className="ml-0 md:ml-16 lg:ml-32 xl:ml-48 max-w-md sm:max-w-xl">
-          <div className="overflow-hidden mb-2">
-            <div
-              className={`bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent text-base sm:text-lg font-semibold transition-all duration-1000 ease-out`}
-              style={{
-                transform: textAnimated ? 'translateX(0)' : 'translateX(-100%)',
-                opacity: textAnimated ? 1 : 0,
-                filter: textAnimated ? 'blur(0)' : 'blur(4px)',
-              }}
-            >
-              Gateway Workforce: 
-            </div>
-          </div>
-          <div className="overflow-hidden mb-6">
-            <h1
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight transition-all duration-1000 ease-out"
-              style={{
-                transform: textAnimated ? 'translateY(0)' : 'translateY(40px)',
-                opacity: textAnimated ? 1 : 0,
-                filter: textAnimated ? 'blur(0)' : 'blur(4px)',
-                transitionDelay: '200ms',
-                
-              }}
-            >
-              SaaS Integration & Optimization Experts
-            </h1>
-          </div>
-          <div
-            className={`transition-all duration-700 ${textAnimated ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}
-            style={{ transitionDelay: '500ms' }}
+    <motion.div 
+      ref={containerRef}
+      className="bg-white relative overflow-hidden"
+      style={{ minHeight: 'calc(100vh + 200px)' }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      
+      {/* Hexagon Background Animation - More scattered with 70% opacity */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(15)].map((_, index) => (
+          <motion.div
+            key={`hexagon-${index}`}
+            className="absolute"
+            style={{
+              top: `${5 + (index * 6)}%`,
+              left: `${3 + (index * 7)}%`,
+            }}
+            animate={{
+              scale: [0.4, 1.2, 0.4],
+              rotate: [0, 360],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: 10 + (index % 5),
+              repeat: Infinity,
+              delay: index * 0.8,
+              ease: "easeInOut"
+            }}
           >
-            <div className="mt-8 sm:mt-10">
-              <button
-                onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-                className="flex flex-col items-center transition-all duration-300 group"
+            <svg width="50" height="50" viewBox="0 0 100 100" className="text-[#F35120]">
+              <polygon
+                points="50,5 90,25 90,75 50,95 10,75 10,25"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                opacity="0.7"
+              />
+            </svg>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Circle Background Animation - 70% opacity */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(12)].map((_, index) => (
+          <motion.div
+            key={`circle-${index}`}
+            className="absolute"
+            style={{
+              top: `${10 + (index * 8)}%`,
+              left: `${8 + (index * 8)}%`,
+            }}
+            animate={{
+              scale: [0.5, 1.3, 0.5],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: 12 + (index % 4),
+              repeat: Infinity,
+              delay: index * 1.5,
+              ease: "easeInOut"
+            }}
+          >
+            <svg width="40" height="40" viewBox="0 0 100 100" className="text-black">
+              <circle
+                cx="50"
+                cy="50"
+                r="40"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                opacity="0.7"
+              />
+            </svg>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Triangle Background Animation - 70% opacity */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(10)].map((_, index) => (
+          <motion.div
+            key={`triangle-${index}`}
+            className="absolute"
+            style={{
+              top: `${15 + (index * 9)}%`,
+              left: `${12 + (index * 9)}%`,
+            }}
+            animate={{
+              scale: [0.6, 1.1, 0.6],
+              rotate: [0, 180, 360],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: 14 + (index % 3),
+              repeat: Infinity,
+              delay: index * 2,
+              ease: "easeInOut"
+            }}
+          >
+            <svg width="35" height="35" viewBox="0 0 100 100" className="text-[#F35120]">
+              <polygon
+                points="50,10 90,80 10,80"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                opacity="0.7"
+              />
+            </svg>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Scattered SaaS Floating Elements with Better Distribution */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {saasElements.map((element, index) => (
+          <motion.div
+            key={`saas-${index}`}
+            className="absolute"
+            style={{
+              top: `${element.y}%`,
+              left: `${element.x}%`,
+            }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ 
+              opacity: [0.2, 0.4, 0.2],
+              scale: [0.7, 1.2, 0.7],
+              y: [-20, 20, -20],
+              x: [-10, 10, -10],
+              rotate: [0, 360]
+            }}
+            transition={{
+              duration: 9 + (index % 4),
+              repeat: Infinity,
+              delay: element.delay,
+              ease: "easeInOut"
+            }}
+          >
+            <div className="bg-[#F35120] rounded-full p-2 shadow-2xl"
+                 style={{
+                   boxShadow: `0 0 15px rgba(243, 81, 32, 0.4), 0 0 30px rgba(243, 81, 32, 0.2)`
+                 }}>
+              <element.icon className="w-3 h-3 text-white opacity-80" />
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="container mx-auto px-8 sm:px-12 lg:px-16 py-20 md:py-28 relative z-10">
+        <motion.div 
+          className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          
+          {/* Left Side - Content with Added Padding */}
+          <div className="w-full lg:w-1/2 text-center lg:text-left pl-4 sm:pl-8 lg:pl-12">
+            <div className="overflow-hidden mb-4">
+              <motion.div
+                className="text-[#F35120] text-sm sm:text-base font-semibold uppercase tracking-wider"
+                style={{
+                  transform: textAnimated ? 'translateX(0)' : 'translateX(-100%)',
+                  opacity: textAnimated ? 1 : 0,
+                  transition: 'all 1s ease-out',
+                }}
               >
-                <span className="font-montserrat text-xs sm:text-sm tracking-widest mb-2 sm:mb-3 text-red-600 group-hover:text-white transition-colors duration-300">
-                  SCROLL DOWN
+                SaaS Integration Excellence
+              </motion.div>
+            </div>
+
+            <div className="overflow-hidden mb-6">
+              <motion.h1
+                className="text-4xl sm:text-5xl md:text-6xl font-bold text-black leading-tight"
+                style={{
+                  transform: textAnimated ? 'translateY(0)' : 'translateY(40px)',
+                  opacity: textAnimated ? 1 : 0,
+                  transition: 'all 1s ease-out 200ms',
+                }}
+              >
+                Optimize with{' '}
+                <span className="text-[#F35120]">
+                  SaaS Mastery
                 </span>
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-red-600 flex items-center justify-center group-hover:bg-red-600 transition-all duration-300">
-                  <svg
-                    className="w-5 h-5 text-red-600 group-hover:text-white animate-bounce transition-colors duration-300"
+              </motion.h1>
+            </div>
+
+            <div className="overflow-hidden mb-6">
+              <motion.h2
+                className="text-xl sm:text-2xl md:text-3xl font-semibold text-black"
+                style={{
+                  transform: textAnimated ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: textAnimated ? 1 : 0,
+                  transition: 'all 1s ease-out 400ms',
+                }}
+              >
+                Salesforce, Shopify & HubSpot Specialists
+              </motion.h2>
+            </div>
+
+            <div className="overflow-hidden mb-12">
+              <motion.p
+                className="text-gray-700 text-lg sm:text-xl leading-relaxed max-w-2xl"
+                style={{
+                  transform: textAnimated ? 'translateY(0)' : 'translateY(20px)',
+                  opacity: textAnimated ? 1 : 0,
+                  transition: 'all 1s ease-out 600ms',
+                }}
+              >
+                Maximize your business potential with seamless SaaS integration, customization, and optimization. 
+                Scale efficiently with expert-driven solutions tailored to your needs.
+              </motion.p>
+            </div>
+
+            {/* Feature Highlights - F35120 Color Scheme */}
+            <motion.div
+              className="flex flex-wrap gap-3 mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: textAnimated ? 1 : 0, y: textAnimated ? 0 : 20 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              {[
+                { text: "Certified Experts", color: "bg-[#F35120]" },
+                { text: "Custom Integration", color: "bg-black" },
+                { text: "24/7 Support", color: "bg-[#F35120]" },
+                { text: "ROI Optimization", color: "bg-black" }
+              ].map((feature, index) => (
+                <motion.div
+                  key={index}
+                  className={`${feature.color} text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg`}
+                  style={{
+                    boxShadow: feature.color === 'bg-[#F35120]' 
+                      ? '0 4px 15px rgba(243, 81, 32, 0.4)' 
+                      : '0 4px 15px rgba(0, 0, 0, 0.3)'
+                  }}
+                  whileHover={{ 
+                    scale: 1.05,
+                    boxShadow: feature.color === 'bg-[#F35120]' 
+                      ? '0 8px 25px rgba(243, 81, 32, 0.5)' 
+                      : '0 8px 25px rgba(0, 0, 0, 0.4)'
+                  }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 1 + (index * 0.1) }}
+                >
+                  {feature.text}
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* CTA Buttons - F35120 Color Scheme */}
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: textAnimated ? 1 : 0, y: textAnimated ? 0 : 30 }}
+              transition={{ duration: 0.8, delay: 1 }}
+            >
+              <motion.button
+                className="group bg-[#F35120] text-white px-8 py-4 rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center space-x-2"
+                style={{
+                  boxShadow: '0 10px 30px rgba(243, 81, 32, 0.4)'
+                }}
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: "0 15px 40px rgba(243, 81, 32, 0.5)"
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span>Start Integration</span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </motion.button>
+              
+              <motion.button
+                className="group border-2 border-[#F35120] text-[#F35120] px-8 py-4 rounded-xl font-semibold text-lg hover:bg-[#F35120] hover:text-white transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                View Success Stories
+              </motion.button>
+            </motion.div>
+          </div>
+
+          {/* Right Side - Hero Image with Background Glow Effect */}
+          <div className="w-full lg:w-1/2">
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: textAnimated ? 1 : 0, x: textAnimated ? 0 : 50 }}
+              transition={{ duration: 1, delay: 0.6 }}
+            >
+              {/* Background Glow Effect Behind Image */}
+              <div className="absolute inset-0 -m-8">
+                <motion.div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(243, 81, 32, 0.15) 0%, rgba(0, 0, 0, 0.1) 35%, rgba(243, 81, 32, 0.08) 70%, transparent 100%)',
+                    filter: 'blur(40px)',
+                  }}
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.3, 0.5, 0.3],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </div>
+
+              {/* Additional Animated Glow Layers */}
+              <div className="absolute inset-0 -m-12">
+                <motion.div
+                  className="w-full h-full rounded-full"
+                  style={{
+                    background: 'radial-gradient(circle, rgba(243, 81, 32, 0.08) 0%, rgba(0, 0, 0, 0.05) 50%, transparent 100%)',
+                    filter: 'blur(60px)',
+                  }}
+                  animate={{
+                    scale: [1.1, 1.3, 1.1],
+                    opacity: [0.2, 0.4, 0.2],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                />
+              </div>
+
+              <div className="relative max-w-lg mx-auto z-10">
+                <motion.div
+                  animate={{
+                    y: [-5, 5, -5],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <Image
+                    src="/background_images/saap-hero.png"
+                    alt="SaaS Solutions Hero"
+                    width={450}
+                    height={350}
+                    className="w-full h-auto object-contain relative z-10"
+                    priority
+                  />
+                </motion.div>
+              </div>
+
+              {/* Decorative Geometric Shapes around image */}
+              <motion.div
+                className="absolute -top-8 -right-8 z-0"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  rotate: [0, 180, 360],
+                  opacity: [0.3, 0.7, 0.3],
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <svg width="60" height="60" viewBox="0 0 100 100" className="text-[#F35120]">
+                  <polygon
+                    points="50,5 90,25 90,75 50,95 10,75 10,25"
                     fill="none"
                     stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                    />
-                  </svg>
-                </div>
-              </button>
-            </div>
+                    strokeWidth="2"
+                    opacity="0.7"
+                  />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute -bottom-6 -left-6 z-0"
+                animate={{
+                  scale: [0.8, 1.1, 0.8],
+                  rotate: [360, 0],
+                  opacity: [0.3, 0.7, 0.3],
+                }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 3
+                }}
+              >
+                <svg width="50" height="50" viewBox="0 0 100 100" className="text-black">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    opacity="0.7"
+                  />
+                </svg>
+              </motion.div>
+
+              <motion.div
+                className="absolute top-1/2 -right-12 z-0"
+                animate={{
+                  scale: [0.9, 1.3, 0.9],
+                  rotate: [0, 180, 360],
+                  opacity: [0.3, 0.7, 0.3],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.5
+                }}
+              >
+                <svg width="45" height="45" viewBox="0 0 100 100" className="text-[#F35120]">
+                  <polygon
+                    points="50,10 90,80 10,80"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    opacity="0.7"
+                  />
+                </svg>
+              </motion.div>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* SVG Elements - Fixed Positioning for 768px+ screens */}
-      {/* Desktop and Tablet Layout - Fixed pixel positioning */}
-      <div className="hidden md:block absolute inset-0 pointer-events-none">
-        {/* Gear Shape */}
-        <div className="absolute top-0" style={{ right: '36%' }}>
-          <AnimatedSVG
-            src="/svg/saas_svg/gear.svg"
-            alt="Gear Shape"
-            width={279}
-            height={279}
-            className="rotate--1"
-            position="right"
-            delay={0.2}
-          />
-        </div>
-
-        {/* Hexagon */}
-        <div className="absolute bottom-0" style={{ right: '48%' }}>
-          <AnimatedSVG
-            src="/svg/hexagon.svg"
-            alt="Hexagon"
-            width={320}
-            height={320}
-            className="opacity-80"
-            position="right"
-            delay={0.4}
-          />
-        </div>
-
-        {/* SaaS SVG 1 */}
-        <div className="absolute left-0" style={{ bottom: '22%' }}>
-          <AnimatedSVG
-            src="/svg/saas_svg/salesforce.svg"
-            alt="Salesforce"
-            width={140}
-            height={140}
-            position="left"
-            delay={0.6}
-          />
-        </div>
-
-        {/* SaaS SVG 2 */}
-        <div className="absolute bottom-0" style={{ right: '91%' }}>
-          <AnimatedSVG
-            src="/svg/saas_svg/shopify.svg"
-            alt="Shopify"
-            width={120}
-            height={120}
-            position="right"
-            delay={0.8}
-          />
-        </div>
-
-        {/* Triangle */}
-        <div className="absolute bottom-0 left-0">
-          <AnimatedSVG
-            src="/svg/saas_svg/triangle.svg" 
-            alt="Triangle"
-            width={120}
-            height={120}
-            position="left"
-            delay={1}
-          />
-        </div>
+      {/* Sliding SVG Rectangle at Bottom */}
+      <div 
+        className="absolute left-0 w-full overflow-hidden"
+        style={{ 
+          bottom: '-10px',
+          height: '120px', 
+          backgroundColor: '#F35120' 
+        }}
+      >
+        <motion.div 
+          className="flex items-center h-full whitespace-nowrap"
+          animate={{
+            x: [0, -2000]
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        >
+                    {/* Multiple copies for seamless loop */}
+          {[...saasSvgs, ...saasSvgs, ...saasSvgs, ...saasSvgs].map((svg, index) => (
+            <motion.div
+              key={`svg-${index}`}
+              className="flex-shrink-0 mx-4 sm:mx-8 md:mx-12 h-full flex items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <Image
+                src={svg.path}
+                alt={svg.name}
+                width={svg.name === 'Salesforce' ? 70 : 110}
+                height={svg.name === 'Salesforce' ? 70 : 110}
+                className={
+                  svg.name === 'Salesforce' 
+                    ? 'w-12 h-12 sm:w-16 sm:h-16 md:w-18 md:h-18 object-contain filter brightness-0 invert opacity-90' 
+                    : 'w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain filter brightness-0 invert opacity-90'
+                }
+              />
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
-
-      {/* Mobile Layout - Simplified and Clean */}
-      <div className="block md:hidden absolute inset-0 pointer-events-none">
-        {/* Gear - Top Right */}
-        <div className="absolute top-[8%] right-[5%]">
-          <AnimatedSVG
-            src="/svg/saas_svg/gear.svg"
-            alt="Gear"
-            width={140}
-            height={140}
-            className="rotate--1 opacity-70"
-            position="right"
-            delay={0.2}
-          />
-        </div>
-
-        {/* Hexagon - Bottom Right */}
-        <div className="absolute bottom-[15%] right-[2%]">
-          <AnimatedSVG
-            src="/svg/hexagon.svg"
-            alt="Hexagon"
-            width={160}
-            height={160}
-            className="opacity-60"
-            position="right"
-            delay={0.4}
-          />
-        </div>
-
-        {/* Salesforce - Bottom Left */}
-        <div className="absolute bottom-[5%] left-[5%]">
-          <AnimatedSVG
-            src="/svg/saas_svg/salesforce.svg"
-            alt="Salesforce"
-            width={100}
-            height={100}
-            className="opacity-50"
-            position="left"
-            delay={0.6}
-          />
-        </div>
-      </div>
-    </section>
+    </motion.div>
   );
 };
 

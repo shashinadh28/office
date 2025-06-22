@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
+import Image from 'next/image';
 import { 
   Cloud, ShoppingCart, Target as HubSpotIcon, CheckCircle, 
   Settings, Zap, Users, BarChartHorizontal, Database,
@@ -42,7 +43,8 @@ const servicesData = [
       "Lightning migration & app development",
       "Analytics & AI (Einstein) integration"
     ],
-    iconColor: "text-blue-600",
+    iconColor: "text-[#F35120]",
+    imagePath: "/images/salesforce_services.jpg"
   },
   {
     title: "Shopify E-Commerce Excellence",
@@ -54,7 +56,8 @@ const servicesData = [
       "Performance optimization & SEO",
       "Multi-channel sales integration"
     ],
-    iconColor: "text-purple-600",
+    iconColor: "text-[#F35120]",
+    imagePath: "/images/Shopify_E_Commerce_Excellence.jpg"
   },
   {
     title: "HubSpot Growth Stack",
@@ -66,7 +69,8 @@ const servicesData = [
       "Service Hub customer support solutions",
       "Data sync & system integrations"
     ],
-    iconColor: "text-indigo-700",
+    iconColor: "text-[#F35120]",
+    imagePath: "/images/HubSpot_Growth_Stack.jpg"
   },
   {
     title: "SaaS Integration & Support",
@@ -78,7 +82,8 @@ const servicesData = [
       "Ongoing maintenance & support",
       "User training & adoption programs"
     ],
-    iconColor: "text-blue-600",
+    iconColor: "text-[#F35120]",
+    imagePath: "/images/SaaS_Integration_&_Support.jpg"
   }
 ];
 
@@ -95,14 +100,14 @@ const SaasServicesSection = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div className="text-center mb-12 md:mb-16" variants={fadeIn} custom={0.1}>
           <span 
-            className="inline-block bg-indigo-700 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4"
+            className="inline-block bg-[#F35120] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4"
           >
             Our Services
           </span>
           <h2 
-            className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight"
+            className="text-3xl sm:text-4xl font-bold text-black leading-tight"
           >
-            Our SaaS <span className="border-b-4 border-purple-600">Expertise</span>
+            Our SaaS <span className="border-b-4 border-[#F35120]">Expertise</span>
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto mt-6 text-lg">
           Our team of experienced SaaS specialists combines industry knowledge, cutting-edge technology, and innovative strategies to guide you towards optimized business operations.
@@ -110,7 +115,7 @@ const SaasServicesSection = () => {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+          className="flex flex-col gap-8 max-w-5xl mx-auto"
           variants={staggerContainer}
         >
           {servicesData.map((service, index) => {
@@ -123,25 +128,43 @@ const SaasServicesSection = () => {
                 key={index}
                 variants={fadeIn}
                 custom={index * 0.1 + 0.2}
-                className={`bg-white rounded-xl p-6 md:p-8 text-left shadow-lg flex flex-col group border border-gray-200 transition-all duration-300 ease-in-out 
-                            ${isHovered ? 'transform scale-105 shadow-xl border-indigo-500 z-10' : ''}
+                className={`bg-white rounded-xl text-left shadow-lg group border border-gray-200 transition-all duration-300 ease-in-out overflow-hidden
+                            ${isHovered ? 'transform scale-105 shadow-xl border-[#F35120] z-10' : ''}
                             ${isAnotherCardHovered ? 'filter blur-sm opacity-70' : ''}`}
                 onMouseEnter={() => setHoveredCardIndex(index)}
                 onMouseLeave={() => setHoveredCardIndex(null)}
               >
-                <div className="flex items-start mb-4">
-                  <div className={`bg-gray-100 p-3 rounded-full mr-4 shrink-0 group-hover:bg-indigo-100 transition-colors duration-300`}>
-                    <IconComponent className={`${service.iconColor} w-6 h-6 sm:w-8 sm:h-8 group-hover:text-indigo-700 transition-colors duration-300`} />
+                <div className={`flex flex-col lg:flex-row h-auto lg:h-80 overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                  {/* Image section - no background color, just white/transparent */}
+                  <div className="lg:w-2/5 relative bg-white flex items-center justify-center p-4">
+                    <Image
+                      src={service.imagePath}
+                      alt={service.title}
+                      width={400}
+                      height={300}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
-                  <h3 className={`text-xl sm:text-2xl font-bold text-gray-800 group-hover:text-indigo-700 transition-colors duration-300`}>
-                    {service.title}
-                  </h3>
+                  {/* Content section */}
+                  <div className="lg:w-3/5 p-6 md:p-8 flex flex-col justify-center bg-gray-50">
+                    <div className="flex items-start mb-6">
+                      <div className={`bg-white p-3 rounded-full mr-4 shrink-0 group-hover:bg-orange-100 transition-colors duration-300 shadow-md`}>
+                        <IconComponent className={`text-[#F35120] w-6 h-6 sm:w-8 sm:h-8 group-hover:text-[#F35120] transition-colors duration-300`} />
+                      </div>
+                      <h3 className={`text-xl sm:text-2xl font-bold text-black group-hover:text-[#F35120] transition-colors duration-300`}>
+                        {service.title}
+                      </h3>
+                    </div>
+                    <ul className={`list-disc list-inside text-sm sm:text-base text-gray-600 leading-relaxed space-y-2 pl-2`}>
+                      {service.description.map((point, i) => (
+                        <li key={i} className="flex items-start">
+                          <CheckCircle className="w-4 h-4 text-[#F35120] mr-2 mt-0.5 shrink-0" />
+                          <span className="list-none">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <ul className={`list-disc list-inside text-sm sm:text-base text-gray-600 leading-relaxed mb-6 flex-grow space-y-1.5 pl-2`}>
-                  {service.description.map((point, i) => (
-                    <li key={i}>{point}</li>
-                  ))}
-                </ul>
               </motion.div>
             );
           })}

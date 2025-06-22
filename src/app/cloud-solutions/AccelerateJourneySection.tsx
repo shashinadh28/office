@@ -3,8 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
-import Link from 'next/link';
-import { ArrowRight, SearchCheck, MessageCircle, Phone } from 'lucide-react';
+
+import { Phone } from 'lucide-react';
 
 const lexend = Lexend({ subsets: ['latin'], weight: ['400', '500', '600', '700'], display: 'swap' });
 
@@ -45,25 +45,17 @@ const AccelerateJourneySection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
           viewport={{ once: true }}
-          className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6"
+          className="flex justify-center"
         >
-          <Link href="/contact-us?service=cloud-assessment" passHref legacyBehavior>
-            <a
-              className={`${lexend.className} inline-flex items-center justify-center px-8 py-3 bg-yellow-400 text-blue-700 font-semibold rounded-lg shadow-lg hover:bg-yellow-300 transition-colors duration-300 text-lg group`}
-            >
-              <SearchCheck size={20} className="mr-2 transition-transform duration-300 group-hover:rotate-6" />
-              Get a Free Cloud Assessment
-            </a>
-          </Link>
-          <Link href="/contact-us?service=cloud-consultation" passHref legacyBehavior>
-            <a
-              className={`${lexend.className} inline-flex items-center justify-center px-8 py-3 bg-white text-blue-700 font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition-colors duration-300 text-lg group`}
-            >
-              <MessageCircle size={20} className="mr-2 transition-transform duration-300 group-hover:scale-110" />
-              Speak to an Expert
-              <ArrowRight size={20} className="ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-          </Link>
+          <a
+            href="https://calendly.com/deepak-teja/introduction"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${lexend.className} inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg shadow-lg hover:bg-gray-100 hover:shadow-xl transition-all duration-300 text-lg group transform hover:-translate-y-1`}
+          >
+            <Phone size={20} className="mr-2 transition-transform duration-300 group-hover:scale-110" />
+            Schedule 15 Min Call
+          </a>
         </motion.div>
       </div>
     </section>

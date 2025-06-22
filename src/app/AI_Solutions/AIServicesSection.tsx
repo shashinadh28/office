@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
+import Image from 'next/image';
 import { 
   Brain, Zap, BarChart3, Settings, Database, GitBranch, 
   Users, CheckCircle, Cpu, Bot, Eye, Lightbulb
@@ -35,48 +36,56 @@ const aiServiceCategories = [
     categoryName: 'Custom LLM Development & Fine-Tuning',
     icon: Brain,
     color: 'purple',
+    iconColor: 'text-purple-600',
     description: 'Advanced language models tailored to your specific domain and business requirements.',
+    imagePath: '/images/Custom-LLM-Development-&-Fine-Tuning.jpg',
     services: [
-      { name: 'Domain-specific LLMs for your industry', icon: Brain },
-      { name: 'Fine-tuning OpenAI, Llama 2, Claude & proprietary models', icon: Settings },
-      { name: 'Retrieval-Augmented Generation (RAG) systems', icon: Database },
-      { name: 'AI chatbots & virtual assistants', icon: Bot },
+      'Domain-specific LLMs for your industry',
+      'Fine-tuning OpenAI, Llama 2, Claude & proprietary models',
+      'Retrieval-Augmented Generation (RAG) systems',
+      'AI chatbots & virtual assistants',
     ],
   },
   {
     categoryName: 'Intelligent Process Automation',
     icon: Zap,
     color: 'pink',
+    iconColor: 'text-pink-600',
     description: 'AI-powered automation solutions that streamline workflows and boost productivity.',
+    imagePath: '/images/Intelligent-Process-Automation.jpg',
     services: [
-      { name: 'AI-powered workflow automation', icon: GitBranch },
-      { name: 'Document processing & data extraction (IDP)', icon: Database },
-      { name: 'Predictive maintenance & anomaly detection', icon: BarChart3 },
-      { name: 'Robotic Process Automation (RPA) integration', icon: Cpu },
+      'AI-powered workflow automation',
+      'Document processing & data extraction (IDP)',
+      'Predictive maintenance & anomaly detection',
+      'Robotic Process Automation (RPA) integration',
     ],
   },
   {
     categoryName: 'Data Intelligence & Predictive Analytics',
     icon: BarChart3,
     color: 'purple',
+    iconColor: 'text-purple-600',
     description: 'Transform your data into actionable insights with advanced analytics and ML.',
+    imagePath: '/images/Data-Intelligence-&-Predictive-Analytics.jpg',
     services: [
-      { name: 'Advanced data modeling & forecasting', icon: BarChart3 },
-      { name: 'Customer behavior & sentiment analysis', icon: Users },
-      { name: 'Real-time business intelligence dashboards', icon: Eye },
-      { name: 'Recommendation engines & personalization', icon: Lightbulb },
+      'Advanced data modeling & forecasting',
+      'Customer behavior & sentiment analysis',
+      'Real-time business intelligence dashboards',
+      'Recommendation engines & personalization',
     ],
   },
   {
     categoryName: 'AI Integration & Optimization',
     icon: Settings,
     color: 'pink',
+    iconColor: 'text-pink-600',
     description: 'Seamless integration and optimization of AI solutions within your enterprise.',
+    imagePath: '/images/AI-Integration-&-Optimization.jpg',
     services: [
-      { name: 'API integrations with existing enterprise systems', icon: GitBranch },
-      { name: 'AI performance monitoring & continuous learning', icon: BarChart3 },
-      { name: 'Responsible AI governance & compliance', icon: CheckCircle },
-      { name: 'Staff training & change management', icon: Users },
+      'API integrations with existing enterprise systems',
+      'AI performance monitoring & continuous learning',
+      'Responsible AI governance & compliance',
+      'Staff training & change management',
     ],
   },
 ];
@@ -86,80 +95,79 @@ const AIServicesSection = () => {
 
   return (
     <motion.section 
-      className={`${lexend.className} py-16 md:py-24 bg-gray-50`}
+      className={`${lexend.className} py-16 md:py-24 bg-gray-100 text-gray-800`}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div className="text-center mb-12 md:mb-16" variants={fadeIn} custom={0.1}>
           <span 
             className="inline-block bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4"
         >
             Our Services
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight">
             Our AI & Data Intelligence <span className="border-b-4 border-pink-600">Services</span>
           </h2>
+          <p className="text-gray-600 max-w-3xl mx-auto mt-6 text-lg">
+            Our team of experienced AI specialists combines industry knowledge, cutting-edge technology, and innovative strategies to guide you towards intelligent business solutions.
+          </p>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+          className="flex flex-col gap-8 max-w-5xl mx-auto"
           variants={staggerContainer}
         >
           {aiServiceCategories.map((category, index) => {
             const IconComponent = category.icon;
             const isHovered = hoveredCardIndex === index;
             const isAnotherCardHovered = hoveredCardIndex !== null && !isHovered;
-            const colorClasses = {
-              purple: {
-                iconBg: 'bg-purple-100',
-                iconColor: 'text-purple-600',
-                hoverBorder: 'border-purple-500',
-                hoverText: 'text-purple-600',
-                hoverIconBg: 'bg-purple-100',
-                hoverIconColor: 'text-purple-700'
-              },
-              pink: {
-                iconBg: 'bg-pink-100',
-                iconColor: 'text-pink-600',
-                hoverBorder: 'border-pink-500',
-                hoverText: 'text-pink-600',
-                hoverIconBg: 'bg-pink-100',
-                hoverIconColor: 'text-pink-700'
-              }
-            };
-            const colors = colorClasses[category.color as keyof typeof colorClasses];
 
             return (
-            <motion.div
+              <motion.div
                 key={index}
                 variants={fadeIn}
                 custom={index * 0.1 + 0.2}
-                className={`bg-white rounded-xl p-6 md:p-8 text-left shadow-lg flex flex-col group border border-gray-200 transition-all duration-300 ease-in-out
-                            ${isHovered ? `transform scale-105 shadow-xl ${colors.hoverBorder} z-10` : ''}
+                className={`bg-white rounded-xl text-left shadow-lg group border border-gray-200 transition-all duration-300 ease-in-out overflow-hidden
+                            ${isHovered ? 'transform scale-105 shadow-xl border-purple-500 z-10' : ''}
                             ${isAnotherCardHovered ? 'filter blur-sm opacity-70' : ''}`}
                 onMouseEnter={() => setHoveredCardIndex(index)}
                 onMouseLeave={() => setHoveredCardIndex(null)}
-            >
-                <div className="flex items-start mb-4">
-                  <div className={`${colors.iconBg} p-3 rounded-full mr-4 shrink-0 group-hover:${colors.hoverIconBg} transition-colors duration-300`}>
-                    <IconComponent className={`${colors.iconColor} w-6 h-6 sm:w-8 sm:h-8 group-hover:${colors.hoverIconColor} transition-colors duration-300`} />
+              >
+                <div className={`flex flex-col lg:flex-row h-auto lg:h-80 overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+                  {/* Image section */}
+                  <div className="lg:w-2/5 relative bg-white flex items-center justify-center p-4">
+                    <Image
+                      src={category.imagePath}
+                      alt={category.categoryName}
+                      width={400}
+                      height={300}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
-                  <h3 className={`text-xl sm:text-2xl font-bold text-gray-800 group-hover:${colors.hoverText} transition-colors duration-300`}>
-                    {category.categoryName}
-                  </h3>
-              </div>
-                <p className="text-gray-600 text-sm mb-4">{category.description}</p>
-                <ul className="list-disc list-inside text-sm sm:text-base text-gray-600 leading-relaxed mb-6 flex-grow space-y-1.5 pl-2">
-                {category.services.map((service, serviceIndex) => (
-                    <li key={serviceIndex} className="flex items-start">
-                      <service.icon className={`${colors.iconColor} w-4 h-4 mr-2 mt-1 shrink-0`} />
-                      <span>{service.name}</span>
-                    </li>
-                ))}
-              </ul>
-            </motion.div>
+                  {/* Content section */}
+                  <div className="lg:w-3/5 p-6 md:p-8 flex flex-col justify-center bg-gray-50">
+                    <div className="flex items-start mb-6">
+                      <div className={`bg-white p-3 rounded-full mr-4 shrink-0 group-hover:bg-purple-100 transition-colors duration-300 shadow-md`}>
+                        <IconComponent className={`${category.iconColor} w-6 h-6 sm:w-8 sm:h-8 group-hover:text-purple-700 transition-colors duration-300`} />
+                      </div>
+                      <h3 className={`text-xl sm:text-2xl font-bold text-gray-800 group-hover:text-purple-700 transition-colors duration-300`}>
+                        {category.categoryName}
+                      </h3>
+                    </div>
+                    <p className="text-gray-600 text-sm mb-4">{category.description}</p>
+                    <ul className={`list-disc list-inside text-sm sm:text-base text-gray-600 leading-relaxed space-y-2 pl-2`}>
+                      {category.services.map((service, serviceIndex) => (
+                        <li key={serviceIndex} className="flex items-start">
+                          <CheckCircle className="w-4 h-4 text-purple-600 mr-2 mt-0.5 shrink-0" />
+                          <span className="list-none">{service}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
             );
           })}
         </motion.div>

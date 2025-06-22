@@ -20,10 +20,10 @@ const TransformAISection = () => {
         <div className="absolute inset-0 bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
       </div>
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="flex flex-col lg:flex-row gap-16 items-center">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           {/* Content section */}
             <motion.div 
-            className="w-full lg:w-1/2 text-center lg:text-left space-y-8"
+            className="w-full lg:w-3/5 text-center lg:text-left space-y-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
@@ -31,12 +31,15 @@ const TransformAISection = () => {
               variants={fadeIn}
             >
             <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
-                <div className="w-6 h-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-700"></div>
-                <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-700 bg-clip-text text-transparent font-medium uppercase tracking-wider text-sm">ABOUT US</span>
-                <div className="w-6 h-0.5 bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-700"></div>
+                <div className="w-6 h-0.5 bg-purple-600"></div>
+                <span className="text-purple-600 font-medium uppercase tracking-wider text-sm">ABOUT US</span>
+                <div className="w-6 h-0.5 bg-purple-600"></div>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 leading-tight">
-                Transform Your Business with <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-700 bg-clip-text text-transparent">Custom AI, Automation & Data-Driven Insights</span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-800 mb-6 leading-tight">
+                Transform Your Business with{' '}
+                <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-700 bg-clip-text text-transparent">
+                  Custom AI, Automation & Data-Driven Insights
+                </span>
               </h2>
             <p className="text-gray-600 max-w-3xl mx-auto lg:mx-0 text-lg leading-relaxed">
                 At Gateway Workforce, we build cutting-edge AI solutions that empower enterprises to harness the full potential of artificial intelligence. From custom Large Language Models (LLMs) to intelligent automation and predictive analytics, we deliver tailored AI strategies that drive efficiency, innovation, and competitive advantage.
@@ -70,14 +73,14 @@ const TransformAISection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
             viewport={{ once: true }}
-            className="w-full lg:w-1/2"
+            className="w-full lg:w-2/5"
           >
             <div className="relative">
               <Image
-                src="/images/saas.jpg"
+                src="/images/ai-hero.jpg"
                 alt="AI Solutions Professional"
-                width={600}
-                height={500}
+                width={400}
+                height={350}
                 className="rounded-2xl shadow-xl object-cover"
                 priority
               />

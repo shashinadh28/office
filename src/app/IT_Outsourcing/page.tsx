@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import AnimatedSVG from '../../components/ui/animated-svg'; // Assuming this path is correct
 import FooterSection from '@/components/footer'; // Assuming this path is correct
+import HireTalentSection from '@/components/HireTalentSection';
 
 // Import IT Outsourcing specific sections
 import WhyChooseUsSection from './WhyChooseUsSection';
@@ -12,6 +13,7 @@ import JourneySection from './JourneySection';
 import StatsSection from './StatsSection';
 import TestimonialsSection from './TestimonialsSection';
 import TechnologiesSection from './TechnologiesSection';
+import TransformBusinessSection from './TransformBusinessSection';
 import ContactForm from './ContactForm';
 
 const ITOutsourcingPage: React.FC = () => {
@@ -109,8 +111,16 @@ const ITOutsourcingPage: React.FC = () => {
       </div>
       <WhyChooseUsSection />
       <StatsSection />
-      <TestimonialsSection />
       <TechnologiesSection />
+      <HireTalentSection theme={{
+        primary: "sky-600",
+        secondary: "yellow-500", 
+        accent: "blue-600",
+        background: "from-sky-50 via-white to-yellow-50",
+        gradientFrom: "sky-600",
+        gradientTo: "yellow-500"
+      }} />
+      <TransformBusinessSection />
       
       {/* Footer - Copied from US_Taxation page structure */}
       <footer className="py-8 text-center text-gray-700 bg-gray-200 border-t border-gray-300">

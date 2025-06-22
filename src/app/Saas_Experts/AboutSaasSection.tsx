@@ -30,13 +30,13 @@ const AboutSaasSection = () => {
               transition={{ duration: 0.5 }}
               variants={fadeIn}
             >
-            <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
-                <div className="w-6 h-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700"></div>
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent font-medium uppercase tracking-wider text-sm">ABOUT US</span>
-                <div className="w-6 h-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700"></div>
+                          <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
+                <div className="w-6 h-0.5 bg-[#F35120]"></div>
+                <span className="text-[#F35120] font-medium uppercase tracking-wider text-sm">ABOUT US</span>
+                <div className="w-6 h-0.5 bg-[#F35120]"></div>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 leading-tight">
-                Maximize Your Business Potential with <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">Seamless SaaS Solutions</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-black mb-6 leading-tight">
+                Maximize Your Business Potential with <span className="text-[#F35120]">Seamless SaaS Solutions</span>
               </h2>
             <p className="text-gray-600 max-w-3xl mx-auto lg:mx-0 text-lg leading-relaxed">
                 At Gateway Workforce, we specialize in end-to-end SaaS integration, customization, and optimization for leading platforms including Salesforce, Shopify, and HubSpot. Our certified experts help businesses streamline operations, enhance customer experiences, and drive growth through powerful SaaS solutions tailored to your unique needs.
@@ -51,13 +51,13 @@ const AboutSaasSection = () => {
                 ].map((item, index) => (
                   <motion.div 
                     key={index}
-                    className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100 hover:border-gradient-to-r hover:from-blue-600 hover:via-purple-600 hover:to-indigo-700 hover:shadow-lg transition-all duration-300"
+                    className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100 hover:border-[#F35120] hover:shadow-lg transition-all duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent mb-1 sm:mb-2">{item.number}</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-[#F35120] mb-1 sm:mb-2">{item.number}</p>
                     <p className="text-sm sm:text-base text-gray-600">{item.label}</p>
                   </motion.div>
                 ))}

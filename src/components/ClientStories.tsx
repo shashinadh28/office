@@ -64,10 +64,10 @@ const ClientStories = () => {
 
   // Enhanced floating elements data
   const floatingElements = [
-    { icon: Sparkles, position: "top-20 left-16", delay: 0, color: "text-cyan-400", size: "w-8 h-8" },
+    { icon: Sparkles, position: "top-20 left-16", delay: 0, color: "text-blue-400", size: "w-8 h-8" },
     { icon: Quote, position: "top-32 right-20", delay: 1, color: "text-purple-400", size: "w-6 h-6" },
     { icon: Star, position: "bottom-32 left-20", delay: 2, color: "text-yellow-400", size: "w-7 h-7" },
-    { icon: Sparkles, position: "bottom-20 right-16", delay: 3, color: "text-blue-400", size: "w-8 h-8" },
+    { icon: Sparkles, position: "bottom-20 right-16", delay: 3, color: "text-cyan-400", size: "w-8 h-8" },
     { icon: Quote, position: "top-1/2 left-8", delay: 4, color: "text-emerald-400", size: "w-5 h-5" },
     { icon: Star, position: "top-1/4 right-8", delay: 5, color: "text-pink-400", size: "w-6 h-6" },
     { icon: Sparkles, position: "bottom-1/4 left-12", delay: 6, color: "text-orange-400", size: "w-7 h-7" },
@@ -79,19 +79,19 @@ const ClientStories = () => {
   ];
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-slate-900 via-gray-900 to-blue-900 relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
       {/* Glass Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-emerald-500/15 to-teal-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
+        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-emerald-500/8 to-teal-500/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
       </div>
 
       {/* Enhanced Floating Elements */}
       {floatingElements.map((element, index) => (
         <motion.div
           key={index}
-          className={`absolute ${element.position} ${element.color} opacity-30 hidden md:block`}
+          className={`absolute ${element.position} ${element.color} opacity-20 hidden md:block`}
           animate={{
             y: [0, -15, 0],
             x: index % 2 === 0 ? [0, 10, 0] : [0, -10, 0],
@@ -113,7 +113,7 @@ const ClientStories = () => {
       {[...Array(8)].map((_, index) => (
         <motion.div
           key={`particle-${index}`}
-          className={`absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-40 hidden lg:block`}
+          className={`absolute w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-30 hidden lg:block`}
           style={{
             top: `${20 + (index * 10)}%`,
             left: `${10 + (index * 12)}%`,
@@ -121,7 +121,7 @@ const ClientStories = () => {
           animate={{
             y: [0, -30, 0],
             x: [0, 20, 0],
-            opacity: [0.2, 0.8, 0.2],
+            opacity: [0.1, 0.3, 0.1],
             scale: [1, 1.5, 1],
           }}
           transition={{
@@ -143,21 +143,21 @@ const ClientStories = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.h2 
-            className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Client Stories</span>: Why They Chose Us
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Client Stories</span>: Why They Chose Us
           </motion.h2>
         </motion.div>
 
         {/* Main Content Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center max-w-7xl mx-auto">
           
           {/* Left Side - Profile Circles */}
-          <div className="relative">
+          <div className="lg:col-span-4 relative">
             <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-3 gap-6 justify-items-center">
               {testimonialData.map((profile, index) => (
                 <motion.div
@@ -167,8 +167,13 @@ const ClientStories = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
+                  animate={{
+                    scale: activeProfileIndex === index ? 1.2 : 0.85,
+                    opacity: activeProfileIndex === index ? 1 : 0.6,
+                  }}
                   whileHover={{ 
-                    scale: hoveredProfile === index ? 1.3 : 1.2,
+                    scale: 1.15,
+                    opacity: 1,
                     transition: { duration: 0.3 }
                   }}
                   onClick={() => setActiveProfileIndex(index)}
@@ -180,9 +185,10 @@ const ClientStories = () => {
                 >
                   {/* Glow Effect */}
                   <motion.div
-                    className={`absolute inset-0 rounded-full bg-gradient-to-r ${profile.color} opacity-0 blur-xl group-hover:opacity-50 transition-opacity duration-300`}
+                    className={`absolute inset-0 rounded-full bg-blue-500 opacity-0 blur-xl transition-opacity duration-300`}
                     animate={{
-                      scale: activeProfileIndex === index ? [1, 1.2, 1] : 1,
+                      opacity: activeProfileIndex === index ? 0.3 : 0,
+                      scale: activeProfileIndex === index ? [1, 1.1, 1] : 1,
                     }}
                     transition={{
                       duration: 2,
@@ -191,16 +197,16 @@ const ClientStories = () => {
                   />
                   
                   {/* Profile Image */}
-                  <div className={`relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 transition-all duration-300 ${
+                  <div className={`relative w-16 h-16 md:w-18 md:h-18 rounded-full overflow-hidden transition-all duration-300 ${
                     activeProfileIndex === index 
-                      ? `border-transparent bg-gradient-to-r ${profile.color} p-1` 
-                      : 'border-white/30'
+                      ? `border-2 border-blue-500 shadow-lg shadow-blue-500/30` 
+                      : 'border border-gray-200'
                   }`}>
-                    <div className="w-full h-full rounded-full overflow-hidden bg-white flex items-center justify-center">
+                    <div className="w-full h-full rounded-full overflow-hidden bg-white flex items-center justify-center shadow-sm">
                       {index % 2 === 0 ? (
-                        <User className="w-12 h-12 text-gray-600" />
+                        <User className="w-8 h-8 text-gray-600" />
                       ) : (
-                        <Users className="w-12 h-12 text-gray-600" />
+                        <Users className="w-8 h-8 text-gray-600" />
                       )}
                     </div>
                   </div>
@@ -208,7 +214,7 @@ const ClientStories = () => {
                   {/* Active Indicator */}
                   {activeProfileIndex === index && (
                     <motion.div
-                      className={`absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r ${profile.color} shadow-lg`}
+                      className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 shadow-lg`}
                       layoutId="activeProfileIndicator"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
@@ -218,7 +224,7 @@ const ClientStories = () => {
 
                   {/* Company Badge */}
                   <motion.div
-                    className="absolute -top-2 -right-2 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute -top-1 -right-1 bg-white/90 backdrop-blur-sm rounded-full px-1.5 py-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-sm border border-gray-200"
                     initial={{ scale: 0 }}
                     whileHover={{ scale: 1 }}
                   >
@@ -230,19 +236,66 @@ const ClientStories = () => {
 
             {/* Decorative Elements */}
             <motion.div
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-white/10 rounded-full -z-10"
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 border border-gray-100 rounded-full -z-10"
               animate={{ rotate: 360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             />
             <motion.div
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-white/5 rounded-full -z-10"
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-gray-50 rounded-full -z-10"
               animate={{ rotate: -360 }}
               transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
             />
           </div>
+
+          {/* Center - Vertical Indicator Bar */}
+          <div className="lg:col-span-1 flex items-center justify-center">
+            <div className="relative">
+              {/* Main Vertical Line */}
+              <div className="w-1 h-80 bg-gray-200 rounded-full relative">
+                {/* Animated Progress Line */}
+                <motion.div
+                  className="w-1 bg-blue-500 rounded-full absolute top-0"
+                  initial={{ height: "0%" }}
+                  animate={{ height: `${((activeProfileIndex + 1) / testimonialData.length) * 100}%` }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                />
+                
+                {/* Circle Indicators */}
+                {testimonialData.map((_, index) => (
+                  <motion.div
+                    key={index}
+                    className={`absolute w-6 h-6 rounded-full border-2 -left-2.5 cursor-pointer transition-all duration-300 ${
+                      index <= activeProfileIndex 
+                        ? 'bg-blue-500 border-blue-500 shadow-lg shadow-blue-500/30' 
+                        : 'bg-white border-gray-200'
+                    }`}
+                    style={{ top: `${(index / (testimonialData.length - 1)) * 100}%`, transform: 'translateY(-50%)' }}
+                    whileHover={{ 
+                      scale: 1.3,
+                      boxShadow: index <= activeProfileIndex ? "0 0 20px rgba(59, 130, 246, 0.5)" : "0 0 15px rgba(0, 0, 0, 0.1)"
+                    }}
+                    onClick={() => setActiveProfileIndex(index)}
+                    animate={{
+                      scale: index === activeProfileIndex ? 1.2 : 1,
+                    }}
+                  >
+                    {/* Inner dot for active state */}
+                    {index <= activeProfileIndex && (
+                      <motion.div
+                        className="absolute inset-1 bg-white rounded-full"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
           
           {/* Right Side - Testimonial Card */}
-          <div className="relative">
+          <div className="lg:col-span-7 relative">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeProfileIndex}
@@ -253,9 +306,9 @@ const ClientStories = () => {
                 className="relative"
               >
                 {/* Glass Card */}
-                <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl p-8 lg:p-10 border border-white/20 shadow-2xl overflow-hidden">
+                <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 lg:p-10 border border-white/40 shadow-2xl overflow-hidden">
                   {/* Gradient Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${testimonialData[activeProfileIndex].color} opacity-5 rounded-3xl`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl`} />
                   
                   {/* Content */}
                   <div className="relative z-10">
@@ -266,7 +319,7 @@ const ClientStories = () => {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.4, delay: 0.1 }}
                     >
-                      <Quote className={`w-12 h-12 bg-gradient-to-r ${testimonialData[activeProfileIndex].color} bg-clip-text text-transparent`} />
+                      <Quote className={`w-12 h-12 text-blue-500`} />
                     </motion.div>
 
                     {/* Company and Position */}
@@ -276,10 +329,10 @@ const ClientStories = () => {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4, delay: 0.2 }}
                     >
-                      <h3 className={`text-2xl lg:text-3xl font-bold bg-gradient-to-r ${testimonialData[activeProfileIndex].color} bg-clip-text text-transparent mb-2`}>
+                      <h3 className={`text-2xl lg:text-3xl font-bold text-blue-600 mb-2`}>
                         {testimonialData[activeProfileIndex].company}
                       </h3>
-                      <p className="text-white/70 text-lg">
+                      <p className="text-gray-600 text-lg">
                         {testimonialData[activeProfileIndex].position}
                       </p>
                     </motion.div>
@@ -300,7 +353,7 @@ const ClientStories = () => {
 
                     {/* Quote */}
                     <motion.blockquote
-                      className="text-xl lg:text-2xl font-medium text-white leading-relaxed mb-6"
+                      className="text-xl lg:text-2xl font-medium text-gray-800 leading-relaxed mb-6"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: 0.4 }}
@@ -310,7 +363,7 @@ const ClientStories = () => {
                     
                     {/* Description */}
                     <motion.p
-                      className="text-white/80 leading-relaxed text-lg"
+                      className="text-gray-600 leading-relaxed text-lg"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: 0.5 }}
@@ -321,12 +374,12 @@ const ClientStories = () => {
 
                   {/* Decorative Elements */}
                   <motion.div
-                    className="absolute top-4 right-4 w-20 h-20 rounded-full bg-white/5 backdrop-blur-sm"
+                    className="absolute top-4 right-4 w-20 h-20 rounded-full bg-blue-500/5 backdrop-blur-sm"
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   />
                   <motion.div
-                    className="absolute bottom-4 left-4 w-16 h-16 rounded-full bg-white/5 backdrop-blur-sm"
+                    className="absolute bottom-4 left-4 w-16 h-16 rounded-full bg-purple-500/5 backdrop-blur-sm"
                     animate={{ rotate: -360 }}
                     transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                   />
@@ -335,29 +388,6 @@ const ClientStories = () => {
             </AnimatePresence>
           </div>
         </div>
-
-        {/* Bottom Navigation Dots */}
-        <motion.div
-          className="flex justify-center gap-3 mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          {testimonialData.map((_, index) => (
-            <motion.button
-              key={index}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                activeProfileIndex === index 
-                  ? `bg-gradient-to-r ${testimonialData[index].color} shadow-lg` 
-                  : 'bg-white/30 hover:bg-white/50'
-              }`}
-              whileHover={{ scale: 1.5 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => setActiveProfileIndex(index)}
-            />
-          ))}
-        </motion.div>
       </div>
     </section>
   );

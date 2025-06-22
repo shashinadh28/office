@@ -92,7 +92,7 @@ const TestimonialsSection: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <span className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-bold px-6 py-3 rounded-full uppercase tracking-widest shadow-lg">
+                            <span className="inline-block bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white text-sm font-bold px-6 py-3 rounded-full uppercase tracking-widest shadow-lg">
               Client Stories
             </span>
           </motion.div>
@@ -103,7 +103,7 @@ const TestimonialsSection: React.FC = () => {
             custom={0.2}
           >
             What Our{' '}
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
+            <span className="text-[#FDC703]">
               Customers
             </span>{' '}
             Say
@@ -208,7 +208,7 @@ const TestimonialsSection: React.FC = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
         >
           <motion.button
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

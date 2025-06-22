@@ -34,41 +34,41 @@ const whyPartnerItemsData = [
     title: "Certified SaaS Specialists", 
     subtitle: "Salesforce, HubSpot & Shopify experts", 
     icon: Award, 
-    iconColor: 'text-blue-600',
-    iconBg: 'bg-blue-600',
-    hoverIconColor: 'text-blue-600',
+    iconColor: 'text-[#F35120]',
+    iconBg: 'bg-[#F35120]',
+    hoverIconColor: 'text-[#F35120]',
   },
   { 
     title: "Seamless Integrations", 
     subtitle: "Connect critical business systems", 
     icon: Zap, 
-    iconColor: 'text-purple-600',
-    iconBg: 'bg-purple-600',
-    hoverIconColor: 'text-purple-600',
+    iconColor: 'text-[#F35120]',
+    iconBg: 'bg-[#F35120]',
+    hoverIconColor: 'text-[#F35120]',
   },
   { 
     title: "Customization & Scalability", 
     subtitle: "Solutions that grow with you", 
     icon: Palette, 
-    iconColor: 'text-indigo-700',
-    iconBg: 'bg-indigo-700',
-    hoverIconColor: 'text-indigo-700',
+    iconColor: 'text-black',
+    iconBg: 'bg-black',
+    hoverIconColor: 'text-black',
   },
   { 
     title: "Performance Optimization", 
     subtitle: "Enhance efficiency & adoption", 
     icon: TrendingUp, 
-    iconColor: 'text-purple-600',
-    iconBg: 'bg-purple-600',
-    hoverIconColor: 'text-purple-600',
+    iconColor: 'text-[#F35120]',
+    iconBg: 'bg-[#F35120]',
+    hoverIconColor: 'text-[#F35120]',
   },
   { 
     title: "End-to-End Support", 
     subtitle: "Implementation to training", 
     icon: Headphones, 
-    iconColor: 'text-blue-600',
-    iconBg: 'bg-blue-600',
-    hoverIconColor: 'text-blue-600',
+    iconColor: 'text-black',
+    iconBg: 'bg-black',
+    hoverIconColor: 'text-black',
     },
 ];
 
@@ -86,12 +86,12 @@ const WhyPartnerSaasSection = () => {
           className="text-center mb-12 md:mb-16"
         >
           <span 
-            className="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4"
+            className="inline-block bg-[#F35120] text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-4"
           >
             Key Benefits
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Why Partner with Gateway Workforce for <span className="border-b-4 border-purple-600">SaaS Solutions?</span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4">
+            Why Partner with Gateway Workforce for <span className="border-b-4 border-[#F35120]">SaaS Solutions?</span>
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
             We understand that every business has unique needs and goals. We take the time to listen, analyze your current SaaS infrastructure, and deliver tailored solutions that drive growth and efficiency across your organization.
@@ -123,7 +123,7 @@ const WhyPartnerSaasSection = () => {
                               ${isHovered ? 'bg-white' : item.iconBg}`}>
                   <IconComponent size={32} className={`${isHovered ? item.hoverIconColor : 'text-white'} transition-colors duration-300`} />
                 </div>
-                <h3 className={`font-semibold text-xl mb-1.5 transition-colors duration-300 ${isHovered ? 'text-white' : 'text-indigo-700'}`}>{item.title}</h3>
+                <h3 className={`font-semibold text-xl mb-1.5 transition-colors duration-300 ${isHovered ? 'text-white' : 'text-black'}`}>{item.title}</h3>
                 <p className={`text-sm mb-5 h-10 transition-colors duration-300 ${isHovered ? 'text-gray-100' : 'text-gray-600'}`}>{item.subtitle}</p>
               </motion.div>
             );
