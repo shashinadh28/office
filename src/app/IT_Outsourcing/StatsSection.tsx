@@ -27,13 +27,13 @@ const staggerContainer = {
 const statsData = [
   {
     id: 1,
-    value: "25+",
+    value: "10+",
     label: "Years of Excellence",
     icon: Briefcase,
   },
   {
     id: 2,
-    value: "500+",
+    value: "25+",
     label: "Global Clients",
     icon: Users,
   },
@@ -45,7 +45,7 @@ const statsData = [
   },
   {
     id: 4,
-    value: "100+",
+    value: "30+",
     label: "Team Members",
     icon: Building,
   },

@@ -11,6 +11,10 @@ const links = [
         group: 'Product',
         items: [
             {
+                title: 'Virtual Assistant',
+                href: '/virtual-assistant',
+            },
+            {
                 title: 'Features',
                 href: '#',
             },

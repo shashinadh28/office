@@ -78,9 +78,10 @@ const WhyChooseSection = () => {
           >
             <div className="group relative w-full h-[400px] md:h-[500px] rounded-lg">
               <Image 
-                src="/images/healthcare.webp" 
+                src="/optimized/images/healthcare.webp" 
                 alt="Healthcare BPO Illustration"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
                 className="relative z-10 object-contain object-center transition-all duration-300 ease-in-out group-hover:scale-105"
               />
               {/* Sunburst Effect */}

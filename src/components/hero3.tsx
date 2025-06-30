@@ -58,6 +58,12 @@ const projects = [
     link: '/optimized/images/artificial.webp',
     color: '#00c4a7', // New color for the 6th card
   },
+  {
+    title: 'Virtual Assistant',
+    description: 'Professional Administrative & Operational Support\nDelegate routine tasks and focus on strategic growth.\nOur skilled assistants handle scheduling, research, communication, and project coordination with precision.',
+    link: '/images/virtual-assistance/virtual-assestent-main.jpg',
+    color: '#9b59b6', // Purple color for Virtual Assistant
+  },
 ];
 
 export default function Hero3() {
@@ -72,8 +78,8 @@ export default function Hero3() {
         <main id='services-section' className='bg-[#021533]' ref={container}>
           <>
             <section className='h-[50vh] sm:h-[60vh] md:h-[70vh] w-full grid place-content-center px-4'>
-              <h2 className={`${ibmPlexSans.className} text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 md:mb-4 text-center text-white max-w-4xl`}>
-                Business Solutions We <span className="text-teal-500">Support</span>
+              <h2 className={`${ibmPlexSans.className} text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 text-center text-white max-w-4xl`}>
+               Our  <span className="text-teal-500">Services</span>
               </h2>
               <p className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl px-4 text-center max-w-3xl mx-auto leading-relaxed">
                 We power global businesses with India's top talent, offering specialized outsourcing solutions across
@@ -217,7 +223,15 @@ export const Card: React.FC<CardProps> = ({
                 <a
                   className="inline-flex items-center gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-sm sm:text-base md:text-lg mt-2"
                 >
-                  See more
+                  Know more
+                </a>
+                </Link>
+              ) : title === 'Virtual Assistant' ? (
+                <Link href="/virtual-assistant" passHref legacyBehavior>
+                <a
+                  className="inline-flex items-center gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-sm sm:text-base md:text-lg mt-2"
+                >
+                  Know more
                 </a>
                 </Link>
               ) : (
@@ -225,7 +239,7 @@ export const Card: React.FC<CardProps> = ({
                   type="button"
                   className="inline-flex items-center gap-2 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 rounded-full bg-white text-[#031936] font-bold shadow-md hover:bg-[#18C7FF] hover:text-white transition-colors text-sm sm:text-base md:text-lg mt-2"
                 >
-                  See more
+                  Know more
                 </button>
               )}
               <svg
