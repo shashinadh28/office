@@ -19,7 +19,9 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build # The build command of your project
+        run: |
+          echo 'const withBundleAnalyzer = require("./scripts/analyze-bundle"); const nextConfig = withBundleAnalyzer({ output: "export", distDir: "out", images: { unoptimized: true }, eslint: { ignoreDuringBuilds: true }, reactStrictMode: true, compress: true, poweredByHeader: false, generateEtags: true, experimental: { optimizeCss: true, optimizePackageImports: ["lucide-react"], scrollRestoration: true }, webpack: (config, { isServer }) => { config.module.rules.push({ test: /\.svg$/i, issuer: /\.[jt]sx?$/, use: [{ loader: "@svgr/webpack", options: { svgoConfig: { plugins: [{ name: "preset-default", params: { overrides: { removeViewBox: false, cleanupIDs: false } } }] } } }] }); return config; } }); module.exports = nextConfig;' > next.config.js
+          npm run build
 
       - name: Push
         uses: s0/git-publish-subdir-action@develop

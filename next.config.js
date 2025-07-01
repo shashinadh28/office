@@ -2,10 +2,8 @@
 const withBundleAnalyzer = require('./scripts/analyze-bundle');
 
 const nextConfig = withBundleAnalyzer({
-  output: "export", // Enabled for static export
-  distDir: "out", // Output directory for static export
   images: {
-    unoptimized: false, // Enable optimization for development
+    unoptimized: true,
   },
   eslint: {
     ignoreDuringBuilds: true,
