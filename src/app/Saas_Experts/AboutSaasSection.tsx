@@ -46,8 +46,8 @@ const AboutSaasSection = () => {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12">
                 {[
                   { number: '5+', label: 'Years of Experience' },
-                  { number: '50+', label: 'Clients' },
-                  { number: '100%', label: 'Client Satisfaction' }
+                  { number: '25+', label: 'Clients' },
+                  { number: '95%', label: 'Client Satisfaction' }
                 ].map((item, index) => (
                   <motion.div 
                     key={index}

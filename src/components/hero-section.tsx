@@ -29,9 +29,7 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, []);
 
-  const scrollDown = () => {
-    window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
-  };
+
 
   // Fast professional animation variants
   const fadeInUp = {
@@ -456,13 +454,13 @@ export default function HeroSection() {
           />
         </motion.div>
 
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 flex flex-col justify-center min-h-screen pt-20 md:pt-16">
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 flex flex-col justify-center min-h-screen pt-12 md:pt-8">
           {/* Constrain content width better for different screen sizes */}
           <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto sm:mx-0">
             
             {/* Main headline with FAST animation */}
             <motion.div 
-              className="mb-6 sm:mb-8 mt-2 md:mt-4"
+              className="mb-6 sm:mb-8 mt-0"
               initial="hidden"
               animate={animationsTriggered ? "visible" : "hidden"}
               variants={{
@@ -477,7 +475,7 @@ export default function HeroSection() {
               }}
             >
               <motion.h1 
-                className="font-montserrat text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-gray-800 mb-4"
+                className="font-montserrat text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-800 mb-4 md:pt-10 lg:pt-20"
                 variants={slideInLeft}
               >
                 <motion.span variants={fadeInUp}>Connecting Global Businesses</motion.span>
@@ -585,7 +583,7 @@ export default function HeroSection() {
               }}
             >
               {[
-                { number: "15+", label: "Global Clients" },
+                { number: "25+", label: "Global Clients" },
                 { number: "35+", label: "Skilled Professionals" },
                 { number: "95%", label: "Client Satisfaction" }
               ].map((stat, index) => (
@@ -631,45 +629,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Fast scroll indicator - moved further down */}
-        <motion.div
-          className="absolute bottom-4 sm:bottom-2 md:bottom-1 left-1/2 transform -translate-x-1/2"
-          initial="hidden"
-          animate={animationsTriggered ? "visible" : "hidden"}
-          variants={fadeInUp}
-          transition={{ delay: 1.5 }}
-        >
-          <motion.button
-            onClick={scrollDown}
-            className="flex flex-col items-center gap-2 p-3"
-            whileHover={{ y: -5, scale: 1.05 }}
-            transition={{ duration: 0.4 }}
-          >
-            <span className="text-sm text-gray-600 font-medium tracking-wide">
-              DISCOVER MORE
-            </span>
-            
-            <motion.div
-              className="w-10 h-10 rounded-full border-2 border-gray-400 flex items-center justify-center bg-white/70 backdrop-blur-sm"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <svg
-                className="w-5 h-5 text-gray-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </motion.div>
-          </motion.button>
-        </motion.div>
+
       </div>
     </div>
   );

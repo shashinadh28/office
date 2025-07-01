@@ -23,7 +23,7 @@ const AboutPage = () => {
 
   const achievements = [
     { icon: Users, label: "10+ Professionals Placed", value: "500+", color: "from-blue-500 to-cyan-500" },
-    { icon: Globe, label: "Global Clients", value: "50+", color: "from-purple-500 to-pink-500" },
+    { icon: Globe, label: "Global Clients", value: "25+", color: "from-purple-500 to-pink-500" },
     { icon: Award, label: "Client Satisfaction", value: "95%", color: "from-green-500 to-emerald-500" },
     { icon: TrendingUp, label: "Growth in 2 Years", value: "30%", color: "from-orange-500 to-red-500" },
   ];

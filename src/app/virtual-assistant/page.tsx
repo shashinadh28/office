@@ -653,180 +653,151 @@ export default function VirtualAssistantPage() {
         </div>
       </section>
 
-      {/* Why Hire a Virtual Assistant Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 to-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            className="max-w-7xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight mb-16 text-center`}>
-              Why Hire a Virtual Assistant?
-            </h2>
-            
-            {/* Two Cards Side by Side */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16 items-center">
-              
-              {/* Left Card - Problem Statement */}
-              <motion.div
-                className="group relative bg-white/80 backdrop-blur-sm rounded-3xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-500 p-8 md:p-10"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.02 }}
-              >
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-red-50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="relative z-10">
-                  {/* Problem Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <BarChart3 className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <div className="text-lg md:text-xl text-gray-700 leading-relaxed space-y-4">
-                    <p>As a busy leader, there are a lot of things on your plate.</p>
-                    
-                    <p>Whether it's managing email, staying on top of project updates, or keeping up with an overloaded schedule, there are so many details required to run a successful organization.</p>
-                    
-                    <p className="font-semibold text-orange-600">But those details come at a heavy cost: your focus.</p>
-                    
-                    <p>The important details of your organization have to be handled, but who says you're the best person to handle them?</p>
-                    
-                    <p>We all want to focus on things that make the biggest impact—professionally and personally. But too often, the demanding details steal our time and attention.</p>
-                    
-                    <p className="font-bold text-2xl text-red-600 mt-6">It's time to take it back with Gateway.</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Right Card - Solution Statement */}
-              <motion.div
-                className="group relative bg-white/80 backdrop-blur-sm rounded-3xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-500 p-8 md:p-10"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.02 }}
-              >
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <div className="relative z-10">
-                  {/* Solution Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    <Shield className="w-8 h-8 text-white" />
-                  </div>
-                  
-                  <div className="text-lg md:text-xl text-gray-700 leading-relaxed space-y-4">
-                    <p>Gateway's AI-empowered Virtual Assistant services are pre-vetted and intentionally matched with you and your organization, saving you countless hours of managing job postings, filtering candidates, and checking references.</p>
-                    
-                    <p>By combining human expertise with powerful AI-enhanced tools, our assistants bring greater efficiency and insight to every task.</p>
-                    
-                    <p className="font-semibold text-teal-600">Our standards are high, and our acceptance rate is lower than Harvard's, ensuring you get the right Virtual Assistant for your needs.</p>
-                    
-                                         <p>So, instead of accomplishing those important (but time-consuming) administrative tasks, work with Gateway.</p>
-                     
-                     <p className="font-bold text-xl text-teal-600">We are a flexible staffing company you can trust—powered by people, enhanced by AI, giving you more time to focus on what matters most.</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Hire Gateway Button */}
-            <motion.div
-              className="flex justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <motion.a
-                href="https://calendly.com/deepak-teja/introduction"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Hire Gateway
-              </motion.a>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* 25 Things You Can Delegate Section */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 md:py-28 bg-gradient-to-br from-slate-900 via-gray-900 to-teal-900 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-teal-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-emerald-500 rounded-full mix-blend-multiply filter blur-2xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              
-              {/* Left Side - Image Placeholder */}
-              <motion.div
-                className="order-2 lg:order-1"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <div className="relative w-full h-96 md:h-[500px] bg-gradient-to-br from-teal-100 to-cyan-100 rounded-3xl border-2 border-dashed border-teal-300 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-4 bg-teal-200 rounded-2xl flex items-center justify-center">
-                      <svg className="w-10 h-10 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <p className="text-teal-600 font-semibold text-lg">Image Placeholder</p>
-                    <p className="text-teal-500 text-sm mt-2">Virtual Assistant Tasks</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Right Side - Content */}
-              <motion.div
-                className="order-1 lg:order-2 space-y-6"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight`}>
-                  25 Things You Can Delegate to Our Virtual Assistants Today
-                </h2>
-                
-                <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
-                  Delegation is one of the most effective tools in a leader's tool kit because it helps you grow your business. We're confident we can help your business become more productive. Still researching the benefits of hiring a virtual assistant or how this would improve your workflows? To get started, here's a list of commonly delegated tasks that you can hand over today!
-                </p>
-              </motion.div>
-            </div>
-
-            {/* View Button */}
+            
+            {/* Centered Content Header */}
             <motion.div
-              className="flex justify-center mt-16"
-              initial={{ opacity: 0, y: 20 }}
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <motion.button
-                onClick={() => window.open('/delegation-tasks', '_blank')}
-                className="group relative bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden"
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  View Tasks
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 to-white/20 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-              </motion.button>
+              <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-8`}>
+                21 Things You Can Delegate to Our Virtual Assistants Today
+              </h2>
+              
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-8">
+                Delegation is one of the most effective tools in a leader's tool kit because it helps you grow your business. We're confident we can help your business become more productive. Still researching the benefits of hiring a virtual assistant or how this would improve your workflows? To get started, here's a list of commonly delegated tasks that you can hand over today!
+              </p>
+
+              {/* Key Benefits Bar */}
+              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20 max-w-3xl mx-auto">
+                <div className="flex flex-wrap justify-center gap-8 text-center">
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 text-teal-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-white font-medium">Save Time</span>
+                  </div>
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                    </svg>
+                    <span className="text-white font-medium">Cut Costs</span>
+                  </div>
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 text-blue-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                    <span className="text-white font-medium">Increase Efficiency</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Tasks Grid */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              {[
+                { id: 1, title: "Calendar management", description: "Prioritize high-impact meetings and ruthlessly protect your time so you're focused on what moves the needle in a resource-constrained environment." },
+                { id: 2, title: "Inbox management", description: "Triage and organize emails to ensure critical opportunities aren't missed, reporting times they reply, and you're not constantly task-switching when clarity matters most." },
+                { id: 3, title: "Meeting prep and follow-up", description: "Maximize the value of every meeting by serving prepared and capturing action items—so nothing gets lost, and every minute counts when time and focus are in short supply." },
+                { id: 4, title: "Travel coordination", description: "Book efficient, budget-conscious travel that supports business-critical trips and relationship building—because every dollar matters more now." },
+                { id: 5, title: "Competitive and market intelligence", description: "Monitor competitor shifts, gather client feedback, and track industry changes so leadership can quickly identify threats or pivot toward emerging opportunities." },
+                { id: 6, title: "Recession-specific strategy support", description: "Assist with gathering internal and external insights to shape your response plan—whether it's identifying new services, doubling down on the basics, or innovating offerings." },
+                { id: 7, title: "Process documentation", description: "Build up SOPs to make operations more efficient, reduce training time, and protect against disruptions—especially important when teams are leaner or roles shift." },
+                { id: 8, title: "Expense Tracking", description: "Track budget details and flag unnecessary or redundant costs—helping everyone save and avoid death by a thousand minor budget cuts." },
+                { id: 9, title: "Cold email outreach", description: "Support relationship generation with targeted, personalized email outreach—creating new revenue opportunities without increasing your marketing spend." },
+                { id: 10, title: "Research and vendor support", description: "Source budget-friendly vendors and summarize relevant market data to accelerate smarter decisions and spend wisely and stay ahead of the curve." },
+                { id: 11, title: "Project coordination", description: "Keep cross-functional initiatives on track and within budget as business priorities continue—even as your team priorities competing priorities." },
+                { id: 12, title: "Relationship management", description: "Maintain clean CRM records and proactively schedule check-ins to strengthen client relationships and improve retention and referrals." },
+                { id: 13, title: "File and document organization", description: "Keep files efficiently organized across digital systems so teams can access what they need—fast—without wasting time hunting for info." },
+                { id: 14, title: "Light bookkeeping support", description: "Help advisors compile and generate simple reports that give leadership quick visibility into spend patterns, helping spot leaks before they tip." },
+                { id: 15, title: "Task tracking and reminders", description: "Prevent details from slipping through the cracks—especially when teams are juggling more with less." },
+                { id: 16, title: "Gift or appreciation coordination", description: "Support morale and relationship building in cost-conscious ways, fulfilling loyalty among clients and internal networks." },
+                { id: 17, title: "Internal dashboard updates", description: "Keep KPIs and financial snapshots current so leaders can see at a glance how it's working—and what needs attention—at all times." },
+                { id: 18, title: "Software/tool vetting", description: "Audit current tools and compare alternatives to eliminate redundancy, cut costs, and boost team efficiency without sacrificing performance." },
+                { id: 19, title: "Social Media Scheduling", description: "Maintain a consistent online presence that supports visibility and brand trust—without needing to invest in paid campaigns." },
+                { id: 20, title: "Team Communication Support", description: "Help distribute updates, share important messages, and keep team aligned—even if everyone's moving fast and bandwidth is tight." },
+                { id: 21, title: "Document editing and proofreading", description: "Polish internal and external communications to professionals—so your messaging stays sharp and credible when it matters most." }
+              ].map((task, index) => (
+                <motion.div
+                  key={task.id}
+                  className="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 hover:bg-white/20 hover:border-teal-400/50 transition-all duration-300 overflow-hidden group hover:-translate-y-1"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="p-6">
+                    <div className="flex items-start mb-4">
+                      <div className="bg-gradient-to-r from-teal-400 to-cyan-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">
+                        {task.id}
+                      </div>
+                      <h3 className="text-lg font-bold text-white group-hover:text-teal-300 transition-colors">
+                        {task.title}
+                      </h3>
+                    </div>
+                    <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors">
+                      {task.description}
+                    </p>
+                  </div>
+                  <div className="h-1 bg-gradient-to-r from-teal-400 to-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* CTA Section */}
+            <motion.div
+              className="text-center mt-20"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h3 className={`${ibmPlexSans.className} text-3xl md:text-4xl font-bold text-white mb-6`}>
+                Ready to Delegate and Focus on What Matters Most?
+              </h3>
+              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Don't let administrative tasks consume your valuable time. 
+                Let our skilled virtual assistants handle these 21 critical tasks so you can focus on growing your business.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.a
+                  href="https://calendly.com/deepak-teja/introduction"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Get Started Today
+                </motion.a>
+                <motion.button
+                  onClick={() => document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Learn More About Our Services
+                </motion.button>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -1094,6 +1065,113 @@ export default function VirtualAssistantPage() {
               </motion.a>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Why Hire a Virtual Assistant Section - MOVED TO END */}
+      <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 to-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="max-w-7xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight mb-16 text-center`}>
+              Why Hire a Virtual Assistant?
+            </h2>
+            
+            {/* Two Cards Side by Side */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-16 items-center">
+              
+              {/* Left Card - Problem Statement */}
+              <motion.div
+                className="group relative bg-white/80 backdrop-blur-sm rounded-3xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-500 p-8 md:p-10"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
+              >
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-50 to-red-50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  {/* Problem Icon */}
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <BarChart3 className="w-8 h-8 text-white" />
+                  </div>
+                  
+                  <div className="text-lg md:text-xl text-gray-700 leading-relaxed space-y-4">
+                    <p>As a busy leader, there are a lot of things on your plate.</p>
+                    
+                    <p>Whether it's managing email, staying on top of project updates, or keeping up with an overloaded schedule, there are so many details required to run a successful organization.</p>
+                    
+                    <p className="font-semibold text-orange-600">But those details come at a heavy cost: your focus.</p>
+                    
+                    <p>The important details of your organization have to be handled, but who says you're the best person to handle them?</p>
+                    
+                    <p>We all want to focus on things that make the biggest impact—professionally and personally. But too often, the demanding details steal our time and attention.</p>
+                    
+                    <p className="font-bold text-2xl text-red-600 mt-6">It's time to take it back with Gateway.</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Right Card - Solution Statement */}
+              <motion.div
+                className="group relative bg-white/80 backdrop-blur-sm rounded-3xl border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-500 p-8 md:p-10"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
+              >
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-50 to-cyan-50 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative z-10">
+                  {/* Solution Icon */}
+                  <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Shield className="w-8 h-8 text-white" />
+                  </div>
+                  
+                  <div className="text-lg md:text-xl text-gray-700 leading-relaxed space-y-4">
+                    <p>Gateway's AI-empowered Virtual Assistant services are pre-vetted and intentionally matched with you and your organization, saving you countless hours of managing job postings, filtering candidates, and checking references.</p>
+                    
+                    <p>By combining human expertise with powerful AI-enhanced tools, our assistants bring greater efficiency and insight to every task.</p>
+                    
+                    <p className="font-semibold text-teal-600">Our standards are high, and our acceptance rate is lower than Harvard's, ensuring you get the right Virtual Assistant for your needs.</p>
+                    
+                    <p>So, instead of accomplishing those important (but time-consuming) administrative tasks, work with Gateway.</p>
+                     
+                    <p className="font-bold text-xl text-teal-600">We are a flexible staffing company you can trust—powered by people, enhanced by AI, giving you more time to focus on what matters most.</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Hire Gateway Button */}
+            <motion.div
+              className="flex justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <motion.a
+                href="https://calendly.com/deepak-teja/introduction"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-xl transition-all duration-300 transform hover:scale-105"
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Hire Gateway
+              </motion.a>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
       
