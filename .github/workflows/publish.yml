@@ -19,7 +19,9 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build # The build command of your project
+        env:
+          NEXT_EXPORT: true
+        run: npm run build
 
       - name: Push
         uses: s0/git-publish-subdir-action@develop
