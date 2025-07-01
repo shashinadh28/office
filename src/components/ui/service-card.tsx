@@ -10,7 +10,6 @@ interface ServiceCardItem {
   title: string;
   description: string;
   color?: string;
-  imageSrc?: string;
 }
 
 export const ServiceCardGrid = ({
@@ -39,7 +38,6 @@ export const ServiceCard = ({
   title,
   description,
   color,
-  imageSrc,
 }: ServiceCardItem) => {
   return (
     <div className="relative group h-full">
@@ -54,25 +52,9 @@ export const ServiceCard = ({
       >
         {/* Top colored background with gradient overlay */}
         <div className="relative w-full h-32 overflow-hidden">
-          {imageSrc ? (
-            <div className="absolute inset-0 z-[1]">
-              <div className={`absolute inset-0 ${color || 'bg-gradient-to-br from-indigo-600 to-blue-700'}`}></div>
-              <Image
-                src={imageSrc}
-                alt={title}
-                fill
-                className="object-cover"
-                onError={() => {
-                  // This is just for TypeScript - the actual error handling is done via CSS
-                  console.log(`Failed to load image: ${imageSrc}`);
-                }}
-              />
-            </div>
-          ) : (
-            <div 
-              className={`absolute inset-0 ${color || 'bg-gradient-to-br from-indigo-600 to-blue-700'} z-[1]`}
-            ></div>
-          )}
+          <div 
+            className={`absolute inset-0 ${color || 'bg-gradient-to-br from-indigo-600 to-blue-700'} z-[1]`}
+          ></div>
           <div 
             className="absolute inset-0 z-[2]"
             style={{

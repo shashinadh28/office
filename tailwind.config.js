@@ -2,6 +2,11 @@ module.exports = {
   // ... other config
   theme: {
     extend: {
+      spacing: {
+        '100': '25rem',
+        '200': '50rem',
+        '300': '75rem',
+      },
       fontFamily: {
         // Properly register all fonts using CSS variables for Next.js
         kanit: ['var(--font-kanit)'],
