@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from '@/components/navbar';
+import FloatingButton from '@/components/FloatingButton';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,12 +56,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+      </head>
       {/* Apply ALL font variables to the body */}
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${poppins.variable} antialiased`}
       >
         <Navbar />
         {children}
+        <FloatingButton />
       </body>
     </html>
   );

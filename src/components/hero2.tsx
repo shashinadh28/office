@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react'; // Added useState
 import Link from 'next/link';
 import { motion, useInView, useAnimation } from 'framer-motion';
 import { IBM_Plex_Sans, Noto_Sans_JP, Lexend } from 'next/font/google';
@@ -19,8 +19,8 @@ interface BenefitCardProps {
   title: string;
   description: string;
   delay: number;
-  color: string;
-  descColor: string;
+  imageUrl: string; // Added for background image
+  // color and descColor are no longer needed as props here, will be fixed by new design
 }
 
 const Hero2 = () => {
@@ -34,7 +34,7 @@ const Hero2 = () => {
     }
   }, [isInView, controls]);
 
-  // Animation variants
+  // Animation variants (can be simplified if complex card animation is removed)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -74,91 +74,101 @@ const Hero2 = () => {
 
   const benefitData: BenefitCardProps[] = [
     {
-      icon: <FaGlobeAmericas size={36} color="black" />,
+      icon: <FaGlobeAmericas />, 
       title: "Global Impact",
       description: "One job uplifts families, education & local economies",
       delay: 0,
-      color: "#14488D",
-      descColor: "#3F3B3B"
+      imageUrl: "/optimized/card-artwork/global.webp", 
     },
     {
-      icon: <BsFileEarmarkCodeFill size={36} color="black" />,
+      icon: <BsFileEarmarkCodeFill />,
       title: "Top Skills",
       description: "Millions of STEM graduates with in-demand technical abilities",
       delay: 0.1,
-      color: "#14488D",
-      descColor: "#3F3B3B"
+      imageUrl: "/optimized/card-artwork/top_skills.webp", 
     },
     {
-      icon: <RiMoneyDollarCircleFill size={36} color="black" />,
+      icon: <RiMoneyDollarCircleFill />,
       title: "Cost-Effective",
       description: "High quality talent at competitive rates for better ROI",
       delay: 0.2,
-      color: "#14488D",
-      descColor: "#3F3B3B"
+      imageUrl: "/optimized/card-artwork/cost_effectve.webp",
     },
     {
-      icon: <MdRecordVoiceOver size={36} color="black" />,
+      icon: <MdRecordVoiceOver />,
       title: "English Proficiency",
       description: "Strong communication skills with excellent English fluency",
       delay: 0.3,
-      color: "#14488D",
-      descColor: "#3F3B3B"
+      imageUrl: "/optimized/card-artwork/english.webp", 
     },
     {
-      icon: <IoMdTime size={36} color="black" />,
+      icon: <IoMdTime />,
       title: "Time Zone Sync",
       description: "Overlaps with US/EU for real-time work",
       delay: 0.4,
-      color: "#14488D",
-      descColor: "#3F3B3B"
+      imageUrl: "/optimized/card-artwork/time.webp", 
     },
     {
-      icon: <IoIosPeople size={36} color="black" />,
+      icon: <IoIosPeople />,
       title: "Driven Professionals",
       description: "One job uplifts families, education & local economies",
       delay: 0.5,
-      color: "#14488D",
-      descColor: "#3F3B3B"
+      imageUrl: "/optimized/card-artwork/driven.webp", 
     }
   ];
 
-  const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, description, delay, color, descColor }) => {
+  const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, description, delay, imageUrl }) => {
+    let finalIcon = icon;
+    if (React.isValidElement(icon)) {
+      const typedIcon = icon as React.ReactElement<any>; 
+      finalIcon = React.cloneElement(typedIcon, {
+        ...typedIcon.props,
+        color: 'white', // Icon color is white
+        size: 32, // Standardize icon size
+      });
+    }
+
     return (
       <motion.div
-        className="bg-white rounded-xl sm:rounded-2xl md:rounded-3xl shadow-lg overflow-hidden transform transition-all duration-300 border border-[#D9D5D5] relative group"
-        initial={{ opacity: 0, y: 30, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
+        className="bg-white rounded-xl rounded-tl-[30px] shadow-lg overflow-hidden group relative"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ 
           duration: 0.5, 
           delay, 
           ease: [0.25, 0.1, 0.25, 1.0] 
         }}
-        whileHover={{ 
-          y: -10,
-          scale: 1.03,
-          boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
-          transition: { 
-            duration: 0.3,
-            ease: "easeOut"
-          }
-        }}
+        // Removed whileHover scale/lift to match image example's static appearance
       >
-        <div className="p-4 sm:p-6 md:p-8 text-center flex flex-col items-center group relative z-10">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gray-100 flex items-center justify-center mb-3 sm:mb-4 md:mb-5 transition-transform duration-300">
-            <motion.span
-              whileHover={{ scale: 1.25, rotate: 12, color: '#18CEB9' }}
-              transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-              className="text-black text-[28px] sm:text-[32px] md:text-[36px] flex items-center justify-center cursor-pointer"
-            >
-              {icon}
-            </motion.span>
+        {/* Image Section */}
+        <div className="relative h-40 w-full">
+          <img 
+            src={imageUrl} 
+            alt={title} 
+            className="absolute inset-0 w-full h-full object-cover" 
+            onError={(e) => (e.currentTarget.src = '/images/placeholder-default.jpg')} // Fallback image
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0FB7B0]/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> {/* Gradient hover overlay */}
+        </div>
+
+        {/* Icon Section - Overlapping */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-40 -translate-y-1/2 z-10">
+          <div className="w-20 h-20 rounded-full flex items-center justify-center shadow-xl border-4 border-white" style={{ backgroundColor: '#0FB7B0' }}>
+            {finalIcon}
           </div>
-          <h3 className={`${lexend.className} text-center font-bold mb-1 sm:mb-2 text-base sm:text-lg md:text-xl`} style={{ color: color }}>{title}</h3>
-          <p className="text-xs sm:text-sm" style={{ color: descColor }}>{description}</p>
-          
-          {/* Card shine effect */}
-          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 -skew-x-12 translate-x-full group-hover:translate-x-0 transition-all duration-700 ease-out pointer-events-none"></div>
+        </div>
+
+        {/* Content Section */}
+        <div className="p-6 pt-14 text-center"> {/* Increased pt for overlapping icon, text-center */}
+          <h3 
+            className={`${lexend.className} font-bold text-xl mb-2`} style={{ color: '#0FB7B0' }}
+          >
+            {title}
+          </h3>
+          <p className="text-gray-600 text-sm mb-4 min-h-[60px]">{/* min-h for consistent card height */}
+            {description}
+          </p>
+
         </div>
       </motion.div>
     );
@@ -196,14 +206,13 @@ const Hero2 = () => {
           {/* Cards grid with enhanced layout */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
             {benefitData.map((benefit, index) => (
-              <BenefitCard
+              <BenefitCard 
                 key={index}
                 icon={benefit.icon}
                 title={benefit.title}
                 description={benefit.description}
                 delay={benefit.delay}
-                color={benefit.color}
-                descColor={benefit.descColor}
+                imageUrl={benefit.imageUrl}
               />
             ))}
           </div>
