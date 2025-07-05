@@ -1,9 +1,13 @@
-name: Generate a build and push to another branch
+name: Generate a build and push to another branch (DISABLED)
+
+# Disabled to prevent conflicts with Vercel deployment
+# Remove this comment and the word DISABLED to re-enable
 
 on:
-  push:
-    branches:
-      - main # The branch name your are commit the new changes
+  # push:
+  #   branches:
+  #     - main # The branch name your are commit the new changes
+  workflow_dispatch: # Only run manually
 
 jobs:
   build:
