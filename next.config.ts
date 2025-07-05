@@ -3,10 +3,11 @@ import type { NextConfig } from "next";
 const withBundleAnalyzer = require('./scripts/analyze-bundle');
 
 const nextConfig: NextConfig = withBundleAnalyzer({
-  output: "export",
-  distDir: "build",
   images: {
-    unoptimized: true, // Disable default Image Optimization API for static exports
+    formats: ['image/webp', 'image/avif'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000,
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -20,11 +21,36 @@ const nextConfig: NextConfig = withBundleAnalyzer({
     optimizePackageImports: ['lucide-react'],
     scrollRestoration: true,
   },
-  // Headers are not supported with 'output: export' in Next.js
-  // For static exports, configure these headers in your hosting provider:
-  // - Cache-Control: public, max-age=31536000, immutable for static assets
-  // - Cache-Control: public, max-age=0, must-revalidate for HTML files
-  // - Content-Encoding: gzip,br for compressed assets
+  headers: async () => {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+        ],
+      },
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
   webpack: (config: any, { isServer }: { isServer: boolean }) => {
     // Optimize SVG files
     config.module.rules.push({

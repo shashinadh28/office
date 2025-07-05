@@ -60,11 +60,9 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   // Process image source
   const imageSrc = useMemo(() => {
     if (isExternal) return src;
-    // For local images, prepend /optimized path if not already there
-    const normalizedSrc = src.startsWith('/') ? src : `/${src}`;
-    return normalizedSrc.startsWith('/optimized/') 
-      ? normalizedSrc 
-      : `/optimized${normalizedSrc}`;
+    // For Vercel deployment, use original image paths
+    // Vercel's image optimization handles the optimization automatically
+    return src.startsWith('/') ? src : `/${src}`;
   }, [src, isExternal]);
 
   // Create the image element

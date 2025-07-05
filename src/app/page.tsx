@@ -36,9 +36,10 @@ export default function Home() {
         <Hero5 />
       </ScrollAnimationWrapper>
 
-      <ScrollAnimationWrapper animation="slideUp" duration={0.8}>
+      {/* TODO: Temporarily commented out ClientStories while gathering information */}
+      {/* <ScrollAnimationWrapper animation="slideUp" duration={0.8}>
         <ClientStories />
-      </ScrollAnimationWrapper>
+      </ScrollAnimationWrapper> */}
 
       <ScrollAnimationWrapper animation="fadeIn" duration={0.8}>
         <FooterSection />
