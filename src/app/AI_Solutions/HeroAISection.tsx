@@ -464,7 +464,7 @@ const HeroAISection: React.FC = () => {
             >
               <div className="relative w-full max-w-lg">
                 <Image
-                  src="/background_images/ai_background.png"
+                  src="/optimized/background_images/ai_background.webp"
                   alt="AI Solutions"
                   width={400}
                   height={400}

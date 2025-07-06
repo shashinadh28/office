@@ -399,7 +399,7 @@ const HeroCloudSection: React.FC = () => {
                   }}
                 >
                   <Image
-                    src="/background_images/cloud-hero2.png"
+                    src="/optimized/background_images/cloud-hero2.webp"
                     alt="Cloud Solutions Hero"
                     width={600}
                     height={500}

@@ -61,7 +61,7 @@ const projects = [
   {
     title: 'Virtual Assistant',
     description: 'Professional Administrative & Operational Support\nDelegate routine tasks and focus on strategic growth.\nOur skilled assistants handle scheduling, research, communication, and project coordination with precision.',
-    link: '/images/virtual-assistance/virtual-assestent-main.jpg',
+    link: '/optimized/images/virtual-assistance/virtual-assestent-main.webp',
     color: '#9b59b6', // Purple color for Virtual Assistant
   },
 ];

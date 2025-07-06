@@ -203,7 +203,7 @@ export default function VirtualAssistantPage() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/background_images/virtual-assestent.png"
+            src="/optimized/background_images/virtual-assestent.webp"
             alt="Virtual Assistant Background"
             fill
             sizes="100vw"

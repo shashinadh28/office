@@ -396,7 +396,7 @@ const HeroSaasSection: React.FC = () => {
                   }}
                 >
                   <Image
-                    src="/background_images/saap-hero.png"
+                    src="/optimized/background_images/saap-hero.webp"
                     alt="SaaS Solutions Hero"
                     width={450}
                     height={350}

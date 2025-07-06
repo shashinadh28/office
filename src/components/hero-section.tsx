@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -19,7 +18,7 @@ export default function HeroSection() {
       console.warn('Background image failed to preload, falling back to normal loading');
       setIsLoaded(true);
     };
-    img.src = '/home6.png';
+    img.src = '/home_img.webp';
 
     // Much faster animation trigger for immediate text appearance
     const timer = setTimeout(() => {
@@ -133,7 +132,7 @@ export default function HeroSection() {
       {/* Background Image with Fade Animation - Hidden on mobile */}
       <div className="absolute inset-0 z-0 hidden md:block">
         <Image
-          src="/home6.png"
+          src="/home_img.webp"
           alt="Gateway Workforce Background"
           fill
           sizes="100vw"
