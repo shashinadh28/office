@@ -38,7 +38,7 @@ const aiServiceCategories = [
     color: 'purple',
     iconColor: 'text-purple-600',
     description: 'Advanced language models tailored to your specific domain and business requirements.',
-    imagePath: '/images/Custom-LLM-Development-&-Fine-Tuning.jpg',
+    imagePath: '/optimized/images/Custom-LLM-Development-&-Fine-Tuning.jpg',
     services: [
       'Domain-specific LLMs for your industry',
       'Fine-tuning OpenAI, Llama 2, Claude & proprietary models',
@@ -52,7 +52,7 @@ const aiServiceCategories = [
     color: 'pink',
     iconColor: 'text-pink-600',
     description: 'AI-powered automation solutions that streamline workflows and boost productivity.',
-    imagePath: '/images/Intelligent-Process-Automation.jpg',
+    imagePath: '/optimized/images/Intelligent-Process-Automation.jpg',
     services: [
       'AI-powered workflow automation',
       'Document processing & data extraction (IDP)',
@@ -66,7 +66,7 @@ const aiServiceCategories = [
     color: 'purple',
     iconColor: 'text-purple-600',
     description: 'Transform your data into actionable insights with advanced analytics and ML.',
-    imagePath: '/images/Data-Intelligence-&-Predictive-Analytics.jpg',
+    imagePath: '/optimized/images/Data-Intelligence-&-Predictive-Analytics.jpg',
     services: [
       'Advanced data modeling & forecasting',
       'Customer behavior & sentiment analysis',
@@ -80,7 +80,7 @@ const aiServiceCategories = [
     color: 'pink',
     iconColor: 'text-pink-600',
     description: 'Seamless integration and optimization of AI solutions within your enterprise.',
-    imagePath: '/images/AI-Integration-&-Optimization.jpg',
+    imagePath: '/optimized/images/AI-Integration-&-Optimization.jpg',
     services: [
       'API integrations with existing enterprise systems',
       'AI performance monitoring & continuous learning',

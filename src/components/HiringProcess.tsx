@@ -17,19 +17,19 @@ const processStepsData: ProcessStepData[] = [
     id: 1,
     title: "Send A Job Description",
     description: "Send A Job Description to jobs@gatewayworkforce.com",
-    image: "/images/description.jpg",
+    image: "/optimized/images/description.jpg",
   },
   {
     id: 2,
     title: "Candidate Sourcing",
     description: "Gateway Workforce finds qualified candidates from current staff, vetted resumes or the recruiting process",
-    image: "/images/recruitment.jpg",
+    image: "/optimized/images/recruitment.jpg",
   },
   {
     id: 3,
     title: "Interview & Selection",
     description: "You meet, interview and select the candidate, and Gateway Workforce onboards",
-    image: "/images/select.jpg",
+    image: "/optimized/images/select.jpg",
   },
 ];
 
