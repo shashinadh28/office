@@ -45,7 +45,7 @@ export default function VirtualAssistantPage() {
       icon: FileText,
       activeColor: "from-emerald-400 to-teal-500",
       activeHoverColor: "from-emerald-500 to-teal-600",
-      image: "/optimized/images/virtual-assistance/administrative-tasks.jpg"
+      image: "/optimized/images/virtual-assistance/administrative-tasks.webp"
     },
     {
       id: "operational",
@@ -53,7 +53,7 @@ export default function VirtualAssistantPage() {
       icon: Building,
       activeColor: "from-emerald-400 to-teal-500",
       activeHoverColor: "from-emerald-500 to-teal-600",
-      image: "/optimized/images/virtual-assistance/Operational-tasks.jpg"
+      image: "/optimized/images/virtual-assistance/Operational-tasks.webp"
     },
     {
       id: "financial",
@@ -61,7 +61,7 @@ export default function VirtualAssistantPage() {
       icon: DollarSign,
       activeColor: "from-emerald-400 to-teal-500",
       activeHoverColor: "from-emerald-500 to-teal-600",
-      image: "/optimized/images/virtual-assistance/Financial-Tasks.jpg"
+      image: "/optimized/images/virtual-assistance/Financial-Tasks.webp"
     },
     {
       id: "personal",
@@ -69,7 +69,7 @@ export default function VirtualAssistantPage() {
       icon: Heart,
       activeColor: "from-emerald-400 to-teal-500",
       activeHoverColor: "from-emerald-500 to-teal-600",
-      image: "/optimized/images/virtual-assistance/Personal-Tasks.jpg"
+      image: "/optimized/images/virtual-assistance/Personal-Tasks.webp"
     },
     {
       id: "marketing",
@@ -77,7 +77,7 @@ export default function VirtualAssistantPage() {
       icon: Megaphone,
       activeColor: "from-emerald-400 to-teal-500",
       activeHoverColor: "from-emerald-500 to-teal-600",
-      image: "/optimized/images/virtual-assistance/marketing-tasks.jpg"
+      image: "/optimized/images/virtual-assistance/marketing-tasks.webp"
     }
   ];
 
@@ -372,7 +372,7 @@ export default function VirtualAssistantPage() {
             >
               <div className="relative h-48 overflow-hidden">
                 <Image
-                  src="/optimized/images/Lack-of-Time.jpg"
+                  src="/optimized/images/Lack-of-Time.webp"
                   alt="Lack of Time"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-300"

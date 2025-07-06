@@ -44,7 +44,7 @@ const serviceCategories = [
     ],
     iconColor: "text-blue-600",
     hasImage: true,
-    imagePath: "/optimized/images/cloud_architecture.jpg"
+    imagePath: "/optimized/images/cloud_architecture.webp"
   },
   {
     categoryName: 'Cloud Migration Services',
@@ -57,7 +57,7 @@ const serviceCategories = [
     ],
     iconColor: "text-cyan-600",
     hasImage: true,
-    imagePath: "/optimized/images/cloud_migration_services.jpg"
+    imagePath: "/optimized/images/cloud_migration_services.webp"
   },
   {
     categoryName: 'Cloud Management & DevOps',
@@ -70,7 +70,7 @@ const serviceCategories = [
     ],
     iconColor: "text-blue-600",
     hasImage: true,
-    imagePath: "/optimized/images/cloud_management _&_devOps.jpg"
+    imagePath: "/optimized/images/cloud_management _&_devOps.webp"
   },
   {
     categoryName: 'Security & Compliance',
@@ -83,7 +83,7 @@ const serviceCategories = [
     ],
     iconColor: "text-cyan-600",
     hasImage: true,
-    imagePath: "/optimized/images/Security_&_Compliance.jpg"
+    imagePath: "/optimized/images/Security_&_Compliance.webp"
   }
 ];
 

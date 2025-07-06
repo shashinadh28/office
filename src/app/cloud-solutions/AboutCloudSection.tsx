@@ -75,7 +75,7 @@ const AboutCloudSection = () => {
           >
             <div className="relative">
               <Image
-                src="/optimized/images/about_cloud.jpg"
+                src="/optimized/images/about_cloud.webp"
                 alt="Cloud Solutions Professional"
                 width={600}
                 height={500}

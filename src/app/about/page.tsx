@@ -160,7 +160,7 @@ const AboutPage = () => {
                   <div className="relative">
                     <div className="w-64 h-80 lg:w-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl">
                       <Image
-                        src="/optimized/images/Founder.jpg"
+                        src="/optimized/images/Founder.webp"
                         alt="Deepak Teja - Founder & CEO"
                         width={320}
                         height={400}

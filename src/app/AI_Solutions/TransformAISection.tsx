@@ -77,7 +77,7 @@ const TransformAISection = () => {
           >
             <div className="relative">
               <Image
-                src="/optimized/images/ai-hero.jpg"
+                src="/optimized/images/ai-hero.webp"
                 alt="AI Solutions Professional"
                 width={400}
                 height={350}

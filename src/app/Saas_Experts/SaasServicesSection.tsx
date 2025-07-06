@@ -44,7 +44,7 @@ const servicesData = [
       "Analytics & AI (Einstein) integration"
     ],
     iconColor: "text-[#F35120]",
-    imagePath: "/optimized/images/salesforce_services.jpg"
+    imagePath: "/optimized/images/salesforce_services.webp"
   },
   {
     title: "Shopify E-Commerce Excellence",
@@ -57,7 +57,7 @@ const servicesData = [
       "Multi-channel sales integration"
     ],
     iconColor: "text-[#F35120]",
-    imagePath: "/optimized/images/Shopify_E_Commerce_Excellence.jpg"
+    imagePath: "/optimized/images/Shopify_E_Commerce_Excellence.webp"
   },
   {
     title: "HubSpot Growth Stack",
@@ -70,7 +70,7 @@ const servicesData = [
       "Data sync & system integrations"
     ],
     iconColor: "text-[#F35120]",
-    imagePath: "/optimized/images/HubSpot_Growth_Stack.jpg"
+    imagePath: "/optimized/images/HubSpot_Growth_Stack.webp"
   },
   {
     title: "SaaS Integration & Support",
@@ -83,7 +83,7 @@ const servicesData = [
       "User training & adoption programs"
     ],
     iconColor: "text-[#F35120]",
-    imagePath: "/optimized/images/SaaS_Integration_&_Support.jpg"
+    imagePath: "/optimized/images/SaaS_Integration_&_Support.webp"
   }
 ];
 
