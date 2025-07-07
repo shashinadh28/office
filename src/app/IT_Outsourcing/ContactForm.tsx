@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
-import Image from 'next/image';
 
 interface Skill {
   id: string;
@@ -109,7 +108,7 @@ const ContactForm: React.FC = () => {
                   className={`flex items-center justify-start space-x-2 w-full px-3 py-2.5 border rounded-md text-sm transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-sky-500 
                               ${isSelected ? 'bg-sky-500 text-white border-sky-500 shadow-md' : 'bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-300'}`}
                 >
-                  <Image src={skill.iconPath} alt={skill.name} width={20} height={20} className={`object-contain ${isSelected ? 'filter brightness-0 invert' : ''}`} />
+                  <img src={skill.iconPath} alt={skill.name} width={20} height={20} className={`object-contain ${isSelected ? 'filter brightness-0 invert' : ''}`} />
                   <span>{skill.name}</span>
                 </button>
               );

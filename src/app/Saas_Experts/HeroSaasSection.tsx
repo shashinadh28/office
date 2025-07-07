@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { IBM_Plex_Sans, Lexend, Inter } from 'next/font/google';
 import { 
@@ -395,13 +394,12 @@ const HeroSaasSection: React.FC = () => {
                     ease: "easeInOut"
                   }}
                 >
-                  <Image
+                  <img
                     src="/optimized/background_images/saap-hero.webp"
                     alt="SaaS Solutions Hero"
                     width={450}
                     height={350}
                     className="w-full h-auto object-contain relative z-10"
-                    priority
                   />
                 </motion.div>
               </div>
@@ -516,7 +514,7 @@ const HeroSaasSection: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Image
+              <img
                 src={svg.path}
                 alt={svg.name}
                 width={svg.name === 'Salesforce' ? 70 : 110}

@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
-import Image from 'next/image';
 import { 
   CloudCog, BarChart3, DatabaseZap, ShieldCheck, 
   ServerCog, Rocket, Route, Layers, Settings, 
@@ -135,7 +134,7 @@ const CloudServicesSection = () => {
               <div className={`flex flex-col lg:flex-row h-auto lg:h-80 overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 {/* Image section */}
                 <div className="lg:w-2/5 relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center p-4">
-                  <Image
+                  <img
                     src={service.imagePath!}
                     alt={service.categoryName}
                     width={400}

@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import Image from 'next/image';
 
 interface ProcessStepData {
   id: number;
@@ -117,13 +116,12 @@ const HiringProcess = () => {
                     {/* Static inner circle with image */}
                     <div className="w-48 h-48 rounded-full flex items-center justify-center relative">
                       <div className="w-40 h-40 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center overflow-hidden relative">
-                        <Image
+                        <img
                           src={step.image}
                           alt={step.title}
                           width={160}
                           height={160}
                           className="w-full h-full object-cover rounded-full"
-                          priority={index === 0}
                         />
                       </div>
                     

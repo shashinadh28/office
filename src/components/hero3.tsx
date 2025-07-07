@@ -1,13 +1,11 @@
 // thanks to oliver: https://www.youtube.com/@olivierlarose1
 'use client';
+import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import { ReactLenis } from 'lenis/react';
 import { IBM_Plex_Sans } from 'next/font/google';
-const ibmPlexSans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['700'], display: 'swap' });
-import { useTransform, motion, useScroll, MotionValue } from 'framer-motion';
-import { createContext, useContext } from 'react';
 import Link from 'next/link';
-import { useRef } from 'react';
-import Image from 'next/image';
+import { createContext, useContext, useRef } from 'react';
+const ibmPlexSans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['700'], display: 'swap' });
 
 // Define Context for scrollYProgress
 const ScrollProgressContext = createContext<MotionValue<number> | null>(null);
@@ -264,11 +262,10 @@ export const Card: React.FC<CardProps> = ({
               className={`relative w-full h-full`}
               style={{ scale: imageScale }}
             >
-              <Image 
-                fill 
+              <img 
                 src={src} 
                 alt={title || 'Project image'} 
-                className='object-cover'
+                className='object-cover w-full h-full'
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 60vw, 50vw"
               />
             </motion.div>

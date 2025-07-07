@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
-import Image from 'next/image';
 import { 
   Cloud, ShoppingCart, Target as HubSpotIcon, CheckCircle, 
   Settings, Zap, Users, BarChartHorizontal, Database,
@@ -137,7 +136,7 @@ const SaasServicesSection = () => {
                 <div className={`flex flex-col lg:flex-row h-auto lg:h-80 overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                   {/* Image section - no background color, just white/transparent */}
                   <div className="lg:w-2/5 relative bg-white flex items-center justify-center p-4">
-                    <Image
+                    <img
                       src={service.imagePath}
                       alt={service.title}
                       width={400}

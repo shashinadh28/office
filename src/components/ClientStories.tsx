@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Heart, Zap, Sparkles } from 'lucide-react';
-import Image from 'next/image';
 
 const ClientStories = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);

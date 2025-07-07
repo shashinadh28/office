@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const fadeIn = {
@@ -29,7 +28,7 @@ const PrecisionAccountingSection: React.FC = () => {
             variants={fadeIn}
             custom={0.1}
           >
-            <Image 
+            <img 
               src="/optimized/images/usaa.webp"
               alt="Precision Accounting Services"
               width={600}

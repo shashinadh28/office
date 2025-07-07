@@ -3,7 +3,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
-import Image from 'next/image';
 
 const lexend = Lexend({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
 
@@ -22,14 +21,14 @@ const TransformAISection = () => {
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
           {/* Content section */}
-            <motion.div 
+          <motion.div
             className="w-full lg:w-3/5 text-center lg:text-left space-y-6"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.5 }}
-              variants={fadeIn}
-            >
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+            variants={fadeIn}
+          >
             <div className="flex items-center justify-center lg:justify-start gap-2 mb-3">
                 <div className="w-6 h-0.5 bg-purple-600"></div>
                 <span className="text-purple-600 font-medium uppercase tracking-wider text-sm">ABOUT US</span>
@@ -44,7 +43,7 @@ const TransformAISection = () => {
             <p className="text-gray-600 max-w-3xl mx-auto lg:mx-0 text-lg leading-relaxed">
                 At Gateway Workforce, we build cutting-edge AI solutions that empower enterprises to harness the full potential of artificial intelligence. From custom Large Language Models (LLMs) to intelligent automation and predictive analytics, we deliver tailored AI strategies that drive efficiency, innovation, and competitive advantage.
               </p>
-              
+
             {/* Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12">
                 {[
@@ -52,7 +51,7 @@ const TransformAISection = () => {
                   { number: '75+', label: 'Clients' },
                   { number: '95%', label: 'Accuracy Rate' }
                 ].map((item, index) => (
-                  <motion.div 
+                  <motion.div
                     key={index}
                     className="bg-white/80 backdrop-blur-sm p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100 hover:border-gradient-to-r hover:from-purple-600 hover:via-pink-600 hover:to-indigo-700 hover:shadow-lg transition-all duration-300"
                     initial={{ opacity: 0, y: 20 }}
@@ -66,7 +65,7 @@ const TransformAISection = () => {
                 ))}
               </div>
             </motion.div>
-          
+
           {/* Image section */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -76,15 +75,14 @@ const TransformAISection = () => {
             className="w-full lg:w-2/5"
           >
             <div className="relative">
-              <Image
+              <img
                 src="/optimized/images/ai-hero.webp"
                 alt="AI Solutions Professional"
                 width={400}
                 height={350}
                 className="rounded-2xl shadow-xl object-cover"
-                priority
               />
-          </div>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -92,4 +90,4 @@ const TransformAISection = () => {
   );
 };
 
-export default TransformAISection; 
+export default TransformAISection;

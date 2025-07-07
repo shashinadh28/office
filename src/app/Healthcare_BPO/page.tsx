@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import AnimatedSVG from '../../components/ui/animated-svg';
-import ContactButton from '../../components/ContactButton';
 import AboutSection from './healthcare/AboutSection';
-import WhyChooseSection from './healthcare/WhyChooseSection';
-import VisualCalloutSection from './healthcare/VisualCalloutSection';
 import ServicesSection from './healthcare/ServicesSection';
+import VisualCalloutSection from './healthcare/VisualCalloutSection';
+import WhyChooseSection from './healthcare/WhyChooseSection';
 import TransformBusinessSection from './TransformBusinessSection';
 
 import HireTalentSection from '@/components/HireTalentSection';
@@ -29,13 +27,13 @@ export default function HealthcareBPO() {
       <section className="relative h-[500px] sm:h-[600px] w-full overflow-hidden">
         {/* Background - Hidden on mobile and small tablets, shown on larger screens */}
         <div className="absolute inset-0 hidden md:block">
-          <Image
+          <img
             src="/optimized/background_images/health_bg.webp"
             alt="Healthcare BPO Background"
-            fill
+            width="1"
+            height="1"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-            priority
-            className="object-cover object-center"
+            className="object-cover object-center w-full h-full"
             style={{
               objectFit: 'cover',
               objectPosition: 'center',

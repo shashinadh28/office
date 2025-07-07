@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import AnimatedSVG from '../../components/ui/animated-svg'; // Assuming this path is correct
 import FooterSection from '@/components/footer'; // Assuming this path is correct

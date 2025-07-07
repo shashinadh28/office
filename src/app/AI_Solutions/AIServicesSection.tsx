@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
-import Image from 'next/image';
 import { 
   Brain, Zap, BarChart3, Settings, Database, GitBranch, 
   Users, CheckCircle, Cpu, Bot, Eye, Lightbulb
@@ -138,7 +137,7 @@ const AIServicesSection = () => {
                 <div className={`flex flex-col lg:flex-row h-auto lg:h-80 overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                   {/* Image section */}
                   <div className="lg:w-2/5 relative bg-white flex items-center justify-center p-4">
-                    <Image
+                    <img
                       src={category.imagePath}
                       alt={category.categoryName}
                       width={400}

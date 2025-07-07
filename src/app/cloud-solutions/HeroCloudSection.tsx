@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { IBM_Plex_Sans, Lexend } from 'next/font/google';
 import { 
@@ -398,13 +397,13 @@ const HeroCloudSection: React.FC = () => {
                     ease: "easeInOut"
                   }}
                 >
-                  <Image
+                  <img
                     src="/optimized/background_images/cloud-hero2.webp"
                     alt="Cloud Solutions Hero"
                     width={600}
                     height={500}
                     className="w-full h-auto object-contain relative z-10"
-                    priority
+                    
                   />
                 </motion.div>
               </div>
@@ -492,7 +491,7 @@ const HeroCloudSection: React.FC = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: index * 0.1 }}
             >
-              <Image
+              <img
                 src={svg.path}
                 alt={svg.name}
                 width={svg.name === 'AWS' ? 70 : 110}

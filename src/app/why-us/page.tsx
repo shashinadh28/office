@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { 
   MapPin, Users, DollarSign, Clock, Shield, Award, 
   Brain, Calculator, Building, ShoppingCart, CheckCircle, 

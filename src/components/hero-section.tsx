@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function HeroSection() {
@@ -10,13 +9,15 @@ export default function HeroSection() {
 
   useEffect(() => {
     // Preload the background image for smooth fade-in
+    // Using native Image object for preloading
     const img = new window.Image();
     img.onload = () => {
-      setTimeout(() => setIsLoaded(true), 300); // Faster loading
+      // Small delay to ensure CSS transition has time to apply
+      setTimeout(() => setIsLoaded(true), 300);
     };
     img.onerror = () => {
       console.warn('Background image failed to preload, falling back to normal loading');
-      setIsLoaded(true);
+      setIsLoaded(true); // Still set to true to show the image even if preload fails
     };
     img.src = '/home_img.webp';
 
@@ -28,9 +29,7 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, []);
 
-
-
-  // Fast professional animation variants
+  // --- Animation Variants (remain unchanged as they apply to motion.div/h1/p) ---
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -130,112 +129,114 @@ export default function HeroSection() {
     <div className="relative min-h-screen w-full overflow-hidden bg-white pb-20">
       
       {/* Background Image with Fade Animation - Hidden on mobile */}
+      {/* Replaced 'Image' with native 'img' and added Tailwind classes for 'fill' behavior */}
       <div className="absolute inset-0 z-0 hidden md:block">
-        <Image
+        <img
           src="/home_img.webp"
           alt="Gateway Workforce Background"
-          fill
-          sizes="100vw"
-          priority={true}
-          className={`object-cover object-center transition-opacity duration-1500 ${
+
+          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1500 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
+          // The onLoad handler for isLoaded state is still useful here
           onLoad={() => setIsLoaded(true)}
+          // If this is truly your LCP image, consider adding fetchpriority="high"
+          // fetchpriority="high" // Add this if it's the primary LCP image for desktop
         />
       </div>
 
       {/* Mobile Background - Light gradient */}
       <div className="absolute inset-0 z-0 md:hidden bg-gradient-to-br from-gray-50 via-white to-blue-50"></div>
 
-             {/* Mobile Floating SVG Elements - Enhanced and distributed across screen */}
-       <div className="absolute inset-0 z-5 md:hidden overflow-hidden">
-         {/* Floating Particles */}
-         <div className="absolute top-[15%] left-[10%] w-2 h-2 bg-teal-500 rounded-full animate-pulse opacity-60"></div>
-         <div className="absolute top-[25%] right-[15%] w-3 h-3 bg-blue-500 rounded-full animate-bounce opacity-40" style={{ animationDelay: '0.5s' }}></div>
-         <div className="absolute top-[35%] left-[5%] w-1.5 h-1.5 bg-teal-400 rounded-full animate-pulse opacity-50" style={{ animationDelay: '1s' }}></div>
-         <div className="absolute top-[45%] right-[8%] w-2.5 h-2.5 bg-blue-400 rounded-full animate-bounce opacity-30" style={{ animationDelay: '1.5s' }}></div>
-         <div className="absolute top-[55%] left-[12%] w-2 h-2 bg-teal-600 rounded-full animate-pulse opacity-40" style={{ animationDelay: '2s' }}></div>
-         <div className="absolute top-[65%] right-[20%] w-1 h-1 bg-blue-600 rounded-full animate-bounce opacity-60" style={{ animationDelay: '0.8s' }}></div>
+      {/* Mobile Floating SVG Elements - Enhanced and distributed across screen */}
+      <div className="absolute inset-0 z-5 md:hidden overflow-hidden">
+        {/* Floating Particles */}
+        <div className="absolute top-[15%] left-[10%] w-2 h-2 bg-teal-500 rounded-full animate-pulse opacity-60"></div>
+        <div className="absolute top-[25%] right-[15%] w-3 h-3 bg-blue-500 rounded-full animate-bounce opacity-40" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute top-[35%] left-[5%] w-1.5 h-1.5 bg-teal-400 rounded-full animate-pulse opacity-50" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-[45%] right-[8%] w-2.5 h-2.5 bg-blue-400 rounded-full animate-bounce opacity-30" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-[55%] left-[12%] w-2 h-2 bg-teal-600 rounded-full animate-pulse opacity-40" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-[65%] right-[20%] w-1 h-1 bg-blue-600 rounded-full animate-bounce opacity-60" style={{ animationDelay: '0.8s' }}></div>
 
-         {/* Enhanced Circle SVGs with glow */}
-         <motion.div
-           className="absolute top-[20%] left-[15%] w-8 h-8 opacity-30"
-           animate={floatingGentle}
-           transition={{ delay: 0.5 }}
-         >
-           <div className="absolute inset-0 bg-teal-400 rounded-full blur-sm opacity-50 animate-pulse"></div>
-           <svg viewBox="0 0 26 25" fill="none" className="w-full h-full relative z-10">
-             <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-           </svg>
-         </motion.div>
+        {/* Enhanced Circle SVGs with glow */}
+        <motion.div
+          className="absolute top-[20%] left-[15%] w-8 h-8 opacity-30"
+          animate={floatingGentle}
+          transition={{ delay: 0.5 }}
+        >
+          <div className="absolute inset-0 bg-teal-400 rounded-full blur-sm opacity-50 animate-pulse"></div>
+          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full relative z-10">
+            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
+          </svg>
+        </motion.div>
 
-         <motion.div
-           className="absolute top-[40%] right-[20%] w-10 h-10 opacity-35"
-           animate={floatingDeep}
-           transition={{ delay: 1 }}
-         >
-           <div className="absolute inset-0 bg-blue-400 rounded-full blur-sm opacity-50 animate-pulse"></div>
-           <svg viewBox="0 0 26 25" fill="none" className="w-full h-full relative z-10">
-             <circle cx="13" cy="12.5" r="12.5" fill="#3B82F6"/>
-           </svg>
-         </motion.div>
+        <motion.div
+          className="absolute top-[40%] right-[20%] w-10 h-10 opacity-35"
+          animate={floatingDeep}
+          transition={{ delay: 1 }}
+        >
+          <div className="absolute inset-0 bg-blue-400 rounded-full blur-sm opacity-50 animate-pulse"></div>
+          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full relative z-10">
+            <circle cx="13" cy="12.5" r="12.5" fill="#3B82F6"/>
+          </svg>
+        </motion.div>
 
-         <motion.div
-           className="absolute top-[60%] left-[25%] w-6 h-6 opacity-25"
-           animate={floatingWave}
-           transition={{ delay: 1.5 }}
-         >
-           <div className="absolute inset-0 bg-teal-500 rounded-full blur-sm opacity-40 animate-pulse"></div>
-           <svg viewBox="0 0 26 25" fill="none" className="w-full h-full relative z-10">
-             <circle cx="13" cy="12.5" r="12.5" fill="#14B8A6"/>
-           </svg>
-         </motion.div>
+        <motion.div
+          className="absolute top-[60%] left-[25%] w-6 h-6 opacity-25"
+          animate={floatingWave}
+          transition={{ delay: 1.5 }}
+        >
+          <div className="absolute inset-0 bg-teal-500 rounded-full blur-sm opacity-40 animate-pulse"></div>
+          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full relative z-10">
+            <circle cx="13" cy="12.5" r="12.5" fill="#14B8A6"/>
+          </svg>
+        </motion.div>
 
-         {/* Enhanced Star SVGs */}
-         <motion.div
-           className="absolute top-[30%] right-[10%] w-7 h-7 opacity-30"
-           animate={slowFloat}
-           transition={{ delay: 0.8 }}
-         >
-           <div className="absolute inset-0 bg-yellow-400 rounded-full blur-lg opacity-30 animate-pulse"></div>
-           <svg viewBox="0 0 24 24" fill="none" className="w-full h-full relative z-10">
-             <path opacity="0.16" d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" fill="#F59E0B"/>
-             <path d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" stroke="#F59E0B" strokeWidth="2" strokeLinejoin="round"/>
-           </svg>
-         </motion.div>
+        {/* Enhanced Star SVGs */}
+        <motion.div
+          className="absolute top-[30%] right-[10%] w-7 h-7 opacity-30"
+          animate={slowFloat}
+          transition={{ delay: 0.8 }}
+        >
+          <div className="absolute inset-0 bg-yellow-400 rounded-full blur-lg opacity-30 animate-pulse"></div>
+          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full relative z-10">
+            <path opacity="0.16" d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" fill="#F59E0B"/>
+            <path d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" stroke="#F59E0B" strokeWidth="2" strokeLinejoin="round"/>
+          </svg>
+        </motion.div>
 
-         <motion.div
-           className="absolute bottom-[20%] right-[15%] w-5 h-5 opacity-25"
-           animate={pulseFloat}
-           transition={{ delay: 2 }}
-         >
-           <div className="absolute inset-0 bg-yellow-300 rounded-full blur-md opacity-40 animate-pulse"></div>
-           <svg viewBox="0 0 24 24" fill="none" className="w-full h-full relative z-10">
-             <path opacity="0.16" d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" fill="#FDE047"/>
-             <path d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" stroke="#FDE047" strokeWidth="2" strokeLinejoin="round"/>
-           </svg>
-         </motion.div>
+        <motion.div
+          className="absolute bottom-[20%] right-[15%] w-5 h-5 opacity-25"
+          animate={pulseFloat}
+          transition={{ delay: 2 }}
+        >
+          <div className="absolute inset-0 bg-yellow-300 rounded-full blur-md opacity-40 animate-pulse"></div>
+          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full relative z-10">
+            <path opacity="0.16" d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" fill="#FDE047"/>
+            <path d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" stroke="#FDE047" strokeWidth="2" strokeLinejoin="round"/>
+          </svg>
+        </motion.div>
 
-         {/* Floating Geometric Shapes */}
-         <div className="absolute top-[18%] right-[5%] opacity-20">
-           <div className="w-8 h-8 border border-teal-500 rotate-45 animate-spin" style={{ animationDuration: '8s' }}></div>
-         </div>
-         <div className="absolute bottom-[30%] left-[8%] opacity-15">
-           <div className="w-6 h-6 bg-blue-500 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
-         </div>
+        {/* Floating Geometric Shapes */}
+        <div className="absolute top-[18%] right-[5%] opacity-20">
+          <div className="w-8 h-8 border border-teal-500 rotate-45 animate-spin" style={{ animationDuration: '8s' }}></div>
+        </div>
+        <div className="absolute bottom-[30%] left-[8%] opacity-15">
+          <div className="w-6 h-6 bg-blue-500 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
+        </div>
 
-         {/* Corner accents */}
-         <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-teal-500 opacity-20"></div>
-         <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-blue-500 opacity-20"></div>
-         <div className="absolute bottom-20 left-4 w-6 h-6 border-l-2 border-b-2 border-teal-400 opacity-15"></div>
-         <div className="absolute bottom-20 right-4 w-6 h-6 border-r-2 border-b-2 border-blue-400 opacity-15"></div>
+        {/* Corner accents */}
+        <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-teal-500 opacity-20"></div>
+        <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-blue-500 opacity-20"></div>
+        <div className="absolute bottom-20 left-4 w-6 h-6 border-l-2 border-b-2 border-teal-400 opacity-15"></div>
+        <div className="absolute bottom-20 right-4 w-6 h-6 border-r-2 border-b-2 border-blue-400 opacity-15"></div>
 
-         {/* Bottom decorative wave */}
-         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-30"></div>
-       </div>
+        {/* Bottom decorative wave */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-30"></div>
+      </div>
 
-       {/* Desktop SVG Elements - Left Side Only */}
-       <div className="absolute inset-0 z-5 hidden md:block">
+      {/* Desktop SVG Elements - Left Side Only */}
+      <div className="absolute inset-0 z-5 hidden md:block">
         {/* Circle SVGs - Left Side Top */}
         <motion.div
           className="absolute top-24 left-16 w-4 h-4 opacity-25"
@@ -429,6 +430,9 @@ export default function HeroSection() {
       <div className="relative z-10 h-full flex flex-col">
         
         {/* Logo with fast animation */}
+        {/* Note: If you want to continue using next/image for the logo for its optimization benefits,
+            you need to re-import it at the top and use it here. The previous error was specifically
+            about the background image. */}
         <motion.div
           className="absolute top-3 left-6 md:top-4 md:left-12"
           initial="hidden"
@@ -443,13 +447,12 @@ export default function HeroSection() {
           }}
           transition={{ delay: 0.1 }}
         >
-          <Image
+          <img
             src="/optimized/images/gateway_workforce.webp"
             alt="Gateway Workforce Logo"
-            width={80}
+            width={80} 
             height={80}
             className="h-auto w-[70px] sm:w-[80px] md:w-[90px]"
-            priority
           />
         </motion.div>
 
@@ -627,8 +630,6 @@ export default function HeroSection() {
             </motion.div>
           </div>
         </div>
-
-
       </div>
     </div>
   );

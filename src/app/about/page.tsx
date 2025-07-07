@@ -1,14 +1,21 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { 
-  MapPin, Award, Users, TrendingUp, Heart, Sparkles, 
-  Globe, Star, CheckCircle, ArrowRight, Target, Zap, Briefcase,
-  GraduationCap, Building2
+import {
+  ArrowRight,
+  Award,
+  Briefcase,
+  Building2,
+  Globe,
+  GraduationCap,
+  Heart,
+  Target,
+  TrendingUp,
+  Users,
+  Zap
 } from 'lucide-react';
 import { Lexend } from 'next/font/google';
+import { useEffect, useState } from 'react';
 
 const lexend = Lexend({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
 
@@ -159,7 +166,7 @@ const AboutPage = () => {
                 <div className="lg:w-2/5 p-8 lg:p-12 flex items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50">
                   <div className="relative">
                     <div className="w-64 h-80 lg:w-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl">
-                      <Image
+                      <img
                         src="/optimized/images/Founder.webp"
                         alt="Deepak Teja - Founder & CEO"
                         width={320}
