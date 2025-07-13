@@ -120,7 +120,7 @@ const Hero2 = () => {
   const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, description, delay, imageUrl }) => {
     let finalIcon = icon;
     if (React.isValidElement(icon)) {
-      const typedIcon = icon as React.ReactElement<any>; 
+      const typedIcon = icon as React.ReactElement<{color?: string; size?: number}>; 
       finalIcon = React.cloneElement(typedIcon, {
         ...typedIcon.props,
         color: 'white', // Icon color is white

@@ -303,7 +303,53 @@ export default function FooterSection() {
             </div>
           </form>
         </div>
-        <div className="mt-8 sm:mt-10 md:mt-12 flex flex-col sm:flex-row flex-wrap items-center sm:items-end justify-center gap-4 sm:gap-6 border-t py-4 sm:py-6">
+        {/* Image Credits Section */}
+        <div className="mt-6 sm:mt-8 border-t pt-4 sm:pt-6">
+          <div className="text-center">
+            <p className="text-muted-foreground text-xs sm:text-sm mb-2">
+              Images sourced from
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 text-xs">
+              <Link 
+                href="https://www.freepik.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Freepik
+              </Link>
+              <span className="text-muted-foreground">•</span>
+              <Link 
+                href="https://unsplash.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Unsplash
+              </Link>
+              <span className="text-muted-foreground">•</span>
+              <Link 
+                href="https://pixabay.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Pixabay
+              </Link>
+              <span className="text-muted-foreground">•</span>
+              <Link 
+                href="https://www.pexels.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Pexels
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row flex-wrap items-center sm:items-end justify-center gap-4 sm:gap-6 border-t py-4 sm:py-6">
           <small className="text-muted-foreground order-last sm:order-first block text-center text-xs sm:text-sm">
             © {new Date().getFullYear()} Gateway Global Workforce, All rights
             reserved

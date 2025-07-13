@@ -238,7 +238,7 @@ export default function VirtualAssistantPage() {
                   variants={fadeInUp}
                 >
                   Hire a Virtual Assistant Expert at just{' '}
-                  <span className="text-teal-400">$5</span>
+                  <span className="text-teal-400">$6</span>
                 </motion.h1>
 
                 {/* Underline */}
@@ -351,7 +351,7 @@ export default function VirtualAssistantPage() {
             viewport={{ once: true }}
           >
             <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight`}>
-              What's holding you back?
+              What Challenges Are Limiting Your Growth?
             </h2>
           </motion.div>
 
@@ -459,7 +459,7 @@ export default function VirtualAssistantPage() {
             viewport={{ once: true }}
           >
             <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight mb-8`}>
-              What Is a Virtual Assistant?
+              Professional Virtual Assistant Services
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
               Gateway's Virtual Assistant services provide a variety of solutions, including:
@@ -674,7 +674,7 @@ export default function VirtualAssistantPage() {
               viewport={{ once: true }}
             >
               <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-8`}>
-                21 Things You Can Delegate to Our Virtual Assistants Today
+                Essential Tasks You Can Delegate to Virtual Assistants
               </h2>
 
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-8">
@@ -814,7 +814,7 @@ export default function VirtualAssistantPage() {
             viewport={{ once: true }}
           >
             <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight mb-8`}>
-              How It Works
+              Our Virtual Assistant Process
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
               Our streamlined process ensures you get matched with the perfect virtual assistant quickly and efficiently.
@@ -1079,7 +1079,7 @@ export default function VirtualAssistantPage() {
             viewport={{ once: true }}
           >
             <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight mb-16 text-center`}>
-              Why Hire a Virtual Assistant?
+              Why Choose Gateway Workforce for Virtual Assistant Services?
             </h2>
             
             {/* Two Cards Side by Side */}

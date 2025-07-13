@@ -35,6 +35,7 @@ const LazyLoad: React.FC<LazyLoadProps> = ({
       return;
     }
 
+    const currentElement = elementRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -54,11 +55,11 @@ const LazyLoad: React.FC<LazyLoadProps> = ({
       }
     );
 
-    observer.observe(elementRef.current);
+    observer.observe(currentElement);
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
+      if (currentElement) {
+        observer.unobserve(currentElement);
       }
       observer.disconnect();
     };
