@@ -45,9 +45,9 @@ const AboutCloudSection = () => {
             {/* Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-8 sm:mt-12">
                 {[
-                  { number: '7+', label: 'Years of Experience' },
-                  { number: '100+', label: 'Clients' },
-                  { number: '99.9%', label: 'Uptime Guarantee' }
+                  { number: '10+', label: 'Years of Experience' },
+                  { number: '25+', label: 'Clients' },
+                  { number: '95%', label: 'Uptime Guarantee' }
                 ].map((item, index) => (
                   <motion.div 
                     key={index}

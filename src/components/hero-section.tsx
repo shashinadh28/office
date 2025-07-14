@@ -1,64 +1,73 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 export default function HeroSection() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [animationsTriggered, setAnimationsTriggered] = useState(false);
 
   useEffect(() => {
-    // Preload the background image for smooth fade-in
-    // Using native Image object for preloading
-    const img = new window.Image();
-    img.onload = () => {
-      // Small delay to ensure CSS transition has time to apply
-      setTimeout(() => setIsLoaded(true), 300);
-    };
-    img.onerror = () => {
-      console.warn('Background image failed to preload, falling back to normal loading');
-      setIsLoaded(true); // Still set to true to show the image even if preload fails
-    };
-    img.src = '/home_img.webp';
+    // Immediate animation trigger for faster perceived performance
+    setAnimationsTriggered(true);
+    
+    // Optimize background image loading with preload link - with error handling
+    let preloadLink: HTMLLinkElement | null = null;
+    
+    try {
+      preloadLink = document.createElement('link');
+      preloadLink.rel = 'preload';
+      preloadLink.as = 'image';
+      preloadLink.href = '/home_img.webp';
+      preloadLink.type = 'image/webp';
+      document.head.appendChild(preloadLink);
+    } catch (error) {
+      console.warn('Failed to create preload link:', error);
+    }
 
-    // Much faster animation trigger for immediate text appearance
-    const timer = setTimeout(() => {
-      setAnimationsTriggered(true);
-    }, 100);
+    // Set loaded state immediately for better UX
+    const timer = setTimeout(() => setIsLoaded(true), 50);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      // Safely remove preload link with error handling
+      if (preloadLink && document.head.contains(preloadLink)) {
+        try {
+          document.head.removeChild(preloadLink);
+        } catch (error) {
+          console.warn('Failed to remove preload link:', error);
+        }
+      }
+    };
   }, []);
 
-  // --- Animation Variants (remain unchanged as they apply to motion.div/h1/p) ---
-  const fadeInUp = {
+  // Memoized animation variants for better performance
+  const animationVariants = useMemo(() => ({
+    fadeInUp: {
     hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
+        transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
     }
-  };
-
-  const slideInLeft = {
-    hidden: { opacity: 0, x: -30 },
+    },
+    slideInLeft: {
+      hidden: { opacity: 0, x: -20 },
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }
+        transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
     }
-  };
-
-  const scaleIn = {
-    hidden: { opacity: 0, scale: 0.8 },
+    },
+    scaleIn: {
+      hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
+        transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }
     }
-  };
-
-  // Enhanced floating animations for SVGs
-  const floatingSmooth = {
+    },
+    floatingSmooth: {
     y: [0, -35, 0],
     x: [0, 20, 0],
     rotate: [0, 12, 0],
@@ -67,385 +76,134 @@ export default function HeroSection() {
       repeat: Infinity,
       ease: "easeInOut"
     }
-  };
-
-  const floatingGentle = {
-    y: [0, -40, 0],
-    x: [0, -25, 0],
-    rotate: [0, -15, 0],
-    transition: {
-      duration: 8,
-      repeat: Infinity,
-      ease: "easeInOut"
-    }
-  };
-
-  const floatingDeep = {
-    y: [0, -30, 0],
-    x: [0, 30, 0],
-    rotate: [0, 20, 0],
+    },
+    floatingReverse: {
+      y: [0, 30, 0],
+      x: [0, -15, 0],
+      rotate: [0, -8, 0],
     transition: {
       duration: 7,
       repeat: Infinity,
       ease: "easeInOut"
     }
-  };
-
-  const floatingWave = {
-    y: [0, -45, 0],
-    x: [0, -20, 0],
-    rotate: [0, 18, 0],
+    },
+    floatingGentle: {
+      y: [0, -20, 0],
+      x: [0, 25, 0],
+      rotate: [0, 15, 0],
     transition: {
-      duration: 9,
+        duration: 8,
       repeat: Infinity,
       ease: "easeInOut"
     }
-  };
-
-  const pulseFloat = {
-    scale: [1, 1.3, 1],
-    opacity: [0.2, 0.5, 0.2],
-    y: [0, -25, 0],
-    rotate: [0, 15, 0],
-    transition: {
-      duration: 5,
-      repeat: Infinity,
-      ease: "easeInOut"
     }
-  };
+  }), []);
 
-  const slowFloat = {
-    y: [0, -50, 0],
-    x: [0, 25, 0],
-    rotate: [0, -22, 0],
+  const { fadeInUp, slideInLeft, scaleIn, floatingSmooth, floatingReverse, floatingGentle } = animationVariants;
+
+  // Optimized stagger animation
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
     transition: {
-      duration: 10,
-      repeat: Infinity,
-      ease: "easeInOut"
+        staggerChildren: 0.05,
+        delayChildren: 0.1
+      }
     }
   };
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-white pb-20">
       
-      {/* Background Image with Fade Animation - Hidden on mobile */}
-      {/* Replaced 'Image' with native 'img' and added Tailwind classes for 'fill' behavior */}
+      {/* Optimized Background Image - Hidden on mobile */}
       <div className="absolute inset-0 z-0 hidden md:block">
         <img
           src="/home_img.webp"
           alt="Gateway Workforce Background"
-
-          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1500 ${
+          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
-          // The onLoad handler for isLoaded state is still useful here
           onLoad={() => setIsLoaded(true)}
-          // If this is truly your LCP image, consider adding fetchpriority="high"
-          // fetchpriority="high" // Add this if it's the primary LCP image for desktop
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
         />
       </div>
 
       {/* Mobile Background - Light gradient */}
       <div className="absolute inset-0 z-0 md:hidden bg-gradient-to-br from-gray-50 via-white to-blue-50"></div>
 
-      {/* Mobile Floating SVG Elements - Enhanced and distributed across screen */}
-      <div className="absolute inset-0 z-5 md:hidden overflow-hidden">
-        {/* Floating Particles */}
-        <div className="absolute top-[15%] left-[10%] w-2 h-2 bg-teal-500 rounded-full animate-pulse opacity-60"></div>
-        <div className="absolute top-[25%] right-[15%] w-3 h-3 bg-blue-500 rounded-full animate-bounce opacity-40" style={{ animationDelay: '0.5s' }}></div>
-        <div className="absolute top-[35%] left-[5%] w-1.5 h-1.5 bg-teal-400 rounded-full animate-pulse opacity-50" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-[45%] right-[8%] w-2.5 h-2.5 bg-blue-400 rounded-full animate-bounce opacity-30" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute top-[55%] left-[12%] w-2 h-2 bg-teal-600 rounded-full animate-pulse opacity-40" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-[65%] right-[20%] w-1 h-1 bg-blue-600 rounded-full animate-bounce opacity-60" style={{ animationDelay: '0.8s' }}></div>
-
-        {/* Enhanced Circle SVGs with glow */}
+      {/* Mobile Floating SVG Elements - Simplified for performance */}
+      <div className="md:hidden absolute inset-0 z-10 overflow-hidden pointer-events-none">
+        {/* Reduced number of floating elements for better mobile performance */}
         <motion.div
-          className="absolute top-[20%] left-[15%] w-8 h-8 opacity-30"
-          animate={floatingGentle}
-          transition={{ delay: 0.5 }}
-        >
-          <div className="absolute inset-0 bg-teal-400 rounded-full blur-sm opacity-50 animate-pulse"></div>
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full relative z-10">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute top-[40%] right-[20%] w-10 h-10 opacity-35"
-          animate={floatingDeep}
-          transition={{ delay: 1 }}
-        >
-          <div className="absolute inset-0 bg-blue-400 rounded-full blur-sm opacity-50 animate-pulse"></div>
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full relative z-10">
-            <circle cx="13" cy="12.5" r="12.5" fill="#3B82F6"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute top-[60%] left-[25%] w-6 h-6 opacity-25"
-          animate={floatingWave}
-          transition={{ delay: 1.5 }}
-        >
-          <div className="absolute inset-0 bg-teal-500 rounded-full blur-sm opacity-40 animate-pulse"></div>
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full relative z-10">
-            <circle cx="13" cy="12.5" r="12.5" fill="#14B8A6"/>
-          </svg>
-        </motion.div>
-
-        {/* Enhanced Star SVGs */}
-        <motion.div
-          className="absolute top-[30%] right-[10%] w-7 h-7 opacity-30"
-          animate={slowFloat}
-          transition={{ delay: 0.8 }}
-        >
-          <div className="absolute inset-0 bg-yellow-400 rounded-full blur-lg opacity-30 animate-pulse"></div>
-          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full relative z-10">
-            <path opacity="0.16" d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" fill="#F59E0B"/>
-            <path d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" stroke="#F59E0B" strokeWidth="2" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-[20%] right-[15%] w-5 h-5 opacity-25"
-          animate={pulseFloat}
-          transition={{ delay: 2 }}
-        >
-          <div className="absolute inset-0 bg-yellow-300 rounded-full blur-md opacity-40 animate-pulse"></div>
-          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full relative z-10">
-            <path opacity="0.16" d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" fill="#FDE047"/>
-            <path d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" stroke="#FDE047" strokeWidth="2" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
-
-        {/* Floating Geometric Shapes */}
-        <div className="absolute top-[18%] right-[5%] opacity-20">
-          <div className="w-8 h-8 border border-teal-500 rotate-45 animate-spin" style={{ animationDuration: '8s' }}></div>
-        </div>
-        <div className="absolute bottom-[30%] left-[8%] opacity-15">
-          <div className="w-6 h-6 bg-blue-500 rounded-full animate-ping" style={{ animationDelay: '1s' }}></div>
-        </div>
-
-        {/* Corner accents */}
-        <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-teal-500 opacity-20"></div>
-        <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-blue-500 opacity-20"></div>
-        <div className="absolute bottom-20 left-4 w-6 h-6 border-l-2 border-b-2 border-teal-400 opacity-15"></div>
-        <div className="absolute bottom-20 right-4 w-6 h-6 border-r-2 border-b-2 border-blue-400 opacity-15"></div>
-
-        {/* Bottom decorative wave */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-teal-500 to-transparent opacity-30"></div>
-      </div>
-
-      {/* Desktop SVG Elements - Left Side Only */}
-      <div className="absolute inset-0 z-5 hidden md:block">
-        {/* Circle SVGs - Left Side Top */}
-        <motion.div
-          className="absolute top-24 left-16 w-4 h-4 opacity-25"
-          animate={floatingGentle}
-          transition={{ delay: 1 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.25 }}
-        >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute top-20 left-1/3 w-5 h-5 opacity-30"
-          animate={floatingDeep}
-          transition={{ delay: 1.2 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.30 }}
-        >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        {/* Circle SVGs - Left Side Middle */}
-        <motion.div
-          className="absolute top-40 left-20 w-7 h-7 opacity-35"
-          animate={floatingWave}
-          transition={{ delay: 1.5 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.35 }}
-        >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute top-44 left-2/3 w-5 h-5 opacity-25"
+          className="absolute top-20 right-8 w-16 h-16 text-blue-300 opacity-30"
           animate={floatingSmooth}
-          transition={{ delay: 1.8 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.25 }}
         >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
           </svg>
         </motion.div>
 
         <motion.div
-          className="absolute top-1/2 left-12 w-3 h-3 opacity-20"
-          animate={pulseFloat}
-          transition={{ delay: 2.5 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.20 }}
+          className="absolute bottom-32 left-6 w-12 h-12 text-teal-300 opacity-20"
+          animate={floatingReverse}
         >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute top-1/2 left-1/3 w-4 h-4 opacity-25"
-          animate={floatingDeep}
-          transition={{ delay: 3 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.25 }}
-        >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        {/* Circle SVGs - Left Side Lower */}
-        <motion.div
-          className="absolute top-2/3 left-24 w-6 h-6 opacity-30"
-          animate={slowFloat}
-          transition={{ delay: 3.2 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.30 }}
-        >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute top-2/3 left-1/2 w-7 h-7 opacity-35"
-          animate={pulseFloat}
-          transition={{ delay: 3.8 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.35 }}
-        >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        {/* Circle SVGs - Bottom Left */}
-        <motion.div
-          className="absolute bottom-40 left-16 w-5 h-5 opacity-25"
-          animate={floatingGentle}
-          transition={{ delay: 4 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.25 }}
-        >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-28 left-1/3 w-4 h-4 opacity-20"
-          animate={floatingWave}
-          transition={{ delay: 4.5 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.20 }}
-        >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        {/* Additional scattered circles - Left and Center only */}
-        <motion.div
-          className="absolute top-60 left-2/3 w-3 h-3 opacity-15"
-          animate={pulseFloat}
-          transition={{ delay: 5 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.15 }}
-        >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-20 left-2/3 w-5 h-5 opacity-25"
-          animate={floatingSmooth}
-          transition={{ delay: 5.2 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.25 }}
-        >
-          <svg viewBox="0 0 26 25" fill="none" className="w-full h-full">
-            <circle cx="13" cy="12.5" r="12.5" fill="#12A493"/>
-          </svg>
-        </motion.div>
-
-        {/* Star SVGs - Left and Center positions only */}
-        <motion.div
-          className="absolute top-16 left-1/2 w-6 h-6 opacity-30"
-          animate={floatingGentle}
-          transition={{ delay: 0.8 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.30 }}
-        >
-          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
-            <path opacity="0.16" d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" fill="#7ACCC2"/>
-            <path d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" stroke="#7ACCC2" strokeWidth="2" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-32 left-1/4 w-5 h-5 opacity-25"
-          animate={floatingDeep}
-          transition={{ delay: 2.2 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.25 }}
-        >
-          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
-            <path opacity="0.16" d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" fill="#7ACCC2"/>
-            <path d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" stroke="#7ACCC2" strokeWidth="2" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
-
-        <motion.div
-          className="absolute top-3/4 left-1/5 w-6 h-6 opacity-20"
-          animate={slowFloat}
-          transition={{ delay: 3.2 }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.20 }}
-        >
-          <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
-            <path opacity="0.16" d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" fill="#7ACCC2"/>
-            <path d="M12.0001 2L15.1041 8.728L22.4621 9.601L17.0221 14.631L18.4661 21.899L12.0001 18.28L5.53409 21.9L6.97809 14.632L1.53809 9.6L8.89709 8.727L12.0001 2Z" stroke="#7ACCC2" strokeWidth="2" strokeLinejoin="round"/>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 12l2 2 4-4"/>
           </svg>
         </motion.div>
       </div>
 
+      {/* Desktop Floating SVG Elements - Optimized */}
+      <div className="hidden md:block absolute inset-0 z-10 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-24 right-20 w-20 h-20 text-white/20"
+          animate={floatingSmooth}
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </motion.div>
+
+        <motion.div
+          className="absolute bottom-40 right-32 w-16 h-16 text-white/15"
+          animate={floatingReverse}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8 12l2 2 4-4"/>
+          </svg>
+        </motion.div>
+
+        <motion.div
+          className="absolute top-1/3 left-24 w-14 h-14 text-white/10"
+          animate={floatingGentle}
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/>
+          </svg>
+        </motion.div>
+      </div>
+
+      {/* Main Content */}
       <div className="relative z-10 h-full flex flex-col">
         
         {/* Logo with fast animation */}
-        {/* Note: If you want to continue using next/image for the logo for its optimization benefits,
-            you need to re-import it at the top and use it here. The previous error was specifically
-            about the background image. */}
         <motion.div
           className="absolute top-3 left-6 md:top-4 md:left-12"
           initial="hidden"
           animate={animationsTriggered ? "visible" : "hidden"}
           variants={{
-            hidden: { opacity: 0, scale: 0.8 },
+            hidden: { opacity: 0, scale: 0.9 },
             visible: { 
               opacity: 1, 
               scale: 1,
-              transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }
+              transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
             }
           }}
-          transition={{ delay: 0.1 }}
         >
           <img
             src="/optimized/images/gateway_workforce.webp"
@@ -453,28 +211,20 @@ export default function HeroSection() {
             width={80} 
             height={80}
             className="h-auto w-[70px] sm:w-[80px] md:w-[90px]"
+            loading="eager"
           />
         </motion.div>
 
+        {/* Main Content Container */}
         <div className="container mx-auto px-4 sm:px-6 md:px-12 flex flex-col justify-center min-h-screen pt-12 md:pt-8">
-          {/* Constrain content width better for different screen sizes */}
-          <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto sm:mx-0">
+          <div className="max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto text-center sm:text-left sm:mx-0">
             
-            {/* Main headline with FAST animation */}
+            {/* Main headline with optimized animation */}
             <motion.div 
               className="mb-6 sm:mb-8 mt-0"
               initial="hidden"
               animate={animationsTriggered ? "visible" : "hidden"}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.05,
-                    delayChildren: 0.2
-                  }
-                }
-              }}
+              variants={staggerContainer}
             >
               <motion.h1 
                 className="font-montserrat text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-800 mb-4 md:pt-10 lg:pt-20"
@@ -490,10 +240,10 @@ export default function HeroSection() {
               
               {/* Fast underline animation */}
               <motion.div
-                className="h-1 w-32 bg-gradient-to-r from-blue-500 via-teal-500 to-blue-600 rounded-full"
+                className="h-1 w-32 bg-gradient-to-r from-blue-500 via-teal-500 to-blue-600 rounded-full mx-auto sm:mx-0"
                 initial={{ width: 0, opacity: 0 }}
                 animate={animationsTriggered ? { width: 128, opacity: 1 } : { width: 0, opacity: 0 }}
-                transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 0.5, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
               />
             </motion.div>
 
@@ -502,19 +252,10 @@ export default function HeroSection() {
               className="mb-8 sm:mb-10"
               initial="hidden"
               animate={animationsTriggered ? "visible" : "hidden"}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.04,
-                    delayChildren: 0.5
-                  }
-                }
-              }}
+              variants={staggerContainer}
             >
               <motion.p 
-                className="font-montserrat text-base sm:text-lg md:text-xl lg:text-2xl max-w-2xl lg:max-w-3xl text-gray-700 leading-relaxed"
+                className="font-montserrat text-base sm:text-lg md:text-xl lg:text-2xl max-w-2xl lg:max-w-3xl text-gray-700 leading-relaxed mx-auto sm:mx-0"
                 variants={fadeInUp}
               >
                 <motion.span variants={fadeInUp}>We connect </motion.span>
@@ -527,19 +268,10 @@ export default function HeroSection() {
 
             {/* Fast CTA Section */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-start sm:items-center mb-8 sm:mb-12"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center sm:items-start mb-8 sm:mb-12"
               initial="hidden"
               animate={animationsTriggered ? "visible" : "hidden"}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.1,
-                    delayChildren: 0.8
-                  }
-                }
-              }}
+              variants={staggerContainer}
             >
               {/* Secondary CTA with enhanced animation */}
               <motion.div variants={fadeInUp}>
@@ -570,59 +302,28 @@ export default function HeroSection() {
 
             {/* Fast stats section */}
             <motion.div
-              className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 max-w-xl sm:max-w-2xl"
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center"
               initial="hidden"
               animate={animationsTriggered ? "visible" : "hidden"}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.08,
-                    delayChildren: 1
-                  }
-                }
-              }}
+              variants={staggerContainer}
             >
               {[
+                { number: "70+", label: "Professionals Placed" },
                 { number: "25+", label: "Global Clients" },
-                { number: "35+", label: "Skilled Professionals" },
-                { number: "95%", label: "Client Satisfaction" }
+                { number: "95%", label: "Client Satisfaction" },
+                { number: "2+", label: "Years Excellence" }
               ].map((stat, index) => (
                 <motion.div
                   key={index}
-                  className="text-center p-2 sm:p-3 bg-white/90 backdrop-blur-sm rounded-lg border border-gray-100 shadow-sm"
-                  variants={{
-                    hidden: { opacity: 0, y: 20, scale: 0.95 },
-                    visible: { 
-                      opacity: 1, 
-                      y: 0, 
-                      scale: 1,
-                      transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
-                    }
-                  }}
-                  whileHover={{ 
-                    scale: 1.08, 
-                    y: -8, 
-                    boxShadow: "0 25px 30px -5px rgba(0, 0, 0, 0.15)",
-                    backgroundColor: "rgba(255, 255, 255, 0.95)"
-                  }}
-                  transition={{ duration: 0.4 }}
+                  className="bg-white/80 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg border border-white/20"
+                  variants={scaleIn}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  <motion.div 
-                    className="text-xl sm:text-2xl font-bold text-teal-600 mb-1"
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={animationsTriggered ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                    transition={{ 
-                      delay: 1.2 + index * 0.1, 
-                      duration: 0.5, 
-                      type: "spring",
-                      stiffness: 100 
-                    }}
-                  >
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 mb-1">
                     {stat.number}
-                  </motion.div>
-                  <div className="text-xs sm:text-sm text-gray-700 font-medium">
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-600 font-medium">
                     {stat.label}
                   </div>
                 </motion.div>

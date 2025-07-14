@@ -29,10 +29,10 @@ const AboutPage = () => {
   }, []);
 
   const achievements = [
-    { icon: Users, label: "10+ Professionals Placed", value: "500+", color: "from-blue-500 to-cyan-500" },
+    { icon: Users, label: " Professionals Placed", value: "70+", color: "from-blue-500 to-cyan-500" },
     { icon: Globe, label: "Global Clients", value: "25+", color: "from-purple-500 to-pink-500" },
     { icon: Award, label: "Client Satisfaction", value: "95%", color: "from-green-500 to-emerald-500" },
-    { icon: TrendingUp, label: "Growth in 2 Years", value: "30%", color: "from-orange-500 to-red-500" },
+    { icon: TrendingUp, label: "Growth in 2 Years", value: "54%", color: "from-orange-500 to-red-500" },
   ];
 
   const values = [
@@ -212,8 +212,7 @@ const AboutPage = () => {
                       <div>
                         <h4 className="text-lg font-semibold text-gray-900 mb-2">Building Gateway Workforce</h4>
                         <p className="text-gray-600">
-                          Together with my US colleagues, I founded Gateway Workforce to help businesses in the US and UK 
-                          access India's exceptional talent pool. Our mission is to create meaningful partnerships that 
+                           I founded Gateway Workforce to help global businesses to access India's exceptional talent pool. Our mission is to create meaningful partnerships that 
                           transform both businesses and careers.
                         </p>
                       </div>
@@ -256,8 +255,131 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Values Section */}
+      {/* Strategic Partner Section - Travis */}
       <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Our <span className="text-purple-600">Strategic Partner</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Driving global partnerships and strategic growth initiatives
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="bg-gray-100 rounded-3xl shadow-xl overflow-hidden">
+              <div className="flex flex-col lg:flex-row-reverse">
+                {/* Travis Image */}
+                <div className="lg:w-2/5 p-8 lg:p-12 flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
+                  <div className="relative">
+                    <div className="w-64 h-80 lg:w-80 lg:h-96 rounded-2xl overflow-hidden shadow-2xl">
+                      <img
+                        src="/optimized/images/Travis.webp"
+                        alt="Travis Dahlin - Strategic Partner"
+                        width={320}
+                        height={400}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+                    <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-lg">
+                      <div className="text-center">
+                        <h3 className="font-bold text-gray-900">Travis Dahlin</h3>
+                        <p className="text-sm text-purple-600 font-medium">Strategic Partner</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Travis Story */}
+                <div className="lg:w-3/5 p-8 lg:p-12">
+                  <div className="space-y-8">
+                    {/* Education */}
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                          <GraduationCap className="w-6 h-6 text-blue-600" />
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Education</h4>
+                        <p className="text-gray-600">
+                          B.S. in Business Management, California Baptist University. Graduated Cum Laude, recognized on the Dean's List, 
+                          Who's Who, Honor Roll, and received the Presidential Award.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Professional Experience */}
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                          <Briefcase className="w-6 h-6 text-purple-600" />
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Professional Experience</h4>
+                        <p className="text-gray-600">
+                          As a strategic partner with Gateway Workforce, I collaborate with organizations to harness Indian talent and drive global impact. 
+                          My expertise lies in guiding startups through rapid growth, leading post-merger integrations, forging strategic partnerships, 
+                          and optimizing human capital development and deployment.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Beyond the Office */}
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                          <Zap className="w-6 h-6 text-green-600" />
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Beyond the Office</h4>
+                        <p className="text-gray-600">
+                          Outside of work, I'm an adventure enthusiast, always seeking new thrills and challenges through exciting activities and exploration.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Social Impact & Leadership */}
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                          <Users className="w-6 h-6 text-orange-600" />
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Social Impact & Leadership</h4>
+                        <p className="text-gray-600">
+                          <strong>Student Leadership:</strong> Actively engaged in shaping campus initiatives.<br/>
+                          <strong>Resident Advisor:</strong> Supported and mentored peers in residential settings.<br/>
+                          <strong>CLC President:</strong> Led community-focused efforts to drive positive change.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="py-16 md:py-24 bg-gray-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"

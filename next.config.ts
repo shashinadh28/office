@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
-// Import the bundle analyzer configuration
-const withBundleAnalyzer = require("./scripts/analyze-bundle");
 
-const nextConfig: NextConfig = withBundleAnalyzer({
+const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   images: {
@@ -10,6 +8,8 @@ const nextConfig: NextConfig = withBundleAnalyzer({
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 31536000,
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -20,38 +20,8 @@ const nextConfig: NextConfig = withBundleAnalyzer({
   generateEtags: true,
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ["lucide-react"],
     scrollRestoration: true,
   },
-  webpack: (config: any, { isServer }: { isServer: boolean }) => {
-    // Optimize SVG files
-    config.module.rules.push({
-      test: /\.svg$/i,
-      issuer: /\.[jt]sx?$/,
-      use: [
-        {
-          loader: "@svgr/webpack",
-          options: {
-            svgoConfig: {
-              plugins: [
-                {
-                  name: "preset-default",
-                  params: {
-                    overrides: {
-                      removeViewBox: false,
-                      cleanupIDs: false,
-                    },
-                  },
-                },
-              ],
-            },
-          },
-        },
-      ],
-    });
-
-    return config;
-  },
-});
+};
 
 export default nextConfig;

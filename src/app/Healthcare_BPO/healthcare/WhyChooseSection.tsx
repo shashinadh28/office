@@ -85,7 +85,7 @@ const WhyChooseSection = () => {
               />
               {/* Sunburst Effect */}
               <div
-                className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-120 transition-all duration-500 ease-in-out transform origin-center pointer-events-none"
+                className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-10 scale-50 group-hover:scale-120 transition-all duration-500 ease-in-out transform origin-center pointer-events-none"
                 style={{
                   backgroundImage: `radial-gradient(circle at center, rgba(24,199,255,0.6) 0%, rgba(24,199,255,0) 70%)`,
                 }}
