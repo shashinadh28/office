@@ -6,68 +6,35 @@ import Link from "next/link";
 
 const links = [
   {
-    group: "Product",
+    group: "Services",
     items: [
+      {
+        title: "IT Outsourcing",
+        href: "/IT_Outsourcing",
+      },
+      {
+        title: "Healthcare BPO",
+        href: "/Healthcare_BPO",
+      },
+      {
+        title: "US Taxation",
+        href: "/US_Taxation",
+      },
+      {
+        title: "Cloud Solutions",
+        href: "/cloud-solutions",
+      },
+      {
+        title: "SaaS Experts",
+        href: "/Saas_Experts",
+      },
+      {
+        title: "AI Solutions",
+        href: "/AI_Solutions",
+      },
       {
         title: "Virtual Assistant",
         href: "/virtual-assistant",
-      },
-      {
-        title: "Features",
-        href: "#",
-      },
-      {
-        title: "Solution",
-        href: "#",
-      },
-      {
-        title: "Customers",
-        href: "#",
-      },
-      {
-        title: "Pricing",
-        href: "#",
-      },
-      {
-        title: "Help",
-        href: "#",
-      },
-      {
-        title: "About",
-        href: "/about",
-      },
-    ],
-  },
-  {
-    group: "Solution",
-    items: [
-      {
-        title: "Startup",
-        href: "#",
-      },
-      {
-        title: "Freelancers",
-        href: "#",
-      },
-      {
-        title: "Organizations",
-        href: "#",
-      },
-      {
-        title: "Students",
-        href: "#",
-      },
-      {
-        title: "Collaboration",
-        href: "#",
-      },
-      {
-        title: "Design",
-        href: "#",
-      },
-      {
-        title: "Management",
-        href: "#",
       },
     ],
   },
@@ -75,28 +42,16 @@ const links = [
     group: "Company",
     items: [
       {
-        title: "About",
-        href: "#",
+        title: "About Us",
+        href: "/about",
       },
       {
-        title: "Careers",
-        href: "#",
+        title: "Terms and Conditions",
+        href: "/terms-and-conditions",
       },
       {
-        title: "Blog",
-        href: "#",
-      },
-      {
-        title: "Press",
-        href: "#",
-      },
-      {
-        title: "Contact",
-        href: "#",
-      },
-      {
-        title: "Help",
-        href: "#",
+        title: "Privacy Policy",
+        href: "/privacy-policy",
       },
     ],
   },
@@ -109,7 +64,7 @@ const links = [
       },
       {
         title: "Privacy",
-        href: "#",
+        href: "/privacy-policy",
       },
       {
         title: "Cookies",
