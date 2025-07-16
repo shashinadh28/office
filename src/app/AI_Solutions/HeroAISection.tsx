@@ -90,7 +90,7 @@ const HeroAISection: React.FC = () => {
       {/* Floating SVG Elements */}
       {/* Top area hexagons */}
       <motion.div
-        className="absolute top-20 right-14 w-20 h-20 z-10"
+        className="absolute top-20 right-14 w-20 h-20 z-10 hidden sm:block"
         variants={scaleIn}
         initial="hidden"
         animate={textAnimated ? "visible" : "hidden"}
@@ -111,7 +111,7 @@ const HeroAISection: React.FC = () => {
       </motion.div>
 
       <motion.div
-        className="absolute top-0 right-120 w-40 h-40 z-10"
+        className="absolute top-0 right-120 w-40 h-40 z-10 hidden sm:block"
         variants={fadeInUp}
         initial="hidden"
         animate={textAnimated ? "visible" : "hidden"}
@@ -133,7 +133,7 @@ const HeroAISection: React.FC = () => {
 
       {/* Middle area hexagons */}
       <motion.div
-        className="absolute bottom-40 right-20 w-40 h-40 z-10"
+        className="absolute bottom-40 right-20 w-40 h-40 z-10 hidden sm:block"
         variants={scaleIn}
         initial="hidden"
         animate={textAnimated ? "visible" : "hidden"}
@@ -161,7 +161,7 @@ const HeroAISection: React.FC = () => {
        
         
       <motion.div
-        className="absolute top-32 left-8 w-16 h-16 z-10"
+        className="absolute top-32 left-8 w-16 h-16 z-10 hidden sm:block"
         variants={fadeInUp}
         initial="hidden"
         animate={textAnimated ? "visible" : "hidden"}
@@ -185,7 +185,7 @@ const HeroAISection: React.FC = () => {
 
       {/* Floating Circles */}
       <motion.div
-        className="absolute top-40 right-40 w-6 h-6 rounded-full bg-purple-200/60 z-10"
+        className="absolute top-40 right-40 w-6 h-6 rounded-full bg-purple-200/60 z-10 hidden sm:block"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.6, 1, 0.6]
@@ -199,7 +199,7 @@ const HeroAISection: React.FC = () => {
       />
 
       <motion.div
-        className="absolute bottom-32 left-16 w-8 h-8 rounded-full bg-pink-200/60 z-10"
+        className="absolute bottom-32 left-16 w-8 h-8 rounded-full bg-pink-200/60 z-10 hidden sm:block"
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.5, 0.9, 0.5]
@@ -213,7 +213,7 @@ const HeroAISection: React.FC = () => {
       />
 
       <motion.div
-        className="absolute top-96 right-8 w-4 h-4 rounded-full bg-purple-300/70 z-10"
+        className="absolute top-96 right-8 w-4 h-4 rounded-full bg-purple-300/70 z-10 hidden sm:block"
         animate={{
           scale: [1, 1.1, 1],
           opacity: [0.7, 1, 0.7]
@@ -230,7 +230,7 @@ const HeroAISection: React.FC = () => {
       
       {/* Top Area Icons */}
       <motion.div
-        className="absolute top-16 left-8 text-purple-400/60 z-10"
+        className="absolute top-16 left-8 text-purple-400/60 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '1.8s' }}
       >
@@ -238,7 +238,7 @@ const HeroAISection: React.FC = () => {
       </motion.div>
 
       <motion.div
-        className="absolute top-24 right-8 text-pink-500/60 z-10"
+        className="absolute top-24 right-8 text-pink-500/60 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '0.8s' }}
       >
@@ -246,7 +246,7 @@ const HeroAISection: React.FC = () => {
       </motion.div>
 
       <motion.div
-        className="absolute top-80 left-220 text-purple-500/50 z-10"
+        className="absolute top-80 left-220 text-purple-500/50 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '3.2s' }}
       >
@@ -255,7 +255,7 @@ const HeroAISection: React.FC = () => {
 
       {/* Bottom Area Icons */}
       <motion.div
-        className="absolute bottom-16 left-8 text-pink-400/70 z-10"
+        className="absolute bottom-16 left-8 text-pink-400/70 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '2.8s' }}
       >
@@ -263,7 +263,7 @@ const HeroAISection: React.FC = () => {
       </motion.div>
 
       <motion.div
-        className="absolute bottom-8 right-8 text-purple-600/60 z-10"
+        className="absolute bottom-8 right-8 text-purple-600/60 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '1.2s' }}
       >
@@ -271,7 +271,7 @@ const HeroAISection: React.FC = () => {
       </motion.div>
 
       <motion.div
-        className="absolute bottom-24 left-96 text-pink-500/50 z-10"
+        className="absolute bottom-24 left-96 text-pink-500/50 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '4s' }}
       >
@@ -280,7 +280,7 @@ const HeroAISection: React.FC = () => {
 
       {/* Side Area Icons */}
       <motion.div
-        className="absolute top-80 left-4 text-purple-400/50 z-10"
+        className="absolute top-80 left-4 text-purple-400/50 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '3.5s' }}
       >
@@ -288,7 +288,7 @@ const HeroAISection: React.FC = () => {
       </motion.div>
 
       <motion.div
-        className="absolute top-64 right-4 text-pink-400/60 z-10"
+        className="absolute top-64 right-4 text-pink-400/60 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '2.5s' }}
       >
@@ -297,7 +297,7 @@ const HeroAISection: React.FC = () => {
 
       {/* Center Area Icons (Very Few) */}
       <motion.div
-        className="absolute top-48 left-1/2 transform -translate-x-1/2 text-purple-300/40 z-10"
+        className="absolute top-48 left-1/2 transform -translate-x-1/2 text-purple-300/40 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '5s' }}
       >
@@ -306,7 +306,7 @@ const HeroAISection: React.FC = () => {
 
       {/* Geometric Shapes */}
       <motion.div
-        className="absolute top-24 left-48 w-8 h-8 z-10"
+        className="absolute top-24 left-48 w-8 h-8 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '2.2s' }}
       >
@@ -321,35 +321,23 @@ const HeroAISection: React.FC = () => {
       </motion.div>
 
       <motion.div
-        className="absolute bottom-56 right-48 w-6 h-6 z-10"
+        className="absolute bottom-40 left-40 w-12 h-12 z-10 hidden sm:block"
         animate={floatAnimation}
-        style={{ animationDelay: '4s' }}
+        style={{ animationDelay: '3.8s' }}
       >
         <svg viewBox="0 0 100 100" className="w-full h-full">
-          <polygon
-            points="50,10 90,90 10,90"
+          <rect
+            x="20" y="20" width="60" height="60"
             fill="none"
-            stroke="rgba(236, 72, 153, 0.6)"
+            stroke="rgba(236, 72, 153, 0.4)"
             strokeWidth="2"
+            rx="8"
           />
         </svg>
       </motion.div>
 
-      {/* Dotted Elements */}
       <motion.div
-        className="absolute top-56 left-64 w-3 h-3 rounded-full bg-purple-300/50 z-10"
-        animate={floatAnimation}
-        style={{ animationDelay: '1.2s' }}
-      />
-
-      <motion.div
-        className="absolute bottom-72 left-8 w-2 h-2 rounded-full bg-pink-300/60 z-10"
-        animate={floatAnimation}
-        style={{ animationDelay: '3.8s' }}
-      />
-
-      <motion.div
-        className="absolute top-80 left-56 w-4 h-4 rounded-full bg-purple-200/70 z-10"
+        className="absolute top-80 left-56 w-4 h-4 rounded-full bg-purple-200/70 z-10 hidden sm:block"
         animate={floatAnimation}
         style={{ animationDelay: '0.8s' }}
       />
@@ -360,7 +348,7 @@ const HeroAISection: React.FC = () => {
           
           {/* Left Content */}
           <motion.div
-            className="space-y-6"
+            className="space-y-6 text-center lg:text-left"
             variants={slideInLeft}
             initial="hidden"
             animate={textAnimated ? "visible" : "hidden"}
@@ -370,6 +358,7 @@ const HeroAISection: React.FC = () => {
               initial="hidden"
               animate={textAnimated ? "visible" : "hidden"}
               transition={{ delay: 0.2 }}
+              className="flex justify-center lg:justify-start"
             >
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full border border-purple-200">
                 <Bot className="w-4 h-4 text-purple-600" />
@@ -389,7 +378,7 @@ const HeroAISection: React.FC = () => {
             </motion.h1>
 
             <motion.p
-              className={`text-lg text-gray-600 max-w-xl leading-relaxed ${lexend.className}`}
+              className={`text-lg text-gray-600 max-w-xl mx-auto lg:mx-0 leading-relaxed ${lexend.className}`}
               variants={slideInLeft}
               initial="hidden"
               animate={textAnimated ? "visible" : "hidden"}
@@ -400,7 +389,7 @@ const HeroAISection: React.FC = () => {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               variants={slideInLeft}
               initial="hidden"
               animate={textAnimated ? "visible" : "hidden"}
@@ -427,7 +416,7 @@ const HeroAISection: React.FC = () => {
 
             {/* Feature Icons */}
             <motion.div
-              className="flex gap-6 pt-8"
+              className="flex flex-wrap gap-6 pt-8 justify-center lg:justify-start"
               variants={slideInLeft}
               initial="hidden"
               animate={textAnimated ? "visible" : "hidden"}
@@ -448,9 +437,9 @@ const HeroAISection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Image */}
+          {/* Right Image - Hidden on small screens */}
           <motion.div
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end hidden lg:block"
             variants={slideInRight}
             initial="hidden"
             animate={textAnimated ? "visible" : "hidden"}

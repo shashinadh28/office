@@ -41,19 +41,14 @@ const navItems = [
     ],
   },
   {
-    name: "Why Us",
-    link: "/why-us",
-    icon: <IconHelp className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
     name: "About",
     link: "/about",
     icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
-    name: "Contact",
-    link: "/contact",
-    icon: <IconMessage className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    name: "Why Us",
+    link: "/why-us",
+    icon: <IconHelp className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
     name: "Why India?",
@@ -61,6 +56,11 @@ const navItems = [
     icon: (
       <IconInfoCircle className="h-4 w-4 text-neutral-500 dark:text-white" />
     ),
+  },
+  {
+    name: "Contact",
+    link: "/contact",
+    icon: <IconMessage className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
 ];
 
