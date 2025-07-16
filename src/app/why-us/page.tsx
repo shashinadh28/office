@@ -400,13 +400,19 @@ const WhyUsePage = () => {
               transition={{ duration: 0.8 }}
             >
               <div className="relative bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/30 shadow-2xl">
-                <div className="w-full h-64 bg-gradient-to-br from-gray-700 to-gray-800 rounded-2xl flex items-center justify-center">
-                  <Building className="w-24 h-24 text-gray-400" />
+                <div className="w-full h-64 rounded-2xl overflow-hidden">
+                  <img
+                    src="/optimized/images/our-mission.webp"
+                    alt="Our Mission - Gateway Workforce"
+                    className="w-full h-full object-cover"
+                    width={400}
+                    height={256}
+                  />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent rounded-3xl" />
                 <div className="absolute bottom-8 left-8 right-8">
                   <p className="text-white font-medium italic text-center">
-                    "gray concrete wall inside building"
+                    "Connecting Global Businesses with India's Top Talent"
                   </p>
                 </div>
               </div>
