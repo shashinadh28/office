@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Heart, Zap, Sparkles } from 'lucide-react';
-import Image from 'next/image';
 
 const ClientStories = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -13,7 +12,7 @@ const ClientStories = () => {
   const profileImages = [
     { id: 1, src: "/avatars/person1.jpg", x: "10%", y: "15%", size: "w-16 h-16", neonColor: "border-cyan-400 shadow-cyan-400/50" },
     { id: 2, src: "/avatars/person2.jpg", x: "25%", y: "35%", size: "w-20 h-20", neonColor: "border-emerald-400 shadow-emerald-400/50" },
-    { id: 3, src: "/avatars/person3.jpg", x: "15%", y: "65%", size: "w-14 h-14", neonColor: "border-purple-400 shadow-purple-400/50" },
+    { id: 3, src: "/avatars/person3", x: "15%", y: "65%", size: "w-14 h-14", neonColor: "border-purple-400 shadow-purple-400/50" },
     { id: 4, src: "/avatars/person4.jpg", x: "5%", y: "45%", size: "w-18 h-18", neonColor: "border-pink-400 shadow-pink-400/50" },
     { id: 5, src: "/avatars/person5.jpg", x: "30%", y: "75%", size: "w-16 h-16", neonColor: "border-yellow-400 shadow-yellow-400/50" },
     { id: 6, src: "/avatars/person6.jpg", x: "35%", y: "20%", size: "w-12 h-12", neonColor: "border-blue-400 shadow-blue-400/50" },

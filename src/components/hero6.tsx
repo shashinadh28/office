@@ -3,7 +3,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Montserrat } from 'next/font/google';
-import Image from 'next/image';
 
 // Global impact section with animated stats
 const Hero6 = () => {

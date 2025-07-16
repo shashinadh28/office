@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from 'react';
-import Image from 'next/image';
 import { motion, useInView, useAnimation } from 'framer-motion';
 import { FaCode, FaUserMd, FaCloud, FaRobot, FaShopify, FaCalculator } from 'react-icons/fa';
 
@@ -122,15 +121,14 @@ const BusinessSolutionsOriginal = () => {
       className="py-24 relative overflow-hidden"
     >
       {/* Background image with overlay */}
-      <div className="absolute inset-0 z-0">
-        <Image
+      <div 
+        className="absolute inset-0 z-0" 
+        style={{ opacity: 0.15 }}
+      >
+        <img
           src="/services.png"
           alt="Services Background"
-          fill
-          style={{
-            objectFit: 'cover',
-            opacity: 0.15 // Reduced opacity
-          }}
+          className='absolute inset-0 w-full h-full object-cover'
         />
         <div 
           className="absolute inset-0" 
@@ -179,4 +177,4 @@ const BusinessSolutionsOriginal = () => {
   );
 };
 
-export default BusinessSolutionsOriginal; 
+export default BusinessSolutionsOriginal;

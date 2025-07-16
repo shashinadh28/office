@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
-import Image from 'next/image';
 import { 
   Cloud, ShoppingCart, Target as HubSpotIcon, CheckCircle, 
   Settings, Zap, Users, BarChartHorizontal, Database,
@@ -44,7 +43,7 @@ const servicesData = [
       "Analytics & AI (Einstein) integration"
     ],
     iconColor: "text-[#F35120]",
-    imagePath: "/images/salesforce_services.jpg"
+    imagePath: "/optimized/images/salesforce_services.webp"
   },
   {
     title: "Shopify E-Commerce Excellence",
@@ -57,7 +56,7 @@ const servicesData = [
       "Multi-channel sales integration"
     ],
     iconColor: "text-[#F35120]",
-    imagePath: "/images/Shopify_E_Commerce_Excellence.jpg"
+    imagePath: "/optimized/images/Shopify_E_Commerce_Excellence.webp"
   },
   {
     title: "HubSpot Growth Stack",
@@ -70,7 +69,7 @@ const servicesData = [
       "Data sync & system integrations"
     ],
     iconColor: "text-[#F35120]",
-    imagePath: "/images/HubSpot_Growth_Stack.jpg"
+    imagePath: "/optimized/images/HubSpot_Growth_Stack.webp"
   },
   {
     title: "SaaS Integration & Support",
@@ -83,7 +82,7 @@ const servicesData = [
       "User training & adoption programs"
     ],
     iconColor: "text-[#F35120]",
-    imagePath: "/images/SaaS_Integration_&_Support.jpg"
+    imagePath: "/optimized/images/SaaS_Integration_&_Support.webp"
   }
 ];
 
@@ -137,7 +136,7 @@ const SaasServicesSection = () => {
                 <div className={`flex flex-col lg:flex-row h-auto lg:h-80 overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                   {/* Image section - no background color, just white/transparent */}
                   <div className="lg:w-2/5 relative bg-white flex items-center justify-center p-4">
-                    <Image
+                    <img
                       src={service.imagePath}
                       alt={service.title}
                       width={400}

@@ -28,6 +28,7 @@ export default function WorldMap({
   // Optimized intersection observer with throttling
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
+    const currentContainer = containerRef.current;
     
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -44,14 +45,14 @@ export default function WorldMap({
       }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    if (currentContainer) {
+      observer.observe(currentContainer);
     }
 
     return () => {
       if (timeoutId) clearTimeout(timeoutId);
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current);
+      if (currentContainer) {
+        observer.unobserve(currentContainer);
       }
     };
   }, [isInView]);

@@ -1,9 +1,7 @@
 "use client";
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
-import Image from 'next/image';
 
 const lexend = Lexend({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], display: 'swap' });
 
@@ -73,13 +71,12 @@ const AboutSaasSection = () => {
             className="w-full lg:w-1/2"
           >
             <div className="relative">
-              <Image
-                src="/images/saas.jpg"
+              <img
+                src="/optimized/images/saas.webp"
                 alt="SaaS Solutions Professional"
                 width={600}
                 height={500}
                 className="rounded-2xl shadow-xl object-cover"
-                priority
               />
           </div>
           </motion.div>

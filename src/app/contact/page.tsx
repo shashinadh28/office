@@ -1,32 +1,43 @@
 "use client";
 
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { MapPin, Mail, Phone, Facebook, Twitter, Linkedin, Youtube, Send } from 'lucide-react';
-import FooterSection from '@/components/footer';
+import FooterSection from "@/components/footer";
+import { motion } from "framer-motion";
+import {
+  Facebook,
+  Linkedin,
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  Twitter,
+  Youtube,
+} from "lucide-react";
+import React, { useState } from "react";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
-    console.log('Form submitted:', formData);
+    console.log("Form submitted:", formData);
     // You can implement actual form submission logic here
   };
 
@@ -44,14 +55,15 @@ const ContactPage = () => {
           >
             Contact us
           </motion.h1>
-                     <motion.p
-             className="text-xl text-blue-100 max-w-2xl mx-auto"
-             initial={{ opacity: 0, y: 20 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.6, delay: 0.2 }}
-           >
-             Gateway Workforce is ready to provide the right solution according to your needs
-           </motion.p>
+          <motion.p
+            className="text-xl text-blue-100 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Gateway Workforce is ready to provide the right solution according
+            to your needs
+          </motion.p>
         </div>
       </section>
 
@@ -60,7 +72,6 @@ const ContactPage = () => {
         <div className="container mx-auto px-4">
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
-              
               {/* Contact Information */}
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 lg:p-12 text-white">
                 <motion.div
@@ -70,8 +81,8 @@ const ContactPage = () => {
                 >
                   <h2 className="text-2xl font-bold mb-8">Get in touch</h2>
                   <p className="text-gray-300 mb-8">
-                    Complete system across various office scenarios.
-                    Detailed results can be all different needs.
+                    Complete system across various office scenarios. Detailed
+                    results can be all different needs.
                   </p>
 
                   {/* Contact Details */}
@@ -82,10 +93,13 @@ const ContactPage = () => {
                         <MapPin className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-white mb-1">Head Office</h3>
+                        <h3 className="font-semibold text-white mb-1">
+                          Gateway Global Workforce Pvt Ltd
+                        </h3>
                         <p className="text-gray-300 text-sm">
-                          12340, S Holiday Ridge<br />
-                          New Delhi - 122 001, India
+                          Plot no 62 Varuna House, 3rd floor, KPHB 5th Phase Rd,{" "}
+                          <br />
+                          Kukatpally, Hyderabad, Telangana 500075, India
                         </p>
                       </div>
                     </div>
@@ -96,10 +110,13 @@ const ContactPage = () => {
                         <Mail className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-white mb-1">Email Us</h3>
+                        <h3 className="font-semibold text-white mb-1">
+                          Email Us
+                        </h3>
                         <p className="text-gray-300 text-sm">
-                          hello@gatewayworkforce.com<br />
-                          support@gatewayworkforce.com
+                          <a href="mailto:info@gatewayworkforce.com">
+                            info@gatewayworkforce.com
+                          </a>
                         </p>
                       </div>
                     </div>
@@ -110,9 +127,12 @@ const ContactPage = () => {
                         <Phone className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="font-semibold text-white mb-1">Call Us</h3>
+                        <h3 className="font-semibold text-white mb-1">
+                          Call Us
+                        </h3>
                         <p className="text-gray-300 text-sm">
-                          +91 - 9876543210<br />
+                          +91 - 9876543210
+                          <br />
                           Fax : +91-1234-5678
                         </p>
                       </div>
@@ -121,7 +141,9 @@ const ContactPage = () => {
 
                   {/* Social Media */}
                   <div className="mt-12">
-                    <h3 className="font-semibold text-white mb-4">Follow our social media</h3>
+                    <h3 className="font-semibold text-white mb-4">
+                      Follow our social media
+                    </h3>
                     <div className="flex gap-4">
                       <a
                         href="#"
@@ -159,12 +181,17 @@ const ContactPage = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <h2 className="text-2xl font-bold text-gray-800 mb-8">Send us a message</h2>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-8">
+                    Send us a message
+                  </h2>
 
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium text-gray-700 mb-2"
+                        >
                           Name
                         </label>
                         <input
@@ -180,7 +207,10 @@ const ContactPage = () => {
                       </div>
 
                       <div>
-                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label
+                          htmlFor="company"
+                          className="block text-sm font-medium text-gray-700 mb-2"
+                        >
                           Company
                         </label>
                         <input
@@ -197,7 +227,10 @@ const ContactPage = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium text-gray-700 mb-2"
+                        >
                           Email
                         </label>
                         <input
@@ -213,7 +246,10 @@ const ContactPage = () => {
                       </div>
 
                       <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label
+                          htmlFor="phone"
+                          className="block text-sm font-medium text-gray-700 mb-2"
+                        >
                           Phone
                         </label>
                         <input
@@ -229,7 +265,10 @@ const ContactPage = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label
+                        htmlFor="subject"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
                         Subject
                       </label>
                       <input
@@ -245,7 +284,10 @@ const ContactPage = () => {
                     </div>
 
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
                         Message
                       </label>
                       <textarea
@@ -281,7 +323,7 @@ const ContactPage = () => {
       <section className="py-0">
         <div className="w-full h-96">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1750.8157326013654!2d77.3461759!3d28.5425!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5b03e2a8aef%3A0x5e4e4e4e4e4e4e4e!2sGurugram%2C%20Haryana!5e0!3m2!1sen!2sin!4v1640000000000!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.6085853412383!2d78.38979506984892!3d17.47843854686826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb91e00a4e6e35%3A0x71cd91fa0b318fef!2sGateway%20Global%20Workforce%20Pvt%20Ltd!5e0!3m2!1sen!2sin!4v1751907338185!5m2!1sen!2sin"
             width="100%"
             height="100%"
             style={{ border: 0 }}
@@ -298,4 +340,4 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage; 
+export default ContactPage;

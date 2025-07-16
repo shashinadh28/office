@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import Image from 'next/image';
 
 interface ProcessStepData {
   id: number;
@@ -17,19 +16,19 @@ const processStepsData: ProcessStepData[] = [
     id: 1,
     title: "Send A Job Description",
     description: "Send A Job Description to jobs@gatewayworkforce.com",
-    image: "/images/description.jpg",
+    image: "/optimized/images/description.webp",
   },
   {
     id: 2,
     title: "Candidate Sourcing",
     description: "Gateway Workforce finds qualified candidates from current staff, vetted resumes or the recruiting process",
-    image: "/images/recruitment.jpg",
+    image: "/optimized/images/recruitment.webp",
   },
   {
     id: 3,
     title: "Interview & Selection",
     description: "You meet, interview and select the candidate, and Gateway Workforce onboards",
-    image: "/images/select.jpg",
+    image: "/optimized/images/select.webp",
   },
 ];
 
@@ -117,13 +116,12 @@ const HiringProcess = () => {
                     {/* Static inner circle with image */}
                     <div className="w-48 h-48 rounded-full flex items-center justify-center relative">
                       <div className="w-40 h-40 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center overflow-hidden relative">
-                        <Image
+                        <img
                           src={step.image}
                           alt={step.title}
                           width={160}
                           height={160}
                           className="w-full h-full object-cover rounded-full"
-                          priority={index === 0}
                         />
                       </div>
                     

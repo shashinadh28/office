@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Lexend } from 'next/font/google';
-import Image from 'next/image';
 import { 
   CloudCog, BarChart3, DatabaseZap, ShieldCheck, 
   ServerCog, Rocket, Route, Layers, Settings, 
@@ -44,7 +43,7 @@ const serviceCategories = [
     ],
     iconColor: "text-blue-600",
     hasImage: true,
-    imagePath: "/images/cloud_architecture.jpg"
+    imagePath: "/optimized/images/cloud_architecture.webp"
   },
   {
     categoryName: 'Cloud Migration Services',
@@ -57,7 +56,7 @@ const serviceCategories = [
     ],
     iconColor: "text-cyan-600",
     hasImage: true,
-    imagePath: "/images/cloud_migration_services.jpg"
+    imagePath: "/optimized/images/cloud_migration_services.webp"
   },
   {
     categoryName: 'Cloud Management & DevOps',
@@ -70,7 +69,7 @@ const serviceCategories = [
     ],
     iconColor: "text-blue-600",
     hasImage: true,
-    imagePath: "/images/cloud_management _&_devOps.jpg"
+    imagePath: "/optimized/images/cloud_management _&_devOps.webp"
   },
   {
     categoryName: 'Security & Compliance',
@@ -83,7 +82,7 @@ const serviceCategories = [
     ],
     iconColor: "text-cyan-600",
     hasImage: true,
-    imagePath: "/images/Security_&_Compliance.jpg"
+    imagePath: "/optimized/images/Security_&_Compliance.webp"
   }
 ];
 
@@ -135,7 +134,7 @@ const CloudServicesSection = () => {
               <div className={`flex flex-col lg:flex-row h-auto lg:h-80 overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                 {/* Image section */}
                 <div className="lg:w-2/5 relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 flex items-center justify-center p-4">
-                  <Image
+                  <img
                     src={service.imagePath!}
                     alt={service.categoryName}
                     width={400}

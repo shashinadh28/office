@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { DollarSign, FileText, Users, Briefcase } from 'lucide-react';
-import Image from 'next/image';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -122,7 +121,7 @@ const ServicesSection: React.FC = () => {
                 <div className={`flex flex-col lg:flex-row h-auto lg:h-80 overflow-hidden ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                   {/* Image section */}
                   <div className="lg:w-2/5 relative bg-white overflow-hidden">
-                    <Image
+                    <img
                       src={service.imagePath}
                       alt={service.title}
                       width={600}

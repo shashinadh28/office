@@ -1,4 +1,4 @@
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { ANALYZE } = process.env;
 
 module.exports = (nextConfig = {}) => {
@@ -8,17 +8,17 @@ module.exports = (nextConfig = {}) => {
       if (ANALYZE) {
         config.plugins.push(
           new BundleAnalyzerPlugin({
-            analyzerMode: 'static',
-            reportFilename: '../bundle-analyzer/report.html',
+            analyzerMode: "static",
+            reportFilename: "../bundle-analyzer/report.html",
             openAnalyzer: false,
-            generateStatsFile: true,
-            statsFilename: '../bundle-analyzer/stats.json',
+            generateStatsFile: false,
+            statsFilename: "../bundle-analyzer/stats.json",
           })
         );
       }
 
       // Apply any existing webpack config if it exists
-      if (typeof nextConfig.webpack === 'function') {
+      if (typeof nextConfig.webpack === "function") {
         return nextConfig.webpack(config, options);
       }
 

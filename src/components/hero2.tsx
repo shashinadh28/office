@@ -120,7 +120,7 @@ const Hero2 = () => {
   const BenefitCard: React.FC<BenefitCardProps> = ({ icon, title, description, delay, imageUrl }) => {
     let finalIcon = icon;
     if (React.isValidElement(icon)) {
-      const typedIcon = icon as React.ReactElement<any>; 
+      const typedIcon = icon as React.ReactElement<{color?: string; size?: number}>; 
       finalIcon = React.cloneElement(typedIcon, {
         ...typedIcon.props,
         color: 'white', // Icon color is white
@@ -146,7 +146,7 @@ const Hero2 = () => {
             src={imageUrl} 
             alt={title} 
             className="absolute inset-0 w-full h-full object-cover" 
-            onError={(e) => (e.currentTarget.src = '/images/placeholder-default.jpg')} // Fallback image
+            onError={(e) => (e.currentTarget.src = '/optimized/images/placeholder-default.webp')} // Fallback image
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0FB7B0]/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> {/* Gradient hover overlay */}
         </div>

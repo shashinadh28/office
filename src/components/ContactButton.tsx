@@ -14,7 +14,7 @@ const ContactButton = () => {
         </div>
       </div>
       <div className="pl-[3.4rem] pr-[1.1rem] group-hover:pl-[1.1rem] group-hover:pr-[3.4rem] transition-all duration-[1s] ease-[cubic-bezier(0.510,0.026,0.368,1.016)] text-gray-800 group-hover:text-white">
-        Contacts
+        Contact us
       </div>
     </button>
   );

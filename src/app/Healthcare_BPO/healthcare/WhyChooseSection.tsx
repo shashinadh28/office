@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { motion } from "framer-motion";
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { Briefcase, DollarSign, Users, Cpu, Clock } from 'lucide-react';
@@ -33,7 +32,7 @@ const whyChooseItems = [
     icon: <Clock className="w-10 h-10 mb-3 text-[#18C7FF]" />,
     title: "24/7 Support",
     description: "Dedicated teams ensuring uninterrupted operations.",
-    link: "#", 
+    link: "#",
   },
   // You can add a sixth item here if you want to maintain a 2x3 grid, or adjust the grid columns in card-hover-effect.tsx
 ];
@@ -47,7 +46,7 @@ const WhyChooseSection = () => {
   return (
     <section className="py-16 bg-slate-50 dark:bg-slate-900">
       <div className="container mx-auto px-4">
-        <motion.div 
+        <motion.div
           className="text-center mb-12"
           initial="hidden"
           whileInView="visible"
@@ -68,7 +67,7 @@ const WhyChooseSection = () => {
         {/* Two-column layout for SVG and Cards */}
         <div className="flex flex-col lg:flex-row gap-12 items-center mt-6">
           {/* Left Column: SVG Image */}
-          <motion.div 
+          <motion.div
             className="lg:w-1/2"
             initial="hidden"
             whileInView="visible"
@@ -77,15 +76,15 @@ const WhyChooseSection = () => {
             variants={fadeIn}
           >
             <div className="group relative w-full h-[400px] md:h-[500px] rounded-lg">
-              <Image 
-                src="/optimized/images/healthcare.webp" 
+              <img
+                src="/optimized/images/healthcare.webp"
                 alt="Healthcare BPO Illustration"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
-                className="relative z-10 object-contain object-center transition-all duration-300 ease-in-out group-hover:scale-105"
+                width={800} // Add appropriate width, adjust based on your image's aspect ratio
+                height={600} // Add appropriate height, adjust based on your image's aspect ratio
+                className="w-full h-full object-contain object-center transition-all duration-300 ease-in-out group-hover:scale-105" // Ensure image fills its container
               />
               {/* Sunburst Effect */}
-              <div 
+              <div
                 className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-120 transition-all duration-500 ease-in-out transform origin-center pointer-events-none"
                 style={{
                   backgroundImage: `radial-gradient(circle at center, rgba(24,199,255,0.6) 0%, rgba(24,199,255,0) 70%)`,

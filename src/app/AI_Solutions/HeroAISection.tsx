@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { IBM_Plex_Sans, Lexend } from 'next/font/google';
 import Link from 'next/link';
@@ -101,7 +100,7 @@ const HeroAISection: React.FC = () => {
           animate={floatAnimation}
           style={{ animationDelay: '0s' }}
         >
-          <Image
+          <img
             src="/svg/ai_svg/ai-hexagon-small.svg"
             alt="Hexagon"
             width={53}
@@ -122,7 +121,7 @@ const HeroAISection: React.FC = () => {
           animate={floatAnimation}
           style={{ animationDelay: '1s' }}
         >
-          <Image
+          <img
             src="/svg/ai_svg/ai-hexagon-big.svg"
             alt="Hexagon"
             width={255}
@@ -144,7 +143,7 @@ const HeroAISection: React.FC = () => {
           animate={floatAnimation}
           style={{ animationDelay: '2s' }}
         >
-          <Image
+          <img
             src="/svg/ai_svg/ai-hexagon-purple.svg"
             alt="Hexagon"
             width={206}
@@ -172,7 +171,7 @@ const HeroAISection: React.FC = () => {
           animate={floatAnimation}
           style={{ animationDelay: '2.5s' }}
         >
-          <Image
+          <img
             src="/svg/ai_svg/ai-hexagon-small.svg"
             alt="Hexagon"
             width={53}
@@ -463,13 +462,12 @@ const HeroAISection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <div className="relative w-full max-w-lg">
-                <Image
-                  src="/background_images/ai_background.png"
+                <img
+                  src="/optimized/background_images/ai_background.webp"
                   alt="AI Solutions"
                   width={400}
                   height={400}
                   className="object-contain w-full h-auto"
-                  priority
                 />
               </div>
             </motion.div>

@@ -1,12 +1,10 @@
 "use client";
-
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle, Users, Shield, Calendar, Mail, Plane, FileText, Users2, Building, BarChart3, TrendingUp, CreditCard, DollarSign, Gift, Heart, Megaphone, Share2, Phone, Search, UserCheck, PlayCircle, Settings, Handshake } from "lucide-react";
-import { useState } from "react";
-import { IBM_Plex_Sans } from 'next/font/google';
-import { HoverEffect } from "@/components/ui/card-hover-effect";
 import FooterSection from '@/components/footer';
+import { HoverEffect } from "@/components/ui/card-hover-effect";
+import { AnimatePresence, motion } from "framer-motion";
+import { BarChart3, Building, CheckCircle, DollarSign, FileText, Handshake, Heart, Megaphone, Phone, PlayCircle, Search, Settings, Shield, UserCheck, Users } from "lucide-react";
+import { IBM_Plex_Sans } from 'next/font/google';
+import { useState } from "react";
 
 const ibmPlexSans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['400', '600', '700'], display: 'swap' });
 
@@ -16,8 +14,8 @@ export default function VirtualAssistantPage() {
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }
     }
@@ -45,7 +43,7 @@ export default function VirtualAssistantPage() {
       icon: FileText,
       activeColor: "from-emerald-400 to-teal-500",
       activeHoverColor: "from-emerald-500 to-teal-600",
-      image: "/images/virtual-assistance/administrative-tasks.jpg"
+      image: "/optimized/images/virtual-assistance/administrative-tasks.webp"
     },
     {
       id: "operational",
@@ -53,7 +51,7 @@ export default function VirtualAssistantPage() {
       icon: Building,
       activeColor: "from-emerald-400 to-teal-500",
       activeHoverColor: "from-emerald-500 to-teal-600",
-      image: "/images/virtual-assistance/Operational-tasks.jpg"
+      image: "/optimized/images/virtual-assistance/Operational-tasks.webp"
     },
     {
       id: "financial",
@@ -61,7 +59,7 @@ export default function VirtualAssistantPage() {
       icon: DollarSign,
       activeColor: "from-emerald-400 to-teal-500",
       activeHoverColor: "from-emerald-500 to-teal-600",
-      image: "/images/virtual-assistance/Financial-Tasks.jpg"
+      image: "/optimized/images/virtual-assistance/Financial-Tasks.webp"
     },
     {
       id: "personal",
@@ -69,7 +67,7 @@ export default function VirtualAssistantPage() {
       icon: Heart,
       activeColor: "from-emerald-400 to-teal-500",
       activeHoverColor: "from-emerald-500 to-teal-600",
-      image: "/images/virtual-assistance/Personal-Tasks.jpg"
+      image: "/optimized/images/virtual-assistance/Personal-Tasks.webp"
     },
     {
       id: "marketing",
@@ -77,7 +75,7 @@ export default function VirtualAssistantPage() {
       icon: Megaphone,
       activeColor: "from-emerald-400 to-teal-500",
       activeHoverColor: "from-emerald-500 to-teal-600",
-      image: "/images/virtual-assistance/marketing-tasks.jpg"
+      image: "/optimized/images/virtual-assistance/marketing-tasks.webp"
     }
   ];
 
@@ -145,7 +143,7 @@ export default function VirtualAssistantPage() {
       icon: <div className="flex justify-center mb-4"><Phone className="w-8 h-8 text-teal-600" /></div>
     },
     {
-      title: "Step 2. Discovery Call", 
+      title: "Step 2. Discovery Call",
       description: "Meet with your Client Success Consultant to deep dive into your tasks, tools, culture, and personality requirements to ensure we match you with the right Gateway Professional.",
       link: "#",
       icon: <div className="flex justify-center mb-4"><Search className="w-8 h-8 text-teal-600" /></div>
@@ -199,16 +197,15 @@ export default function VirtualAssistantPage() {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen w-full overflow-hidden bg-white">
-        
+
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="/background_images/virtual-assestent.png"
+          <img
+            src="/optimized/background_images/virtual-assestent.webp"
             alt="Virtual Assistant Background"
-            fill
-            sizes="100vw"
-            priority={true}
-            className="object-cover object-center"
+            width="1920" // Add appropriate width
+            height="1080" // Add appropriate height
+            className="object-cover object-center w-full h-full" // Ensure image fills its container
           />
           {/* Overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
@@ -218,7 +215,7 @@ export default function VirtualAssistantPage() {
         <div className="relative z-10 h-full flex flex-col justify-center">
           <div className="container mx-auto px-4 sm:px-6 md:px-12 pt-32 md:pt-28">
             <div className="max-w-4xl">
-              
+
               {/* Main Content */}
               <motion.div
                 className="mb-12"
@@ -236,14 +233,14 @@ export default function VirtualAssistantPage() {
                 }}
               >
                 {/* Title */}
-                <motion.h1 
+                <motion.h1
                   className={`${ibmPlexSans.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white mb-6`}
                   variants={fadeInUp}
                 >
                   Hire a Virtual Assistant Expert at just{' '}
-                  <span className="text-teal-400">$5</span>
+                  <span className="text-teal-400">$6</span>
                 </motion.h1>
-                
+
                 {/* Underline */}
                 <motion.div
                   className="h-1 w-32 bg-gradient-to-r from-teal-500 via-cyan-500 to-teal-600 rounded-full mb-8"
@@ -251,7 +248,7 @@ export default function VirtualAssistantPage() {
                 />
 
                 {/* Description */}
-                <motion.p 
+                <motion.p
                   className={`${ibmPlexSans.className} text-xl sm:text-2xl md:text-3xl text-gray-200 leading-relaxed mb-10`}
                   variants={fadeInUp}
                 >
@@ -265,10 +262,10 @@ export default function VirtualAssistantPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-bold py-4 px-8 rounded-lg text-lg shadow-xl transition-all duration-300"
-                    whileHover={{ 
-                      scale: 1.05, 
+                    whileHover={{
+                      scale: 1.05,
                       y: -3,
-                      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)" 
+                      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)"
                     }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -299,19 +296,19 @@ export default function VirtualAssistantPage() {
                     className="bg-white/10 backdrop-blur-md rounded-lg p-4 border border-white/20 shadow-lg"
                     variants={{
                       hidden: { opacity: 0, y: 30, scale: 0.95 },
-                      visible: { 
-                        opacity: 1, 
-                        y: 0, 
+                      visible: {
+                        opacity: 1,
+                        y: 0,
                         scale: 1,
-                        transition: { 
-                          duration: 0.6, 
+                        transition: {
+                          duration: 0.6,
                           ease: [0.25, 0.46, 0.45, 0.94],
-                          delay: card.delay 
+                          delay: card.delay
                         }
                       }
                     }}
-                    whileHover={{ 
-                      scale: 1.05, 
+                    whileHover={{
+                      scale: 1.05,
                       y: -5,
                       transition: { duration: 0.3 }
                     }}
@@ -344,9 +341,9 @@ export default function VirtualAssistantPage() {
       {/* What's holding you back? Section */}
       <section className="py-20 md:py-28 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Section Header */}
-          <motion.div 
+          <motion.div
             className="text-center mb-16 md:mb-20"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -354,13 +351,13 @@ export default function VirtualAssistantPage() {
             viewport={{ once: true }}
           >
             <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight`}>
-              What's holding you back?
+              What Challenges Are Limiting Your Growth?
             </h2>
           </motion.div>
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-6xl mx-auto">
-            
+
             {/* Lack of Time Card */}
             <motion.div
               className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden group hover:shadow-2xl transition-all duration-300"
@@ -371,11 +368,12 @@ export default function VirtualAssistantPage() {
               whileHover={{ y: -10 }}
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
-                  src="/images/Lack-of-Time.jpg"
+                <img
+                  src="/optimized/images/Lack-of-Time.webp"
                   alt="Lack of Time"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  width="1" // Add placeholder width
+                  height="1" // Add placeholder height
+                  className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300" // Ensure image fills its container
                 />
               </div>
               <div className="p-6">
@@ -398,11 +396,12 @@ export default function VirtualAssistantPage() {
               whileHover={{ y: -10 }}
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
-                  src="/images/Unanswered-Calls-&-Emails.jpg"
+                <img
+                  src="/optimized/images/Unanswered-Calls-&-Emails.webp"
                   alt="Unanswered Calls & Emails"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  width="1" // Add placeholder width
+                  height="1" // Add placeholder height
+                  className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300" // Ensure image fills its container
                 />
               </div>
               <div className="p-6">
@@ -425,11 +424,12 @@ export default function VirtualAssistantPage() {
               whileHover={{ y: -10 }}
             >
               <div className="relative h-48 overflow-hidden">
-                <Image
-                  src="/images/Missed-Projects-&-Deadlines.jpg"
+                <img
+                  src="/optimized/images/Missed-Projects-&-Deadlines.webp"
                   alt="Missed Projects & Deadlines"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                  width="1" // Add placeholder width
+                  height="1" // Add placeholder height
+                  className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300" // Ensure image fills its container
                 />
               </div>
               <div className="p-6">
@@ -449,9 +449,9 @@ export default function VirtualAssistantPage() {
       {/* What Is a Virtual Assistant? Section */}
       <section className="py-20 md:py-28 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Section Header */}
-          <motion.div 
+          <motion.div
             className="text-center mb-16 md:mb-20"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -459,12 +459,12 @@ export default function VirtualAssistantPage() {
             viewport={{ once: true }}
           >
             <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight mb-8`}>
-              What Is a Virtual Assistant?
+              Professional Virtual Assistant Services
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
               Gateway's Virtual Assistant services provide a variety of solutions, including:
             </p>
-            
+
             {/* Horizontal Line */}
             <motion.div
               className="w-full max-w-4xl mx-auto h-1 bg-gradient-to-r from-transparent via-teal-500 to-transparent rounded-full"
@@ -478,7 +478,7 @@ export default function VirtualAssistantPage() {
           {/* Interactive Content */}
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-              
+
               {/* Left Side - Interactive Cards */}
               <motion.div
                 className="space-y-6"
@@ -491,8 +491,8 @@ export default function VirtualAssistantPage() {
                   <motion.div
                     key={category.id}
                     className={`relative overflow-hidden rounded-2xl cursor-pointer transition-all duration-500 ${
-                      activeCard === category.id 
-                        ? 'shadow-2xl transform scale-105' 
+                      activeCard === category.id
+                        ? 'shadow-2xl transform scale-105'
                         : 'shadow-lg hover:shadow-xl hover:scale-102'
                     }`}
                     onClick={() => setActiveCard(category.id)}
@@ -504,11 +504,11 @@ export default function VirtualAssistantPage() {
                     whileTap={{ scale: 0.98 }}
                   >
                                                               <div className={`${
-                       activeCard === category.id 
-                         ? `bg-gradient-to-r ${category.activeColor} text-white` 
+                       activeCard === category.id
+                         ? `bg-gradient-to-r ${category.activeColor} text-white`
                          : 'bg-white text-gray-800 border-2 border-gray-200'
                      } p-4 relative overflow-hidden transition-all duration-300`}>
-                       
+
                        {/* Background Pattern - Only for active cards */}
                        {activeCard === category.id && (
                          <div className="absolute inset-0 opacity-10">
@@ -516,12 +516,12 @@ export default function VirtualAssistantPage() {
                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full transform -translate-x-4 translate-y-4"></div>
                          </div>
                        )}
-                       
+
                        <div className="relative z-10 flex items-center space-x-4">
                          <motion.div
                            className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                             activeCard === category.id 
-                               ? 'bg-white/20 backdrop-blur-sm' 
+                             activeCard === category.id
+                               ? 'bg-white/20 backdrop-blur-sm'
                                : 'bg-gray-100 border border-gray-300'
                            } transition-all duration-300`}
                            animate={{
@@ -534,7 +534,7 @@ export default function VirtualAssistantPage() {
                              activeCard === category.id ? 'text-white' : 'text-gray-600'
                            }`} />
                          </motion.div>
-                         
+
                          <div className="flex-1">
                            <h3 className={`text-lg md:text-xl font-bold tracking-wide ${
                              activeCard === category.id ? 'text-white' : 'text-gray-800'
@@ -542,7 +542,7 @@ export default function VirtualAssistantPage() {
                              {category.title}
                            </h3>
                          </div>
-                         
+
                          {/* Active Indicator */}
                          <motion.div
                            className={`w-4 h-4 rounded-full ${
@@ -571,7 +571,7 @@ export default function VirtualAssistantPage() {
                 {/* Background Decoration */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-teal-100 to-cyan-100 rounded-full transform translate-x-16 -translate-y-16 opacity-50"></div>
                 <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-emerald-100 to-teal-100 rounded-full transform -translate-x-12 translate-y-12 opacity-50"></div>
-                
+
                 <div className="relative z-10">
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -583,7 +583,7 @@ export default function VirtualAssistantPage() {
                     >
                       {/* Header with Image */}
                       <div className="mb-8">
-                        <motion.h3 
+                        <motion.h3
                           className={`${ibmPlexSans.className} text-3xl md:text-4xl font-bold text-gray-800 mb-6`}
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -591,7 +591,7 @@ export default function VirtualAssistantPage() {
                         >
                           {taskCategories.find(cat => cat.id === activeCard)?.title}
                         </motion.h3>
-                        
+
                         {/* Image */}
                         <motion.div
                           className="relative w-full h-48 md:h-56 rounded-xl overflow-hidden shadow-lg mb-6"
@@ -599,16 +599,16 @@ export default function VirtualAssistantPage() {
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.2, duration: 0.5 }}
                         >
-                          <Image
+                          <img
                             src={taskCategories.find(cat => cat.id === activeCard)?.image || ""}
                             alt={taskCategories.find(cat => cat.id === activeCard)?.title || ""}
-                            fill
-                            className="object-cover"
-                            sizes="(max-width: 768px) 100vw, 50vw"
+                                width="1" // Add placeholder width
+                                height="1" // Add placeholder height
+                                className="object-cover w-full h-full"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                         </motion.div>
-                        
+
                         {/* Divider Line */}
                         <motion.div
                           className="w-full h-0.5 bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full"
@@ -617,7 +617,7 @@ export default function VirtualAssistantPage() {
                           transition={{ delay: 0.3, duration: 0.6 }}
                         />
                       </div>
-                      
+
                       <div className="space-y-4">
                         {taskContent[activeCard as keyof typeof taskContent].map((task, index) => (
                           <motion.div
@@ -634,7 +634,7 @@ export default function VirtualAssistantPage() {
                             >
                               <CheckCircle className="w-3 h-3 text-white" />
                             </motion.div>
-                            <motion.p 
+                            <motion.p
                               className="text-gray-700 leading-relaxed text-lg group-hover:text-gray-900 transition-colors duration-300"
                               whileHover={{ x: 5 }}
                               transition={{ duration: 0.2 }}
@@ -664,7 +664,7 @@ export default function VirtualAssistantPage() {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-7xl mx-auto">
-            
+
             {/* Centered Content Header */}
             <motion.div
               className="text-center mb-16"
@@ -674,9 +674,9 @@ export default function VirtualAssistantPage() {
               viewport={{ once: true }}
             >
               <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-8`}>
-                21 Things You Can Delegate to Our Virtual Assistants Today
+                Essential Tasks You Can Delegate to Virtual Assistants
               </h2>
-              
+
               <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-8">
                 Delegation is one of the most effective tools in a leader's tool kit because it helps you grow your business. We're confident we can help your business become more productive. Still researching the benefits of hiring a virtual assistant or how this would improve your workflows? To get started, here's a list of commonly delegated tasks that you can hand over today!
               </p>
@@ -696,7 +696,7 @@ export default function VirtualAssistantPage() {
                     </svg>
                     <span className="text-white font-medium">Cut Costs</span>
                   </div>
-                  <div className="flex items-center">
+              <div className="flex items-center">
                     <svg className="w-5 h-5 text-blue-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                     </svg>
@@ -814,7 +814,7 @@ export default function VirtualAssistantPage() {
             viewport={{ once: true }}
           >
             <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight mb-8`}>
-              How It Works
+              Our Virtual Assistant Process
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
               Our streamlined process ensures you get matched with the perfect virtual assistant quickly and efficiently.
@@ -1079,7 +1079,7 @@ export default function VirtualAssistantPage() {
             viewport={{ once: true }}
           >
             <h2 className={`${ibmPlexSans.className} text-4xl sm:text-5xl lg:text-6xl font-black text-gray-800 leading-tight mb-16 text-center`}>
-              Why Hire a Virtual Assistant?
+              Why Choose Gateway Workforce for Virtual Assistant Services?
             </h2>
             
             {/* Two Cards Side by Side */}
