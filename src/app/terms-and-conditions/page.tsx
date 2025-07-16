@@ -49,7 +49,7 @@ export default function TermsAndConditionsPage() {
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
                 <p className="text-gray-700 leading-relaxed">
-                  Welcome to Gateway Global Workforce ("we," "our," or "us"). These Terms and Conditions ("Terms") govern your use of our website located at gatewayworkforce.com and our services. By accessing or using our services, you agree to be bound by these Terms.
+                  Welcome to Gateway Global Workforce Pvt Ltd ("we," "our," or "us"). These Terms and Conditions ("Terms") govern your use of our website located at gatewayworkforce.com and our services. By accessing or using our services, you agree to be bound by these Terms.
                 </p>
               </div>
 
@@ -57,7 +57,7 @@ export default function TermsAndConditionsPage() {
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Our Services</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  Gateway Global Workforce provides professional staffing and outsourcing services including but not limited to:
+                  Gateway Global Workforce Pvt Ltd provides professional staffing and outsourcing services including but not limited to:
                 </p>
                 <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
                   <li>IT Outsourcing and Development Services</li>
@@ -95,7 +95,7 @@ export default function TermsAndConditionsPage() {
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Intellectual Property</h2>
                 <p className="text-gray-700 leading-relaxed">
-                  All content, trademarks, and intellectual property on our website and in our services remain the property of Gateway Global Workforce or our licensors. Work products created specifically for clients under service agreements are governed by the terms of those specific agreements.
+                  All content, trademarks, and intellectual property on our website and in our services remain the property of Gateway Global Workforce Pvt Ltd or our licensors. Work products created specifically for clients under service agreements are governed by the terms of those specific agreements.
                 </p>
               </div>
 
@@ -111,7 +111,7 @@ export default function TermsAndConditionsPage() {
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Limitation of Liability</h2>
                 <p className="text-gray-700 leading-relaxed">
-                  To the maximum extent permitted by law, Gateway Global Workforce shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly.
+                  To the maximum extent permitted by law, Gateway Global Workforce Pvt Ltd shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly.
                 </p>
               </div>
 
@@ -146,10 +146,10 @@ export default function TermsAndConditionsPage() {
                   If you have any questions about these Terms and Conditions, please contact us at:
                 </p>
                 <div className="bg-gray-50 p-6 rounded-lg mt-4">
-                  <p className="text-gray-700 mb-2"><strong>Gateway Global Workforce</strong></p>
+                  <p className="text-gray-700 mb-2"><strong>Gateway Global Workforce Pvt Ltd</strong></p>
                   <p className="text-gray-700 mb-2">Email: info@gatewayworkforce.com</p>
-                  <p className="text-gray-700 mb-2">Phone: +91-XXX-XXX-XXXX</p>
-                  <p className="text-gray-700">Address: Hyderabad, India</p>
+                  <p className="text-gray-700 mb-2">Website: gatewayworkforce.com</p>
+                  <p className="text-gray-700">Address: Plot no 62 Varuna House, 3rd floor, KPHB 5th Phase Rd, Kukatpally, Hyderabad, Telangana 500075, India</p>
                 </div>
               </div>
             </div>

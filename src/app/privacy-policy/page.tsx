@@ -49,7 +49,7 @@ export default function PrivacyPolicyPage() {
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
                 <p className="text-gray-700 leading-relaxed">
-                  Gateway Global Workforce ("we," "our," or "us") is committed to protecting your privacy and personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+                  Gateway Global Workforce Pvt Ltd ("we," "our," or "us") is committed to protecting your privacy and personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
                 </p>
               </div>
 
@@ -200,10 +200,10 @@ export default function PrivacyPolicyPage() {
                   If you have any questions about this Privacy Policy or our privacy practices, please contact us at:
                 </p>
                 <div className="bg-gray-50 p-6 rounded-lg mt-4">
-                  <p className="text-gray-700 mb-2"><strong>Gateway Global Workforce</strong></p>
-                  <p className="text-gray-700 mb-2">Email: privacy@gatewayworkforce.com</p>
-                  <p className="text-gray-700 mb-2">Phone: +91-XXX-XXX-XXXX</p>
-                  <p className="text-gray-700">Address: Hyderabad, India</p>
+                  <p className="text-gray-700 mb-2"><strong>Gateway Global Workforce Pvt Ltd</strong></p>
+                  <p className="text-gray-700 mb-2">Email: info@gatewayworkforce.com</p>
+                  <p className="text-gray-700 mb-2">Website: gatewayworkforce.com</p>
+                  <p className="text-gray-700">Address: Plot no 62 Varuna House, 3rd floor, KPHB 5th Phase Rd, Kukatpally, Hyderabad, Telangana 500075, India</p>
                 </div>
               </div>
             </div>
